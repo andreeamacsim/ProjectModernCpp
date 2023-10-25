@@ -13,7 +13,15 @@ public:
 	void setRounds(const std::vector<Round>& rounds);
 	void setWordList(const std::vector<Word>& wordList);
 	void setCurrentRound(uint8_t currentRound);
-	void setCurrentPlayer(Player currentDrawer);
+	void setCurrentDrawer(Player currentDrawer);
+
+	std::vector<Player>& getPlayers();
+	std::vector<Round>& getRounds();
+	std::vector<Word>& getWordsList();
+	uint8_t getCurrentRound();
+	Player getCurrentDrawer();
+
+
 
 
 

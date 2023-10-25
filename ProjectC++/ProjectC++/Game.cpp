@@ -32,7 +32,7 @@ void Game::setCurrentRound(uint8_t currentRound)
 	m_currentRound = currentRound;
 }
 
-void Game::setCurrentPlayer(Player currentDrawer)
+void Game::setCurrentDrawer(Player currentDrawer)
 {
 	m_currentDrawer = currentDrawer;
 }
