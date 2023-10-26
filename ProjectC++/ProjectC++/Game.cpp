@@ -36,3 +36,28 @@ void Game::setCurrentDrawer(Player currentDrawer)
 {
 	m_currentDrawer = currentDrawer;
 }
+
+std::vector<Player>& Game::getPlayers()
+{
+	return this->m_players;
+}
+
+std::vector<Round>& Game::getRounds()
+{
+	return this->m_rounds;
+}
+
+std::vector<Word>& Game::getWordsList()
+{
+	return this->m_wordList;
+}
+
+uint8_t Game::getCurrentRound()
+{
+	return m_currentRound;
+}
+
+Player Game::getCurrentDrawer()
+{
+	return m_currentDrawer;
+}
