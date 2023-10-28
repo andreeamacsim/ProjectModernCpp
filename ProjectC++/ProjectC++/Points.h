@@ -8,7 +8,7 @@ public:
 	Points();
 	uint32_t PointsPerRound();//punctele adaugate fiecarui jocator per runda jucata
 private:
-	uint32_t points;
+	uint32_t m_points;
 
 };
 

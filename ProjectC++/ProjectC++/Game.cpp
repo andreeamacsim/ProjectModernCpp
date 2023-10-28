@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Game.h"
 Game::Game()
 {
@@ -35,6 +36,40 @@ void Game::setCurrentRound(uint8_t currentRound)
 void Game::setCurrentDrawer(Player currentDrawer)
 {
 	m_currentDrawer = currentDrawer;
+}
+
+uint8_t Game::setDifficultyLevel()
+{
+	uint8_t option = -1;
+	while (option)
+	{
+		std::cout << "Choose difficulty level:";
+		std::cout << "Level 1: Easy";
+		std::cout << "Level 2: Medium";
+		std::cout << "Level 3: Hard";
+		std::cin >> option;
+		switch (option)
+		{
+		case 1:
+		{
+			m_difficultyLevel = 1;
+			break;
+		}
+		case 2:
+		{
+			m_difficultyLevel = 2;
+			break;
+		}
+		case 3:
+		{
+			m_difficultyLevel = 3;
+			break;
+		}
+
+		}
+
+
+	}
 }
 
 std::vector<Player>& Game::getPlayers()
