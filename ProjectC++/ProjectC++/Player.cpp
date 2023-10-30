@@ -30,5 +30,5 @@ void Player::setUsername(std::string username)
 
 void Player::setPassword(std::string password)
 {
-	this->m_password=password
+	this->m_password = password;
 }

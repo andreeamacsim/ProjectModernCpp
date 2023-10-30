@@ -14,6 +14,7 @@ public:
 	void setWordList(const std::vector<Word>& wordList);
 	void setCurrentRound(uint8_t currentRound);
 	void setCurrentDrawer(Player currentDrawer);
+	uint8_t setDifficultyLevel();
 
 	std::vector<Player>& getPlayers();
 	std::vector<Round>& getRounds();
@@ -22,14 +23,12 @@ public:
 	Player getCurrentDrawer();
 
 
-
-
-
 private:
 	std::vector<Player> m_players;
 	std::vector<Round> m_rounds;
 	std::vector<Word> m_wordList;
 	uint8_t m_currentRound;
+	uint8_t m_difficultyLevel;
 	Player m_currentDrawer;
 
 };

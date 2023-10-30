@@ -1,5 +1,8 @@
-#include <iostream>
-#include "Game.h"
+#include  <iostream>;
+module  GameModule;
+import <vector>;
+import "Player.h";
+
 Game::Game()
 {
 }
@@ -38,7 +41,7 @@ void Game::setCurrentDrawer(Player currentDrawer)
 	m_currentDrawer = currentDrawer;
 }
 
-uint8_t Game::setDifficultyLevel()
+void Game::setDifficultyLevel()
 {
 	uint8_t option = -1;
 	while (option)

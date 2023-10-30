@@ -7,7 +7,7 @@ uint32_t Points::GetPoints()
 
 uint32_t Points::SetPoints()
 {
-    //m_points=GetPoints()+ PointsPerRound();
+    return m_points;
 }
 
 Points::Points()
