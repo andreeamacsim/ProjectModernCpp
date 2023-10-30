@@ -1,4 +1,5 @@
-#include "Points.h"
+
+module PointsModule;
 
 uint32_t Points::GetPoints()
 {

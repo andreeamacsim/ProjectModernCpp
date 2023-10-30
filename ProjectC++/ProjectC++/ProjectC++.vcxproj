@@ -135,6 +135,7 @@
     <ClCompile Include="GameModule.cppm" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Points.cpp" />
+    <ClCompile Include="PointsModule.cppm" />
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="ProjectC++.cpp" />
     <ClCompile Include="Round.cpp" />
@@ -142,7 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Points.h" />
     <ClInclude Include="Profile.h" />
     <ClInclude Include="Round.h" />
     <ClInclude Include="Word.h" />
