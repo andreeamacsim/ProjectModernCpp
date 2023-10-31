@@ -1,4 +1,4 @@
-#include "Round.h"
+module round;
 
 Round::Round()
 {

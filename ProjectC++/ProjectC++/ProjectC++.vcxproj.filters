@@ -45,11 +45,11 @@
     <ClCompile Include="player.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="round.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Round.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Word.h">
       <Filter>Header Files</Filter>
     </ClInclude>

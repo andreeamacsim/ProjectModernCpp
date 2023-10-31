@@ -140,11 +140,11 @@
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="ProjectC++.cpp" />
     <ClCompile Include="Round.cpp" />
+    <ClCompile Include="round.cppm" />
     <ClCompile Include="Word.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Profile.h" />
-    <ClInclude Include="Round.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
