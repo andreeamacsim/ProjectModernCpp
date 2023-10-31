@@ -144,6 +144,7 @@
     <ClCompile Include="Word.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Points.h" />
     <ClInclude Include="Profile.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
