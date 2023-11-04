@@ -147,9 +147,9 @@
     </ClCompile>
     <ClCompile Include="round.cppm" />
     <ClCompile Include="Word.cpp" />
+    <ClCompile Include="word.cppm" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Points.h" />
     <ClInclude Include="Profile.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>

@@ -2,7 +2,7 @@ module;
 import <vector>;
 import "Player.h";
 import "Round.h";
-import "Word.h";
+import word;
 
 export module GameModule;
 

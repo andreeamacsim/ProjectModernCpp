@@ -1,1 +1,1 @@
-#include "Word.h"
+module word;

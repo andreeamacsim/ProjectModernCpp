@@ -48,15 +48,15 @@
     <ClCompile Include="round.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="word.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Word.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Profile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Points.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
