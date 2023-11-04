@@ -8,17 +8,17 @@ Player::Player(std::string username, std::string password, Profile playerProfile
 {
 }
 
-std::string Player::getUsername()
+std::string Player::getUsername() const
 {
 	return this->m_username;
 }
 
-std::string Player::getPassword()
+std::string Player::getPassword() const
 {
 	return this->m_username;
 }
 
-Profile Player::getProfile()
+Profile Player::getProfile() const
 {
 	return this->m_playerProfile;
 }

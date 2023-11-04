@@ -75,27 +75,27 @@ void Game::setDifficultyLevel()
 	}
 }
 
-std::vector<Player>& Game::getPlayers()
+std::vector<Player>& Game::getPlayers() 
 {
 	return this->m_players;
 }
 
-std::vector<Round>& Game::getRounds()
+std::vector<Round>& Game::getRounds() 
 {
 	return this->m_rounds;
 }
 
-std::vector<Word>& Game::getWordsList()
+std::vector<Word>& Game::getWordsList() 
 {
 	return this->m_wordList;
 }
 
-uint8_t Game::getCurrentRound()
+uint8_t Game::getCurrentRound() const
 {
 	return m_currentRound;
 }
 
-Player Game::getCurrentDrawer()
+Player Game::getCurrentDrawer() const 
 {
 	return m_currentDrawer;
 }

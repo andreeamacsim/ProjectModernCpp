@@ -20,10 +20,10 @@ public:
     void setDifficultyLevel();
 
     std::vector<Player>& getPlayers();
-    std::vector<Round>& getRounds();
-    std::vector<Word>& getWordsList();
-    uint8_t getCurrentRound();
-    Player getCurrentDrawer();
+    std::vector<Round>& getRounds() ;
+    std::vector<Word>& getWordsList() ;
+    uint8_t getCurrentRound() const;
+    Player getCurrentDrawer() const;
 
 private:
     std::vector<Player> m_players;

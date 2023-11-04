@@ -150,9 +150,6 @@
     <ClCompile Include="Word.cpp" />
     <ClCompile Include="word.cppm" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Profile.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

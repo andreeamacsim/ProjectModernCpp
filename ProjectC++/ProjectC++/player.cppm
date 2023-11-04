@@ -11,9 +11,9 @@ public:
 	Player();
 	Player(std::string username, std::string password, Profile playerProfile);
 
-	std::string getUsername();
-	std::string getPassword();
-	Profile getProfile();
+	std::string getUsername()const;
+	std::string getPassword()const;
+	Profile getProfile() const;
 
 
 	void setUsername(std::string username);

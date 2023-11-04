@@ -20,22 +20,22 @@ bool Round::IsGuessed() const
 	return false;
 }
 
-const std::string& Round::GetWord()
+const std::string& Round::GetWord() const
 {
 	return m_word;
 }
 
-const std::string& Round::GetDrawer()
+const std::string& Round::GetDrawer() const
 {
 	return m_drawer;
 }
 
-const std::vector<std::string>& Round::GetGuesses()
+const std::vector<std::string>& Round::GetGuesses() const
 {
 	return m_guesses;
 }
 
-std::vector<std::string> Round::GetGuessesForPlayer(const std::string& player)
+std::vector<std::string> Round::GetGuessesForPlayer(const std::string& player) const
 {
 	return std::vector<std::string>();
 }

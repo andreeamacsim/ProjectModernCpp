@@ -7,8 +7,8 @@ export module PointsModule;
 export class Points
 {
 public:
-	uint32_t GetPoints();
-	uint32_t SetPoints();
+	uint32_t GetPoints() const;
+	uint32_t SetPoints() const;
 	Points();
 	uint32_t PointsPerRound();//punctele adaugate fiecarui jocator per runda jucata
 private:

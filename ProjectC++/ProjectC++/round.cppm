@@ -11,10 +11,10 @@ public:
     Round(const std::string& word, const std::string& drawer);
     void AddGuess(const std::string& guess);
     bool IsGuessed() const;
-    const std::string& GetWord();
-    const std::string& GetDrawer();
-    const std::vector<std::string>& GetGuesses();
-    std::vector<std::string> GetGuessesForPlayer(const std::string& player);
+    const std::string& GetWord() const;
+    const std::string& GetDrawer() const;
+    const std::vector<std::string>& GetGuesses() const;
+    std::vector<std::string> GetGuessesForPlayer(const std::string& player) const;
 
 private:
     std::string m_word;
