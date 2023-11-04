@@ -1,1 +1,1 @@
-#include "Profile.h"
+module profile;

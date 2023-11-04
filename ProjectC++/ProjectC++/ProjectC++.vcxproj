@@ -138,6 +138,7 @@
     <ClCompile Include="Points.cpp" />
     <ClCompile Include="PointsModule.cppm" />
     <ClCompile Include="Profile.cpp" />
+    <ClCompile Include="profile.cppm" />
     <ClCompile Include="ProjectC++.cpp" />
     <ClCompile Include="Round.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpplatest</LanguageStandard>
@@ -151,7 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Profile.h" />
-    <ClInclude Include="Word.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

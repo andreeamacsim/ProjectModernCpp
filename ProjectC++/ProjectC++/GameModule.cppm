@@ -1,7 +1,7 @@
 module;
 import <vector>;
-import "Player.h";
-import "Round.h";
+import player;
+import round;
 import word;
 
 export module GameModule;

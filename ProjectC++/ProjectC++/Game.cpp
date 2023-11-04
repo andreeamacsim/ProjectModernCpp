@@ -1,7 +1,7 @@
 #include  <iostream>;
 module  GameModule;
 import <vector>;
-import "Player.h";
+import player;
 
 Game::Game()
 {

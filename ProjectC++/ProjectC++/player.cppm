@@ -1,6 +1,6 @@
 module;
 import<string>;
-import "Profile.h";
+import profile;
 
 
 export module player;
