@@ -139,7 +139,12 @@
     <ClCompile Include="PointsModule.cppm" />
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="ProjectC++.cpp" />
-    <ClCompile Include="Round.cpp" />
+    <ClCompile Include="Round.cpp">
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpplatest</LanguageStandard>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableModules>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdcpplatest</LanguageStandard>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableModules>
+    </ClCompile>
     <ClCompile Include="round.cppm" />
     <ClCompile Include="Word.cpp" />
   </ItemGroup>

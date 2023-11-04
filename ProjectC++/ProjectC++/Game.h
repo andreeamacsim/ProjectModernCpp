@@ -30,6 +30,7 @@ private:
 	uint8_t m_currentRound;
 	uint8_t m_difficultyLevel;
 	Player m_currentDrawer;
+	uint8_t m_difficultyLevel;
 
 };
 
