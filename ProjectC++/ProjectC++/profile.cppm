@@ -9,15 +9,15 @@ public:
     Profile() : m_playerName("unknownName"), m_age(0), m_country("unknownCountry"), m_level(0), m_description("noDescription")
     {
     }
-    Profile(const std::string& playerName, int age, const std::string& country, int level, const std::string& description)
+    Profile(const std::string& playerName, uint16_t age, const std::string& country, uint32_t level, const std::string& description)
         : m_playerName(playerName), m_age(age), m_country(country), m_level(level), m_description(description)
     {
     }
 
     std::string getPlayerName() const;
-    int getAge() const;
+    uint16_t getAge() const;
     std::string getCountry() const;
-    int getLevel() const;
+    uint32_t getLevel() const;
     std::string getDescription() const;
 
     void setPlayerName(const std::string& playerName);
@@ -33,3 +33,5 @@ private:
     uint32_t m_level;
     std::string m_description;
 };
+
+
