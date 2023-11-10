@@ -93,7 +93,12 @@
     <QtUic Include="GraphicInterface.ui" />
     <QtMoc Include="GraphicInterface.h" />
     <ClCompile Include="GraphicInterface.cpp" />
+    <ClCompile Include="LoginInterface.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="LoginInterface.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="LoginInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
