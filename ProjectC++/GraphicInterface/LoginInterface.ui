@@ -24,9 +24,9 @@
      </rect>
     </property>
     <property name="title">
-     <string>SingIn</string>
+     <string>SignIn</string>
     </property>
-    <widget class="QWidget" name="layoutWidget">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
        <x>20</x>
