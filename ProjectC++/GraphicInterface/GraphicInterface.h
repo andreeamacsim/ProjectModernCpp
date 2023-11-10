@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_GraphicInterface.h"
 #include "LoginInterface.h"
+#include "ui_LoginInterface.h"
 class GraphicInterface : public QMainWindow
 {
     Q_OBJECT
@@ -10,9 +11,11 @@ class GraphicInterface : public QMainWindow
 public:
     GraphicInterface(QWidget *parent = nullptr);
     ~GraphicInterface();
-
+private slots:
+    void on_pushButton_2_clicked();
 private:
     Ui::GraphicInterfaceClass ui;
-    Ui::LoginInterfaceClass ui2;
+    QPushButton *pushButton_2;
+
    
 };

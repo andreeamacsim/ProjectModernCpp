@@ -17,5 +17,6 @@ void LoginInterface::on_pushButton_LogIn_clicked()
 	else
 		QMessageBox::warning(this, "Login", "Username and password is inncorect");
 }
+
 LoginInterface::~LoginInterface()
 {}

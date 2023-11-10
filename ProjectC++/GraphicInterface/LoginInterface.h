@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_LoginInterface.h"
+#include <qmessagebox.h>
 
 class LoginInterface : public QMainWindow
 {
