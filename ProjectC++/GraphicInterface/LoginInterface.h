@@ -13,6 +13,7 @@ public:
 	~LoginInterface();
 private slots:
 	void on_pushButton_LogIn_clicked();
+	void on_pushButton_4_clicked();
 
 private:
 	Ui::LoginInterfaceClass ui;

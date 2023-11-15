@@ -43,14 +43,23 @@
     <ClCompile Include="LoginInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CreateAccount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LoginInterface.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="CreateAccount.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginInterface.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="CreateAccount.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
