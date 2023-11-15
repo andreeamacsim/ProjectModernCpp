@@ -90,7 +90,8 @@ color: white;
            <widget class="QLineEdit" name="userName">
             <property name="styleSheet">
              <string notr="true">background-color: white
-;</string>
+;
+border-radius: 10px;</string>
             </property>
            </widget>
           </item>
@@ -120,7 +121,7 @@ color:white</string>
            <widget class="QLineEdit" name="password">
             <property name="styleSheet">
              <string notr="true">background-color: white;
-</string>
+border-radius: 10px;</string>
             </property>
            </widget>
           </item>
