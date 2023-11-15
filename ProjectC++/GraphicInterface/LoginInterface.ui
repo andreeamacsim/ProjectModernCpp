@@ -6,27 +6,45 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1027</width>
-    <height>570</height>
+    <width>640</width>
+    <height>417</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LoginInterface</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:1 rgba(147, 112, 219, 255));</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>110</y>
-      <width>241</width>
+      <x>180</x>
+      <y>50</y>
+      <width>271</width>
       <height>231</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:1 rgba(147, 112, 219, 255));
+
+
+color:white
+
+;</string>
     </property>
     <property name="title">
      <string>SignIn</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -38,17 +56,43 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="rightMargin">
+         <number>1</number>
+        </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+</string>
+            </property>
             <property name="text">
              <string>Username</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="userName"/>
+           <widget class="QLineEdit" name="userName">
+            <property name="styleSheet">
+             <string notr="true">background-color: white
+;</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -56,13 +100,29 @@
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QLabel" name="label_2">
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color:white</string>
+            </property>
             <property name="text">
              <string>Password</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="password"/>
+           <widget class="QLineEdit" name="password">
+            <property name="styleSheet">
+             <string notr="true">background-color: white;
+</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -70,6 +130,18 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_LogIn">
+        <property name="font">
+         <font>
+          <italic>true</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255))
+;
+color: white;
+border-radius: 5px;</string>
+        </property>
         <property name="text">
          <string>LogIn</string>
         </property>
@@ -78,13 +150,39 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>320</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Create account</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1027</width>
+     <width>640</width>
      <height>22</height>
     </rect>
    </property>

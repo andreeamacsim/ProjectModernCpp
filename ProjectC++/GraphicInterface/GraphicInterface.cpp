@@ -9,6 +9,7 @@ GraphicInterface::GraphicInterface(QWidget *parent)
 void GraphicInterface::on_pushButton_2_clicked()
 {
     LoginInterface* login=new LoginInterface(this);
+
     login->show();
 }
 GraphicInterface::~GraphicInterface()
