@@ -1,10 +1,20 @@
-import <string>;
+﻿import <string>;
 import <vector>;
 import <fstream>;
 import <cstdlib>;
 import <ctime>;
 import <iostream>;
 module word;
+
+bool verify()
+{
+    std::ifstream inputFile("words.txt");
+    if (!inputFile.is_open()) {
+        std::cerr << "Eroare la deschiderea fișierului cu cuvinte.\n";
+        return false;
+    }
+    return true;
+}
 
 std::string selectRandomWord(const std::vector<std::string>& m_words)
 {
@@ -35,12 +45,3 @@ std::string revealCharacter(const std::string& word)
     }
 }
 
-bool verify()
-{
-    std::ifstream inputFile("words.txt");
-    if (!inputFile.is_open()) {
-        std::cerr << "Eroare la deschiderea fi?ierului cu cuvinte.\n";
-        return false;
-    }
-    return true;
-}

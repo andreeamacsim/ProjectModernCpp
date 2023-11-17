@@ -24,6 +24,7 @@ public:
     std::vector<Word>& getWordsList() ;
     uint8_t getCurrentRound() const;
     Player getCurrentDrawer() const;
+    uint8_t getDifficultyLevel() const;
 
 private:
     std::vector<Player> m_players;
