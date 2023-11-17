@@ -5,9 +5,8 @@ import <fstream>;
 import <cstdlib>;
 import <ctime>;
 import <iostream>;
-module word;
 
-bool verify()
+bool Word::verify()
 {
     std::ifstream inputFile("words.txt");
     if (!inputFile.is_open()) {
@@ -27,6 +26,7 @@ void Word::generateWords()
     }
 }
 
+
 std::string Word::selectRandomWord(const std::vector<std::string>& m_words)
 {
     if (verify())
@@ -36,3 +36,13 @@ std::string Word::selectRandomWord(const std::vector<std::string>& m_words)
     }
 }
 
+std::string Word::revealCharacter(const std::string& word)
+{
+    srand(static_cast<unsigned>(time(nullptr)));
+    uint16_t maximumLetters = word.length() / 2;
+    uint16_t letterCount = 0;
+    for (int i = 0; i < word.length(); i++ && letterCount < maximumLetters)
+    {
+        //TBA
+    }
+}
