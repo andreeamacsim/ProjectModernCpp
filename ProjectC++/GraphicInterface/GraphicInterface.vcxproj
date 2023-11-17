@@ -91,9 +91,12 @@
   <ItemGroup>
     <QtRcc Include="GraphicInterface.qrc" />
     <QtUic Include="CreateAccount.ui" />
+    <QtUic Include="DrawingInterface.ui" />
     <QtUic Include="GraphicInterface.ui" />
     <QtMoc Include="GraphicInterface.h" />
     <ClCompile Include="CreateAccount.cpp" />
+    <ClCompile Include="DrawingClass.cpp" />
+    <ClCompile Include="DrawingInterface.cpp" />
     <ClCompile Include="GraphicInterface.cpp" />
     <ClCompile Include="LoginInterface.cpp" />
     <ClCompile Include="main.cpp" />
@@ -105,6 +108,10 @@
   <ItemGroup>
     <QtMoc Include="CreateAccount.h" />
     <Text Include="words.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="DrawingClass.h" />
+    <QtMoc Include="DrawingInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

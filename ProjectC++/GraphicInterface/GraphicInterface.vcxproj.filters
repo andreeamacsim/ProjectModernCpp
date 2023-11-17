@@ -46,6 +46,12 @@
     <ClCompile Include="CreateAccount.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DrawingInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawingClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LoginInterface.h">
@@ -54,12 +60,21 @@
     <QtMoc Include="CreateAccount.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="DrawingInterface.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="DrawingClass.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginInterface.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="CreateAccount.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="DrawingInterface.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
