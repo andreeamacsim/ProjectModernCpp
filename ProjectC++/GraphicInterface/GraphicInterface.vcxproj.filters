@@ -46,6 +46,9 @@
     <ClCompile Include="CreateAccount.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProfileInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LoginInterface.h">
@@ -62,10 +65,18 @@
     <QtUic Include="CreateAccount.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="ProfileInterface.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <Text Include="words.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ProfileInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

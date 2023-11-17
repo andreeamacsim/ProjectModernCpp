@@ -3,6 +3,8 @@
 #include <QMainWindow>
 #include "ui_LoginInterface.h"
 #include <qmessagebox.h>
+#include "ui_ProfileInterface.h"
+#include "ProfileInterface.h"
 
 class LoginInterface : public QMainWindow
 {
@@ -11,9 +13,11 @@ class LoginInterface : public QMainWindow
 public:
 	LoginInterface(QWidget *parent = nullptr);
 	~LoginInterface();
+
 private slots:
 	void on_pushButton_LogIn_clicked();
 	void on_pushButton_4_clicked();
+	/*void onLoginButtonClicked();*/
 
 private:
 	Ui::LoginInterfaceClass ui;
