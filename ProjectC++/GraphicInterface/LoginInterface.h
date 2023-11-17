@@ -3,8 +3,6 @@
 #include <QMainWindow>
 #include "ui_LoginInterface.h"
 #include <qmessagebox.h>
-#include "ui_ProfileInterface.h"
-#include "ProfileInterface.h"
 
 class LoginInterface : public QMainWindow
 {
