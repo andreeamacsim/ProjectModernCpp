@@ -10,7 +10,7 @@ class DrawingClass  : public QWidget
 	Q_OBJECT
 
 public:
-	DrawingClass(QWidget *parent);
+	DrawingClass(QWidget *parent=0);
 	~DrawingClass();
 	void setPenColor(const QColor& color);
 	void setPenWidth(const uint8_t width);

@@ -2,7 +2,8 @@
 
 #include <QMainWindow>
 #include "ui_DrawingInterface.h"
-class DrawingClass;
+#include "DrawingClass.h"
+#include <QPushButton>
 
 class DrawingInterface : public QMainWindow
 {
@@ -12,16 +13,16 @@ public:
 	DrawingInterface(QWidget *parent = nullptr);
 	~DrawingInterface();
 private slots:
-	void penColor();
-	void penWidth();
+	void changePenColor();
+	void changePenWidth();
 private:
-	void createActions();
-	void createMenus();
+	QPushButton* changeColorButton;
+	QPushButton* changeWidthButton;
 	DrawingClass* m_drawingArea;
-	QMenu* fileMenu;
-	QAction* m_openAct;
-	QAction* m_penColorAct;
-	QAction* m_penWidthAct;
-	QAction* m_clearDrawingArea;
+	//QMenu* fileMenu;
+	//QAction* m_openAct;
+	//QAction* m_penColorAct;
+	//QAction* m_penWidthAct;
+	//QAction* m_clearDrawingArea;
 	Ui::DrawingInterfaceClass ui;
 };
