@@ -29,3 +29,9 @@ void LoginInterface::on_pushButton_4_clicked()
 LoginInterface::~LoginInterface()
 {}
 
+void LoginInterface::onLoginButtonClicked()
+{
+	ProfileInterface* profileInterface = new ProfileInterface(this);
+	profileInterface->show();
+	this->hide();
+}
