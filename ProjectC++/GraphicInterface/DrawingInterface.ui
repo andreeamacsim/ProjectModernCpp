@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="changeColorButton">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>50</y>
+      <x>80</x>
+      <y>10</y>
       <width>75</width>
       <height>24</height>
      </rect>
@@ -30,7 +30,7 @@
    <widget class="QPushButton" name="changeWidthButton">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>0</x>
       <y>10</y>
       <width>71</width>
       <height>24</height>

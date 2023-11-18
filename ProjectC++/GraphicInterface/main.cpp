@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     GraphicInterface w;
-    // w.show();
+    //w.show();
     DrawingInterface d;
     d.show();
     return a.exec();

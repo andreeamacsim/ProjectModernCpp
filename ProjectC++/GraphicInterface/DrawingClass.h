@@ -4,6 +4,11 @@
 #include <QImage>
 #include <QPoint>
 #include <QColor>
+#include <QMouseEvent>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QRect>
+#include <vector>
 
 class DrawingClass  : public QWidget
 {
@@ -12,24 +17,28 @@ class DrawingClass  : public QWidget
 public:
 	DrawingClass(QWidget *parent=0);
 	~DrawingClass();
+	//bool openImage(const QString& filename);
 	void setPenColor(const QColor& color);
 	void setPenWidth(const uint8_t width);
+	std::vector<QLine>& getLines();
+	const QColor& getPenColor() const;
+	const uint8_t& getPenWidth() const;
+	void addLine(QLine line);
+	bool isDrawing();
+	void setDrawing(bool drawing);
+	QPoint& getStartPoint();
+	void setStartPoint(QPoint point);
 
-	QColor getPenColor() const;
-	uint8_t getPenWidth() const;
-public slots:
-	void clearDrawingArea();
-
-protected:
-	void mousePressEvent(QMouseEvent* event) override;
-	void mouseMoveEvent(QMouseEvent* event) override;
-	void mouseReleaseEvent(QMouseEvent* event) override;
-	void paintEvent(QPaintEvent* event) override;
+//protected:
+//	void mousePressEvent(QMouseEvent* event) override;
+//	void mouseMoveEvent(QMouseEvent* event) override;
+//	void mouseReleaseEvent(QMouseEvent* event) override;
+//	void paintEvent(QPaintEvent* event) override;
 private:
-	void drawLineTo(const QPointF& endPoint);
 	QColor m_penColor;
 	uint8_t m_penWidth;
-	bool drawing;
-	QPointF startPoint;
+	std::vector<QLine> m_drawingLines;
+	bool m_drawing;
+	QPoint m_startPoint;
 
 };
