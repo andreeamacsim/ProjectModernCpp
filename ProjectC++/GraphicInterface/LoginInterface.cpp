@@ -6,7 +6,7 @@ LoginInterface::LoginInterface(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.pushButton_4, &QPushButton::clicked, this, &LoginInterface::on_pushButton_4_clicked);
-	/*connect(ui.pushButton_LogIn, &QPushButton::clicked, this, &LoginInterface::onLoginButtonClicked);*/
+	connect(ui.pushButton_LogIn, &QPushButton::clicked, this, &LoginInterface::onLoginButtonClicked);
 }
 void LoginInterface::on_pushButton_LogIn_clicked()
 {
@@ -29,9 +29,3 @@ void LoginInterface::on_pushButton_4_clicked()
 LoginInterface::~LoginInterface()
 {}
 
-//void LoginInterface::onLoginButtonClicked()
-//{
-//	ProfileInterface* profileInterface = new ProfileInterface(this);
-//	profileInterface->show();
-//	this->hide();
-//}
