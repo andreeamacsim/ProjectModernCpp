@@ -10,7 +10,9 @@ class LobbyInterface : public QMainWindow
 public:
 	LobbyInterface(QWidget *parent = nullptr);
 	~LobbyInterface();
-
+public slots:
+	void goToProfile();
+	void goToDrawing();
 private:
 	Ui::LobbyInterfaceClass ui;
 };
