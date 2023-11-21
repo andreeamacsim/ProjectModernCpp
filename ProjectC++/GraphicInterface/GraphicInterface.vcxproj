@@ -89,6 +89,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LobbyInterface.cpp" />
     <ClCompile Include="ProfileInterface.cpp" />
     <QtRcc Include="GraphicInterface.qrc" />
     <QtUic Include="CreateAccount.ui" />
@@ -101,6 +102,7 @@
     <ClCompile Include="GraphicInterface.cpp" />
     <ClCompile Include="LoginInterface.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="LobbyInterface.ui" />
     <QtUic Include="LoginInterface.ui" />
     <QtUic Include="ProfileInterface.ui" />
   </ItemGroup>
@@ -117,6 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ProfileInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="LobbyInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

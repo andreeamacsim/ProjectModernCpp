@@ -10,6 +10,8 @@ class ProfileInterface : public QMainWindow
 public:
 	ProfileInterface(QWidget *parent = nullptr);
 	~ProfileInterface();
+public slots:
+	void goToLobby();
 
 private:
 	Ui::ProfileInterfaceClass ui;
