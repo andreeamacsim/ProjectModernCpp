@@ -23,6 +23,7 @@ void LoginInterface::on_pushButton_LogIn_clicked()
 void LoginInterface::on_pushButton_4_clicked()
 {
 	CreateAccount* create = new CreateAccount(this);
+	this->hide();
 	create->show();
 }
 

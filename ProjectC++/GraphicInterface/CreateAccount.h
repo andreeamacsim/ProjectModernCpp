@@ -13,4 +13,6 @@ public:
 
 private:
 	Ui::CreateAccountClass ui;
+private slots:
+	void on_backButton_clicked();
 };
