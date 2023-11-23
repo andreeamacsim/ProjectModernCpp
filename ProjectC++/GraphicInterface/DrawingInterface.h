@@ -14,8 +14,6 @@ class DrawingInterface : public QMainWindow
 public:
 	DrawingInterface(QWidget *parent = nullptr);
 	~DrawingInterface();
-private slots:
-	void on_red_stateChanged(int arg);
 protected:
 	void mousePressEvent(QMouseEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;
@@ -23,8 +21,6 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 private:
 
-	QPushButton* changeColorButton;
-	QPushButton* changeWidthButton;
 	DrawingClass* m_drawingArea;
 	//QMenu* fileMenu;
 	//QAction* m_openAct;

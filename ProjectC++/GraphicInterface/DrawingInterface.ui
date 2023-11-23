@@ -14,23 +14,298 @@
    <string>DrawingInterface</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QCheckBox" name="red">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>20</y>
-      <width>31</width>
-      <height>20</height>
+      <x>750</x>
+      <y>50</y>
+      <width>121</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: red;
+     <string notr="true">
 border-radius: 5px;
 border: 2px solid black;</string>
+    </property>
+    <property name="title">
+     <string>Colors</string>
+    </property>
+    <widget class="QCheckBox" name="red">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: red;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="green">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: lightgreen;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="blue">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: blue;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="cyan">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: cyan;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="magenta">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>110</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: magenta;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="yellow">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>140</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: yellow;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="brown">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>140</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: brown;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="black">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>170</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: black;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="darkGreen">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>20</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: darkgreen;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="darkBlue">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>50</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: darkblue;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="gray">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>80</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: gray;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+   </widget>
+   <widget class="QCheckBox" name="eraser">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>250</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>eraser.png</normaloff>eraser.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -56,4 +331,7 @@ border: 2px solid black;</string>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>
