@@ -1,4 +1,4 @@
-#include "DrawingClass.h"
+﻿#include "DrawingClass.h"
 
 DrawingClass::DrawingClass(QWidget *parent)
 	: QWidget(parent)
@@ -26,7 +26,7 @@ void DrawingClass::setPenWidth(const uint8_t width)
 	this->m_penWidth = width;
 }
 
-std::vector<QLine>& DrawingClass::getLines()
+std::vector<std::pair<QLine, QColor>> & DrawingClass::getLines()
 {
 	return this->m_drawingLines;
 }
@@ -40,9 +40,9 @@ const uint8_t& DrawingClass::getPenWidth() const
 {
 	return this->m_penWidth;
 }
-void DrawingClass::addLine(QLine line)
+void DrawingClass::addLine(QLine line,QColor color)
 {
-	m_drawingLines.push_back(line);
+	m_drawingLines.push_back({ line,color });
 }
 bool DrawingClass::isDrawing()
 {

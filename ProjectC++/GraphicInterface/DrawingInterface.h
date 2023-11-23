@@ -5,6 +5,7 @@
 #include "DrawingClass.h"
 #include <QPushButton>
 #include <QPainter>
+#include <QCheckBox>
 
 class DrawingInterface : public QMainWindow
 {
@@ -14,9 +15,7 @@ public:
 	DrawingInterface(QWidget *parent = nullptr);
 	~DrawingInterface();
 private slots:
-	//void open();
-	void changePenColor();
-	void changePenWidth();
+	void on_red_stateChanged(int arg);
 protected:
 	void mousePressEvent(QMouseEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;

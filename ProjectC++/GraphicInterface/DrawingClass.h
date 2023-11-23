@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <QWidget>
 #include <QImage>
@@ -20,14 +20,15 @@ public:
 	//bool openImage(const QString& filename);
 	void setPenColor(const QColor& color);
 	void setPenWidth(const uint8_t width);
-	std::vector<QLine>& getLines();
+	std::vector<std::pair<QLine, QColor>>& getLines();
 	const QColor& getPenColor() const;
 	const uint8_t& getPenWidth() const;
-	void addLine(QLine line);
+	void addLine(QLine line,QColor color);
 	bool isDrawing();
 	void setDrawing(bool drawing);
 	QPoint& getStartPoint();
 	void setStartPoint(QPoint point);
+
 
 //protected:
 //	void mousePressEvent(QMouseEvent* event) override;
@@ -35,9 +36,10 @@ public:
 //	void mouseReleaseEvent(QMouseEvent* event) override;
 //	void paintEvent(QPaintEvent* event) override;
 private:
+
 	QColor m_penColor;
 	uint8_t m_penWidth;
-	std::vector<QLine> m_drawingLines;
+	std::vector<std::pair<QLine,QColor>> m_drawingLines;
 	bool m_drawing;
 	QPoint m_startPoint;
 

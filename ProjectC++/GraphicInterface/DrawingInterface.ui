@@ -14,30 +14,22 @@
    <string>DrawingInterface</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="changeColorButton">
+   <widget class="QCheckBox" name="red">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>10</y>
-      <width>75</width>
-      <height>24</height>
+      <x>780</x>
+      <y>20</y>
+      <width>31</width>
+      <height>20</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Change color</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="changeWidthButton">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>10</y>
-      <width>71</width>
-      <height>24</height>
-     </rect>
+    <property name="styleSheet">
+     <string notr="true">background-color: red;
+border-radius: 5px;
+border: 2px solid black;</string>
     </property>
     <property name="text">
-     <string>Change width</string>
+     <string/>
     </property>
    </widget>
   </widget>
