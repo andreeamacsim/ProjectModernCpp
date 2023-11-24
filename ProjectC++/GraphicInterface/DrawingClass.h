@@ -17,13 +17,13 @@ class DrawingClass  : public QWidget
 public:
 	DrawingClass(QWidget *parent=0);
 	~DrawingClass();
-	//bool openImage(const QString& filename);
+
 	void setPenColor(const QColor& color);
 	void setPenWidth(const uint8_t width);
-	std::vector<std::pair<QLine, QColor>>& getLines();
+	std::vector<std::tuple<QLine, QColor,uint8_t>>& getLines();
 	const QColor& getPenColor() const;
 	const uint8_t& getPenWidth() const;
-	void addLine(QLine line,QColor color);
+	void addLine(QLine line,QColor color,uint8_t);
 	bool isDrawing();
 	void setDrawing(bool drawing);
 	QPoint& getStartPoint();
@@ -39,7 +39,7 @@ private:
 
 	QColor m_penColor;
 	uint8_t m_penWidth;
-	std::vector<std::pair<QLine,QColor>> m_drawingLines;
+	std::vector<std::tuple<QLine,QColor,uint8_t>> m_drawingLines;
 	bool m_drawing;
 	QPoint m_startPoint;
 

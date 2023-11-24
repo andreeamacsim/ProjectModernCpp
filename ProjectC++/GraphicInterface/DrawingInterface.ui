@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>901</width>
+    <width>900</width>
     <height>498</height>
    </rect>
   </property>
@@ -181,7 +181,7 @@ border: 2px solid black;</string>
     <widget class="QCheckBox" name="black">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>20</x>
        <y>170</y>
        <width>31</width>
        <height>20</height>
@@ -274,6 +274,27 @@ border: 2px solid black;</string>
       <string notr="true">buttonGroup</string>
      </attribute>
     </widget>
+    <widget class="QCheckBox" name="orange">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>170</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: orange;
+border-radius: 5px;
+border: 2px solid black;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
    </widget>
    <widget class="QCheckBox" name="eraser">
     <property name="geometry">
@@ -307,13 +328,45 @@ border: 2px solid black;</string>
      <string notr="true">buttonGroup</string>
     </attribute>
    </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>280</y>
+      <width>151</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Pen width</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="widthSlider">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>901</width>
+     <width>900</width>
      <height>22</height>
     </rect>
    </property>
