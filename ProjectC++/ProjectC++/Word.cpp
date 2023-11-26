@@ -36,3 +36,30 @@ std::string Word::selectRandomWord(const std::vector<std::string>& m_words)
     }
 }
 
+std::string Word::revealCharacter(const std::string& word)
+{
+    //de adaugat a.i. literele sa fie dezvaluite dupa 30s
+    uint16_t maximumLetters = word.length() / 2;
+    uint16_t letterCount = 0;
+    std::vector<bool> revealed(word.length(), false);
+    std::string revealedWord = word;
+    for (int i = 0; i < revealedWord.length(); i++)
+    {
+        if (!revealed[i])
+        {
+            revealedWord[i] = '_';
+        }
+    }
+    while (letterCount < maximumLetters)
+    {
+        int randomPosition = rand() % word.length();
+        if (!revealed[randomPosition])
+        {
+            revealedWord[randomPosition] = word[randomPosition];
+            revealed[randomPosition] = true;
+            letterCount++;
+        }
+
+    }
+    return revealedWord;
+}
