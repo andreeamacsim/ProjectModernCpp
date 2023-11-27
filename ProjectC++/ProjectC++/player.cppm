@@ -22,6 +22,8 @@ public:
 	void setPassword(std::string password);
 	void checkPassword(const std::string& password);
 	void checkEmail(const std::string& email);
+	void checkUsername(const std::string& username);
+	bool isUsernameUnique(const std::string& username);
 
 private:
 	std::string m_email;

@@ -57,6 +57,10 @@ void Player::checkPassword(const std::string& password)
 		throw std::exception("Invalid password!\nThe password must contain at least:\n-8 characters\n-a number\n-a special character");
 	}
 }
+bool Player::isUsernameUnique(const std::string& username)
+{
+	//se va face cand vom avea baza de date 
+}
 
 void Player::checkEmail(const std::string& email)
 {
@@ -71,3 +75,23 @@ void Player::checkEmail(const std::string& email)
 		throw std::exception("Invalid email");
 	}
 }
+
+void Player::checkUsername(const std::string& username)
+{
+	if (username == "")
+	{
+		throw std::exception("Username field can't be empty");
+	}
+
+	const std::regex usernamePattern("^[a-zA-Z0-9_]+$");
+	if (!std::regex_match(username, usernamePattern))
+	{
+		throw std::exception("Invalid username");
+	}
+	if (!isUsernameUnique(username))
+	{
+		throw std::exception("Username is not unique");
+	}
+}
+
+
