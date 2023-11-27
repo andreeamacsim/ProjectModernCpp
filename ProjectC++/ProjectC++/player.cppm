@@ -20,6 +20,8 @@ public:
 	void setEmail(std::string email);
 	void setUsername(std::string username);
 	void setPassword(std::string password);
+	void checkPassword(const std::string& password);
+	void checkEmail(const std::string& email);
 
 private:
 	std::string m_email;

@@ -1,4 +1,5 @@
 module player;
+#include <regex>
 
 Player::Player()
 {
@@ -41,4 +42,32 @@ void Player::setUsername(std::string username)
 void Player::setPassword(std::string password)
 {
 	this->m_password = password;
+}
+
+void Player::checkPassword(const std::string& password)
+{
+	if (password == "")
+	{
+		throw std::exception("Password field can't be empty");
+	}
+
+	const std::regex passwordPatter("^(?=.*[a-z])(?=/*[A-Z])(?=.*[@$!%*?])[A-Za-z\\d@$!%*?&]{8,}$");
+	if (!std::regex_match(password, passwordPattern))
+	{
+		throw std::exception("Invalid password!\nThe password must contain at least:\n-8 characters\n-a number\n-a special character");
+	}
+}
+
+void Player::checkEmail(const std::string& email)
+{
+	if (email == "")
+	{
+		throw std::exception("Email field can't be empty");
+	}
+
+	const std::regex emailPattern("^([a-zA-Z0-9_\\ \\.+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$");
+	if (!std::regex_match(email, emailPattern))
+	{
+		throw std::exception("Invalid email");
+	}
 }
