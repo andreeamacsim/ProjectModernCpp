@@ -100,9 +100,11 @@ Player Game::getCurrentDrawer() const
 	return m_currentDrawer;
 }
 
-//uint8_t Game::getDifficultyLevel() const
-//{
-//	return 0;
-//}
+uint8_t Game::getDifficultyLevel() const
+{
+	return m_difficultyLevel;
+}
+
+
 
 
