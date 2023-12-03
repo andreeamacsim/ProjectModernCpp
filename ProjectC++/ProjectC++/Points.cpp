@@ -1,6 +1,6 @@
 module PointsModule;
 import <vector>;
-
+using game::Points;
 
 uint32_t Points::getPoints() const
 {

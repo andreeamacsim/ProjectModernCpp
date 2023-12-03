@@ -1,5 +1,5 @@
 module round;
-
+using game::Round;
 Round::Round()
 {
 }

@@ -2,7 +2,7 @@
 module  GameModule;
 import <vector>;
 import player;
-
+using namespace game;
 Game::Game()
 {
 }

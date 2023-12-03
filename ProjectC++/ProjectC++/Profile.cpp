@@ -1,4 +1,5 @@
 module profile;
+using game::Profile;
 std::string Profile::getPlayerName() const
 {
     return this->m_playerName;

@@ -1,6 +1,5 @@
 module player;
 #include <regex>
-
 Player::Player()
 {
 }

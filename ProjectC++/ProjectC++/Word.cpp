@@ -5,7 +5,7 @@ import <fstream>;
 import <cstdlib>;
 import <ctime>;
 import <iostream>;
-
+using game::Word;
 bool Word::verify()
 {
     std::ifstream inputFile("words.txt");
