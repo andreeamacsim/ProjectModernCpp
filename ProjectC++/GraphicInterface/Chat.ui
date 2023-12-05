@@ -13,57 +13,137 @@
   <property name="windowTitle">
    <string>Chat</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255))
+</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>290</y>
-      <width>251</width>
-      <height>41</height>
+      <x>470</x>
+      <y>280</y>
+      <width>75</width>
+      <height>24</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
     <property name="text">
-     <string>Message</string>
+     <string>Send</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>290</y>
-      <width>91</width>
+      <x>150</x>
+      <y>30</y>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Username</string>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>30</y>
-      <width>291</width>
-      <height>231</height>
-     </rect>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string>Chat</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>300</y>
-      <width>75</width>
+      <x>30</x>
+      <y>240</y>
+      <width>91</width>
       <height>24</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
     <property name="text">
-     <string>Send</string>
+     <string>Username</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>240</y>
+      <width>281</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Message</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>280</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>290</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
