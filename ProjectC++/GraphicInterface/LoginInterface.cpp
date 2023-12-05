@@ -10,15 +10,22 @@ LoginInterface::LoginInterface(QWidget *parent)
 }
 void LoginInterface::on_pushButton_LogIn_clicked()
 {
-	QString username = ui.userName->text();
-	QString password = ui.password->text();
+    QString username = ui.userName->text();
+    QString password = ui.password->text();
+    QString message;
 
-	if (username == "test" && password == "test")
-	{
-		QMessageBox::information(this, "Login", "Username and password is corect");
-	}
-	else
-		QMessageBox::warning(this, "Login", "Username and password is inncorect");
+    if (username == "test" && password == "test")
+    {
+        message = "<font color='white'>Username and password are correct</font>";
+        QMessageBox::information(this, "Login", message);
+    }
+    else
+    {
+        message = "<font color='white'>Username and password are incorrect</font>";
+        QMessageBox msgBox(QMessageBox::Warning, "Login", message, QMessageBox::Ok, this);
+        msgBox.setStyleSheet("QPushButton { color: white; }");
+        msgBox.exec();
+    }
 }
 void LoginInterface::on_pushButton_4_clicked()
 {
