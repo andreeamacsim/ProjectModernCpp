@@ -11,6 +11,9 @@ public:
 	Chat(QWidget *parent = nullptr);
 	~Chat();
 
+private slots:
+	void sendMessage();
+
 private:
 	Ui::ChatClass ui;
 };

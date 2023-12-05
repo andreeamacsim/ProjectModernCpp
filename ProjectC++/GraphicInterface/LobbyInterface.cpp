@@ -2,6 +2,7 @@
 #include <QPixmap>
 #include "ProfileInterface.h"
 #include "DrawingInterface.h"
+#include "Chat.h"
 
 LobbyInterface::LobbyInterface(QWidget *parent)
 	: QMainWindow(parent)
@@ -23,6 +24,8 @@ LobbyInterface::~LobbyInterface()
 void LobbyInterface::goToDrawing()
 {
 	DrawingInterface* drawingInterface = new DrawingInterface();
+	Chat* chatInterface = new Chat();
 	this->close();
 	drawingInterface->show();
+	chatInterface->show();
 }
