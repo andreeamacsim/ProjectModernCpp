@@ -5,10 +5,6 @@ std::string Profile::getPlayerName() const
     return this->m_playerName;
 }
 
-uint16_t Profile::getAge() const
-{
-    return this-> m_age;
-}
 
 std::string Profile::getCountry() const
 {
