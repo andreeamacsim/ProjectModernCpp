@@ -17,7 +17,7 @@ namespace game {
         }
 
         std::string getPlayerName() const;
-        uint16_t getAge() const;
+        //uint16_t getAge() const;
         std::string getCountry() const;
         uint32_t getLevel() const;
         std::string getDescription() const;

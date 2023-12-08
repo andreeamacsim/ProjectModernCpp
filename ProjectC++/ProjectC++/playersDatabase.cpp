@@ -1,4 +1,11 @@
 #include "playersDatabase.h"
+using namespace game;
+
+bool PlayerStorage::Initialize()
+{
+	m_db.sync_schema();
+	return true;
+}
 
 std::vector<Player> PlayerStorage::getPlayers()
 {

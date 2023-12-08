@@ -1,14 +1,19 @@
 module player;
-#include <regex>
+import <regex>;
+import profile;
+
+using namespace game;
+
 Player::Player()
 {
 }
 
-Player::Player(std::string email,std::string username, std::string password, Profile playerProfile):m_email(email),m_username(username),m_password(password),m_playerProfile(playerProfile)
+Player::Player(std::string email,std::string username, std::string password, Profile playerProfile)
+	:m_email(email),m_username(username),m_password(password),m_playerProfile(playerProfile)
 {
 }
 
-std::string  Player::getEmail() const
+std::string Player::getEmail() const
 {
 	return this->m_email;
 }
@@ -16,6 +21,11 @@ std::string  Player::getEmail() const
 std::string Player::getUsername() const
 {
 	return this->m_username;
+}
+
+int Player::getId() const
+{ 
+	return m_id;
 }
 
 std::string Player::getPassword() const
@@ -26,6 +36,11 @@ std::string Player::getPassword() const
 Profile Player::getProfile() const
 {
 	return this->m_playerProfile;
+}
+
+void Player::setId(int id)
+{
+	m_id = id;
 }
 
 void Player::setEmail(std::string email)
@@ -50,7 +65,7 @@ void Player::checkPassword(const std::string& password)
 		throw std::exception("Password field can't be empty");
 	}
 
-	const std::regex passwordPatter("^(?=.*[a-z])(?=/*[A-Z])(?=.*[@$!%*?])[A-Za-z\\d@$!%*?&]{8,}$");
+	const std::regex passwordPattern("^(?=.*[a-z])(?=/*[A-Z])(?=.*[@$!%*?])[A-Za-z\\d@$!%*?&]{8,}$");
 	if (!std::regex_match(password, passwordPattern))
 	{
 		throw std::exception("Invalid password!\nThe password must contain at least:\n-8 characters\n-a number\n-a special character");
@@ -58,7 +73,8 @@ void Player::checkPassword(const std::string& password)
 }
 bool Player::isUsernameUnique(const std::string& username)
 {
-	//se va face cand vom avea baza de date 
+	//TODO: se va face cand vom avea baza de date 
+	return false;
 }
 
 void Player::checkEmail(const std::string& email)
