@@ -22,10 +22,14 @@ void game::Routing::Run(PlayerStorage& storage)
 			{"email", player.getEmail()}
 			});
 
-		//std::string product_json = db.dump(product);	
 	}
 	return crow::json::wvalue{ players_json };
 		});
+	CROW_ROUTE(m_app, "/addplayertogame/<int>")([&storage, this](const crow::request& req, int playerId) {
+		return AddPlayerToGameRoute(storage, req, playerId);
+
+		});
+
 }
 
 crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const
