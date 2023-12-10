@@ -8,8 +8,8 @@ Player::Player()
 {
 }
 
-Player::Player(std::string email,std::string username, std::string password, Profile playerProfile)
-	:m_email(email),m_username(username),m_password(password),m_playerProfile(playerProfile)
+Player::Player(int id,std::string username, std::string password, std::string email)
+	:m_email(email),m_username(username),m_password(password),m_id(id)
 {
 }
 
@@ -33,10 +33,10 @@ std::string Player::getPassword() const
 	return this->m_password;
 }
 
-Profile Player::getProfile() const
-{
-	return this->m_playerProfile;
-}
+//Profile Player::getProfile() const
+//{
+//	return this->m_playerProfile;
+//}
 
 void Player::setId(int id)
 {

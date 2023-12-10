@@ -9,13 +9,13 @@ namespace game {
 	{
 	public:
 		Player();
-		Player(std::string email, std::string username, std::string password, Profile playerProfile);
+		Player(int id, std::string username, std::string password, std::string email);
 
 		std::string getEmail()const;
 		std::string getUsername()const;
 		std::string getPassword()const;
 		int getId() const;
-		Profile getProfile() const;
+		//Profile getProfile() const;
 
 
 		void setId(int id);
@@ -32,7 +32,7 @@ namespace game {
 		std::string m_email;
 		std::string m_username;
 		std::string m_password;
-		Profile m_playerProfile;
+		//Profile m_playerProfile;
 
 	};
 }

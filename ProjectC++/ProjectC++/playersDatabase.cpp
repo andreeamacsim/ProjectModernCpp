@@ -3,6 +3,7 @@ using namespace game;
 
 bool PlayerStorage::Initialize()
 {
+
 	m_db.sync_schema();
 	return true;
 }
@@ -20,4 +21,15 @@ void PlayerStorage::AddPlayerToStorage(std::string username, std::string passwor
 	p.setPassword(password);
 	m_db.insert(p);
 	//m_db.insert(Player{username,password,email})
+}
+
+void game::PlayerStorage::PopulateStorage()
+{
+	std::vector<Player> players{
+			Player{-1,"Andreea","andreea2003","mandreealavinia@yahoo.com",},
+			Player{-1,"Mihai","mihai2003","mihaimoisescu2003@yahoo.com"},
+			Player{-1,"Cristina","cristina2003","iuliaparaschiv@yahoo.com"},
+			Player{-1,"Alex","alexandru","alexalexandru@gmail.com"}
+	};
+	m_db.insert_range(players.begin(), players.end());
 }
