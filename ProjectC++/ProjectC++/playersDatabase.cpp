@@ -5,7 +5,13 @@ bool PlayerStorage::Initialize()
 {
 
 	m_db.sync_schema();
-	return true;
+	auto initPlayerCount = m_db.count<Player>();
+	if (initPlayerCount == 0)
+	{
+		PopulateStorage();
+	}
+	auto playerCount = m_db.count<Player>();
+	return playerCount != 0;
 }
 
 std::vector<Player> PlayerStorage::getPlayers()

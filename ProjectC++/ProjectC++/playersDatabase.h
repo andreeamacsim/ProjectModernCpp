@@ -43,6 +43,7 @@ namespace game
         std::vector<Player>getPlayers();
         void AddPlayerToStorage(std::string username, std::string password, std::string email);
     private:
+        void PopulateStorage();
         const std::string kDbFile{ "players2.sqlite" };
         Storage m_db = CreateStorage(kDbFile);
     };

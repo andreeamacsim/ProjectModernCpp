@@ -29,7 +29,7 @@ void game::Routing::Run(PlayerStorage& storage)
 		return AddPlayerToGameRoute(storage, req, playerId);
 
 		});
-
+	m_app.port(18080).multithreaded().run();
 }
 
 crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const
@@ -38,7 +38,7 @@ crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const
 	char* password_chr = req.url_params.get("password");
 	char* email_chr = req.url_params.get("email");
 
-
+	storage.AddPlayerToStorage(username_chr, password_chr, email_chr);
 
 	return crow::response(200);
 }
