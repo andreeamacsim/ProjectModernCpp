@@ -12,12 +12,14 @@ namespace game {
 	export class Word
 	{
 	public:
-		std::string selectRandomWord(const std::vector<std::string>& words);
+		std::string selectRandomWord(const std::vector<Word>& words);
 		bool verify();
-		void generateWords();
-		std::string revealCharacter(const std::string& word);
+		std::string getWord() const;
+		void setWord(std::string word);
+		void generateWords(std::vector<Word> words);
+		std::string revealCharacter();
 	private:
 		std::string m_word;
-		std::vector<std::string>m_words;
+		//std::vector<std::string>m_words;
 	};
 }

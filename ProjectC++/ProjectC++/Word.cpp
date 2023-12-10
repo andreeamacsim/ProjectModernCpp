@@ -16,33 +16,45 @@ bool Word::verify()
     return true;
 }
 
-void Word::generateWords()
+std::string game::Word::getWord() const
+{
+    return m_word;
+}
+
+void game::Word::setWord(std::string word)
+{
+    this->m_word = word;
+}
+
+void Word::generateWords(std::vector<Word> words)
 {
     std::ifstream inputFile("words.txt");
     std::string word;
     while (std::getline(inputFile, word)) 
     {
-        m_words.push_back(word);
+        Word w;
+        w.setWord(word);
+        words.push_back(w);
     }
 }
 
 
-std::string Word::selectRandomWord(const std::vector<std::string>& m_words)
+std::string Word::selectRandomWord(const std::vector<Word>& m_words)
 {
     if (verify())
     {
         int randomIndex = rand() % m_words.size();
-        return m_words[randomIndex];
+        return m_words[randomIndex].getWord();
     }
 }
 
-std::string Word::revealCharacter(const std::string& word)
+std::string Word::revealCharacter()
 {
     //de adaugat a.i. literele sa fie dezvaluite dupa 30s
-    uint16_t maximumLetters = word.length() / 2;
+    uint16_t maximumLetters = m_word.length() / 2;
     uint16_t letterCount = 0;
-    std::vector<bool> revealed(word.length(), false);
-    std::string revealedWord = word;
+    std::vector<bool> revealed(m_word.length(), false);
+    std::string revealedWord = m_word;
     for (int i = 0; i < revealedWord.length(); i++)
     {
         if (!revealed[i])
@@ -52,10 +64,10 @@ std::string Word::revealCharacter(const std::string& word)
     }
     while (letterCount < maximumLetters)
     {
-        int randomPosition = rand() % word.length();
+        int randomPosition = rand() % m_word.length();
         if (!revealed[randomPosition])
         {
-            revealedWord[randomPosition] = word[randomPosition];
+            revealedWord[randomPosition] = m_word[randomPosition];
             revealed[randomPosition] = true;
             letterCount++;
         }
