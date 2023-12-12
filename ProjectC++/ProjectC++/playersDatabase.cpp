@@ -34,6 +34,13 @@ Game& game::PlayerStorage::getGame()
 	return m_game;
 }
 
+Word game::PlayerStorage::GetCurrentWord() const
+{
+	return m_currentWord;
+}
+
+
+
 void game::PlayerStorage::PopulateStorage()
 {
 	std::vector<Player> players{

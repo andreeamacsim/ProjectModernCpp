@@ -34,6 +34,15 @@ void game::Routing::Run(PlayerStorage& storage)
 	CROW_ROUTE(m_app, "/startround")([&storage, this]() {
 		return StartNewRoundRoute(storage);
 		});
+
+	/*CROW_ROUTE(m_app, "/draw/<int>")([&storage, this](const crow::request& req, int playerId) {
+		return ProcessDrawing(storage, req, playerId);
+		});*/
+
+	CROW_ROUTE(m_app, "/revealletters/<int>")([&storage, this](const crow::request& req, int playerId) {
+		return RevealLetters(storage, req, playerId);
+		});
+
 }
 
 crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const
@@ -52,4 +61,11 @@ crow::response game::Routing::StartNewRoundRoute(PlayerStorage& storage) const
 	Game& game = storage.getGame();
 	game.StartNewRound();
 	return crow::response{ "New round started." };
+}
+
+crow::response game::Routing::RevealLetters(PlayerStorage& storage, const crow::request& req, int playerId)
+{
+	Word currentWord = storage.GetCurrentWord();
+	std::string revealedLetters = currentWord.revealCharacter();
+	return crow::response(revealedLetters);
 }
