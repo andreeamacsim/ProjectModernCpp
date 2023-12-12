@@ -1,4 +1,5 @@
 #include  <iostream>;
+#include<algorithm>;
 module  GameModule;
 import <vector>;
 import player;
@@ -74,6 +75,23 @@ void Game::setDifficultyLevel()
 
 	}
 }
+
+	void game::Game::StartNewRound()
+{
+		const int numSubrounds = m_players.size();
+		for (int subround = 1; subround <= numSubrounds; ++subround) 
+		{
+			Word wordSubround;
+			wordSubround.generateWords();
+			std::string newWord = wordSubround.selectRandomWord();
+			
+			Player subroundDrawer = m_players[subround];
+			Round newSubround(newWord, subroundDrawer.getUsername());
+			
+		}
+}
+
+
 
 std::vector<Player>& Game::getPlayers() 
 {

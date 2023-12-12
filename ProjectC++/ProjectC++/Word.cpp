@@ -26,7 +26,7 @@ void game::Word::setWord(std::string word)
     this->m_word = word;
 }
 
-void Word::generateWords(std::vector<Word> words)
+void Word::generateWords()
 {
     std::ifstream inputFile("words.txt");
     std::string word;
@@ -34,12 +34,12 @@ void Word::generateWords(std::vector<Word> words)
     {
         Word w;
         w.setWord(word);
-        words.push_back(w);
+        m_words.push_back(w);
     }
 }
 
 
-std::string Word::selectRandomWord(const std::vector<Word>& m_words)
+std::string Word::selectRandomWord()
 {
     if (verify())
     {

@@ -29,6 +29,11 @@ void PlayerStorage::AddPlayerToStorage(std::string username, std::string passwor
 	//m_db.insert(Player{username,password,email})
 }
 
+Game& game::PlayerStorage::getGame()
+{
+	return m_game;
+}
+
 void game::PlayerStorage::PopulateStorage()
 {
 	std::vector<Player> players{

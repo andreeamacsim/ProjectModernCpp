@@ -9,6 +9,7 @@
 namespace sql = sqlite_orm;
 import profile;
 import player;
+import GameModule;
 
 namespace game
 {
@@ -42,9 +43,12 @@ namespace game
 
         std::vector<Player>getPlayers();
         void AddPlayerToStorage(std::string username, std::string password, std::string email);
+        Game& getGame();
+
     private:
         void PopulateStorage();
         const std::string kDbFile{ "players2.sqlite" };
         Storage m_db = CreateStorage(kDbFile);
+        Game m_game;
     };
 }

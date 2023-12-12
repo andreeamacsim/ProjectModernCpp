@@ -19,6 +19,7 @@ namespace game
         void setCurrentRound(uint8_t currentRound);
         void setCurrentDrawer(Player currentDrawer);
         void setDifficultyLevel();
+        void  StartNewRound();
 
         std::vector<Player>& getPlayers();
         std::vector<Round>& getRounds();

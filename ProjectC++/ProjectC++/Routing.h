@@ -11,7 +11,7 @@ namespace game
 
 	private:
 		crow::response AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const;
-
+		crow::response StartNewRoundRoute(PlayerStorage& storage) const;
 	private:
 		crow::SimpleApp m_app;
 	};

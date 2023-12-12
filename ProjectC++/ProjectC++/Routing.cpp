@@ -30,6 +30,10 @@ void game::Routing::Run(PlayerStorage& storage)
 
 		});
 	m_app.port(18080).multithreaded().run();
+
+	CROW_ROUTE(m_app, "/startround")([&storage, this]() {
+		return StartNewRoundRoute(storage);
+		});
 }
 
 crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const
@@ -41,4 +45,11 @@ crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const
 	storage.AddPlayerToStorage(username_chr, password_chr, email_chr);
 
 	return crow::response(200);
+}
+
+crow::response game::Routing::StartNewRoundRoute(PlayerStorage& storage) const
+{
+	Game& game = storage.getGame();
+	game.StartNewRound();
+	return crow::response{ "New round started." };
 }
