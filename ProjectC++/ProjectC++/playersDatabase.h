@@ -24,6 +24,7 @@ namespace game
                 sql::make_column("password", &Player::setPassword, &Player::getPassword),
                 sql::make_column("email", &Player::setEmail, &Player::getEmail)
             )
+        
             //sql::make_table(
     //	"Profile",
     //	sql::make_column("username", &Profile::getPlayerName, &Profile::setPlayerName, sql::primary_key()),

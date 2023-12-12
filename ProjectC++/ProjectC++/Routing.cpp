@@ -43,6 +43,15 @@ void game::Routing::Run(PlayerStorage& storage)
 		return RevealLetters(storage, req, playerId);
 		});
 
+	CROW_ROUTE(m_app, "/submitanswer/<int>")([&storage, this](const crow::request& req, int playerId) {
+		return SubmitAnswer(storage, req, playerId);
+		});// TODO
+
+	/*CROW_ROUTE(m_app, "/finalrankings")([&storage, this]() {
+		return GetFinalRankings(storage);
+		});*/
+
+
 }
 
 crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const
@@ -68,4 +77,10 @@ crow::response game::Routing::RevealLetters(PlayerStorage& storage, const crow::
 	Word currentWord = storage.GetCurrentWord();
 	std::string revealedLetters = currentWord.revealCharacter();
 	return crow::response(revealedLetters);
+}
+
+crow::response game::Routing::SubmitAnswer(PlayerStorage& storage, const crow::request& req, int playerId)
+{
+	// de implementat de Cristina 
+	return crow::response();
 }
