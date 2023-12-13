@@ -50,6 +50,7 @@ void game::Routing::Run(PlayerStorage& storage)
 	/*CROW_ROUTE(m_app, "/finalrankings")([&storage, this]() {
 		return GetFinalRankings(storage);
 		});*/
+	// de calculat aici si scorul total 
 
 
 }
