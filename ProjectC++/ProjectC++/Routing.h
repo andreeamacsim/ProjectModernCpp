@@ -19,7 +19,7 @@ namespace game
 		crow::response StartNewRoundRoute(PlayerStorage& storage) const;
 		crow::response RevealLetters(PlayerStorage& storage, const crow::request& req, int playerId);
 		crow::response SubmitAnswer(PlayerStorage& storage, const crow::request& req, int playerId);
-		static crow::response GetAnwers(PlayerStorage& storage, int drawingId);
+		static crow::response GetAnswers(PlayerStorage& storage, int drawingId);
 		static std::string GenerateUniqueLobbyCode();
 
 	private:

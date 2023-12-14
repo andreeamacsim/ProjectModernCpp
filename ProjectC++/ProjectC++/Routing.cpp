@@ -113,3 +113,13 @@ crow::response game::Routing::GetAnswers(PlayerStorage& storage, int drawingId)
 	//app.port(8080).multithreaded().run();
 }
 
+std::string game::Routing::GenerateUniqueLobbyCode()
+{
+	std::srand(static_cast<unsigned>(std::time(0)));
+	std::ostringstream lobbyCodeStream;
+	for (int i = 0; i < 6; ++i) {
+		lobbyCodeStream << static_cast<char>('A' + (std::rand() % 26));
+	}
+
+	return lobbyCodeStream.str();
+}
