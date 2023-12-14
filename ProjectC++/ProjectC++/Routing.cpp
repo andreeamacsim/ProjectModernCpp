@@ -96,3 +96,20 @@ crow::response game::Routing::SubmitAnswer(PlayerStorage& storage, const crow::r
 
 	
 }
+
+crow::response game::Routing::GetAnswers(PlayerStorage& storage, int drawingId)
+{
+	std::ostringstream responseStream;
+	responseStream << "Drawing ID: " << drawingId << "\n";
+	responseStream << "Answers: Câine, Casă, Soare";
+
+	return crow::response(responseStream.str());
+	//CROW_ROUTE(app, "/get-answers/<int>")
+	//	.methods("GET"_method)
+	//	([](const crow::request& req, int drawingId) {
+	//	return Routing::GetAnswers(PlayerStorage(), drawingId);
+	//		});
+
+	//app.port(8080).multithreaded().run();
+}
+
