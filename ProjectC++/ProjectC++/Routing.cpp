@@ -1,4 +1,4 @@
-#include "Routing.h"
+﻿#include "Routing.h"
 
 using namespace game;
 
@@ -16,7 +16,7 @@ void game::Routing::Run(PlayerStorage& storage)
 	for (const auto& player : players)
 	{
 		players_json.push_back(crow::json::wvalue{
-			{"id", player.getId()},  // product_json["id"] = product.id;
+			{"id", player.getId()}, 
 			{"username", player.getUsername()},
 			{"password", player.getPassword()},
 			{"email", player.getEmail()}
@@ -82,6 +82,17 @@ crow::response game::Routing::RevealLetters(PlayerStorage& storage, const crow::
 
 crow::response game::Routing::SubmitAnswer(PlayerStorage& storage, const crow::request& req, int playerId)
 {
-	// de implementat de Cristina 
-	return crow::response();
+	if (!req.body.empty()) 
+	{
+		std::string playerAnswer = req.body;
+
+		std::string responseMessage = "Răspunsul de la jucătorul " + std::to_string(playerId) + ": " + playerAnswer;
+		return crow::response(responseMessage);
+	}
+	else 
+	{
+		return crow::response(400, "Bad Request - Empty request body");
+	};
+
+	
 }
