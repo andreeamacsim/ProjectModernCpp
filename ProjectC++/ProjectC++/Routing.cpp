@@ -12,24 +12,23 @@ void game::Routing::Run(PlayerStorage& storage)
 	CROW_ROUTE(m_app, "/players")([&storage]() {
 		std::vector<crow::json::wvalue> players_json;
 
-	auto players = storage.getPlayers();
-	for (const auto& player : players)
-	{
-		players_json.push_back(crow::json::wvalue{
-			{"id", player.getId()}, 
-			{"username", player.getUsername()},
-			{"password", player.getPassword()},
-			{"email", player.getEmail()}
+		auto players = storage.getPlayers();
+		for (const auto& player : players)
+		{
+			players_json.push_back(crow::json::wvalue{
+				{"id", player.getId()}, 
+				{"username", player.getUsername()},
+				{"password", player.getPassword()},
+				{"email", player.getEmail()}
 			});
 
-	}
-	return crow::json::wvalue{ players_json };
+		}
+		return crow::json::wvalue{ players_json };
 		});
 	CROW_ROUTE(m_app, "/addplayertogame/<int>")([&storage, this](const crow::request& req, int playerId) {
 		return AddPlayerToGameRoute(storage, req, playerId);
 
 		});
-	m_app.port(18080).multithreaded().run();
 
 	CROW_ROUTE(m_app, "/startround")([&storage, this]() {
 		return StartNewRoundRoute(storage);
@@ -53,6 +52,7 @@ void game::Routing::Run(PlayerStorage& storage)
 	// de calculat aici si scorul total 
 
 
+	m_app.port(18080).multithreaded().run();
 }
 
 crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const

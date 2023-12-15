@@ -75,3 +75,18 @@ std::string Word::revealCharacter()
     }
     return revealedWord;
 }
+
+uint32_t game::Word::getId()
+{
+    return m_id;
+}
+
+void game::Word::setId( uint32_t id)
+{
+    m_id = id;
+}
+
+std::vector<Word> game::Word::getWords()
+{
+    return m_words;
+}

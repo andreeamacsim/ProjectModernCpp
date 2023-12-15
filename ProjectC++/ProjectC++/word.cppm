@@ -18,7 +18,11 @@ namespace game {
 		void setWord(std::string word);
 		void generateWords();
 		std::string revealCharacter();
+		uint32_t getId();
+		void setId(uint32_t id);
+		std::vector<Word> getWords();
 	private:
+		uint32_t m_id;
 		std::string m_word;
 		std::vector<Word>m_words;
 	};

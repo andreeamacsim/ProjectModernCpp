@@ -19,12 +19,16 @@ namespace game
             filename,
             sql::make_table(
                 "Player",
-                sql::make_column("id", &Player::setId, &Player::getId, sql::primary_key()),
+                sql::make_column("id", &Player::setId, &Player::getId, sql::primary_key().autoincrement()),
                 sql::make_column("username", &Player::setUsername, &Player::getUsername),
                 sql::make_column("password", &Player::setPassword, &Player::getPassword),
                 sql::make_column("email", &Player::setEmail, &Player::getEmail)
+            ),
+            sql::make_table(
+                "Words",
+                sql::make_column("id",&Word::setId,&Word::getId, sql::primary_key().autoincrement()),
+                sql::make_column("word",&Word::setWord,&Word::getWord)
             )
-        
             //sql::make_table(
     //	"Profile",
     //	sql::make_column("username", &Profile::getPlayerName, &Profile::setPlayerName, sql::primary_key()),

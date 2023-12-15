@@ -50,4 +50,12 @@ void game::PlayerStorage::PopulateStorage()
 			Player{-1,"Alex","alexandru","alexalexandru@gmail.com"}
 	};
 	m_db.insert_range(players.begin(), players.end());
+	//Word word;
+	//word.generateWords();
+	//std::vector<Word> words = word.getWords();
+	////for (const auto& word : words)
+	////{
+	////	m_db.insert(word.getWord());
+	////}
+
 }
