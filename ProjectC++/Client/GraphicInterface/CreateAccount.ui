@@ -118,7 +118,7 @@ border-radius: 10px;</string>
      <string>Password</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="register_2">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -170,7 +170,7 @@ border-radius: 10px;</string>
      <string>Back</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="emailLabel">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -184,7 +184,7 @@ border-radius: 10px;</string>
 border-radius: 10px;</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="usernameLabel">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -198,7 +198,7 @@ border-radius: 10px;</string>
 border-radius: 10px;</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="passwordLabel">
     <property name="geometry">
      <rect>
       <x>160</x>

@@ -10,9 +10,10 @@ class CreateAccount : public QMainWindow
 public:
 	CreateAccount(QWidget *parent = nullptr);
 	~CreateAccount();
-
 private:
 	Ui::CreateAccountClass ui;
 private slots:
 	void on_backButton_clicked();
+	void on_register_2_clicked();
+
 };

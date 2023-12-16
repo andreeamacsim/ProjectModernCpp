@@ -43,7 +43,7 @@ void game::Routing::Run(PlayerStorage& storage)
 		});
 
 	CROW_ROUTE(m_app, "/submitanswer/<int>")([&storage, this](const crow::request& req, int playerId) {
-		return SubmitAnswer(storage, req, playerId);
+		return SubmitAnswer(storage, req, playerId); 
 		});// TODO
 
 	/*CROW_ROUTE(m_app, "/finalrankings")([&storage, this]() {
@@ -60,10 +60,20 @@ crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const
 	char* username_chr = req.url_params.get("username");
 	char* password_chr = req.url_params.get("password");
 	char* email_chr = req.url_params.get("email");
-
-	storage.AddPlayerToStorage(username_chr, password_chr, email_chr);
-
-	return crow::response(200);
+	std::string username = "";
+	std::string password = "";
+	std::string email = "";
+	if (username_chr != nullptr && password_chr != nullptr && email_chr!=nullptr) {
+		username = std::string(username_chr);
+		password = std::string(password_chr);
+		email = std::string(email_chr);
+		storage.AddPlayerToStorage(username,password,email);
+		return crow::response(200);
+	}
+	else {
+		// Întoarce o eroare sau răspuns corespunzător
+		return crow::response(400);
+	}
 }
 
 crow::response game::Routing::StartNewRoundRoute(PlayerStorage& storage) const

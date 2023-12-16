@@ -23,8 +23,8 @@ void PlayerStorage::AddPlayerToStorage(std::string username, std::string passwor
 {
 	Player p;
 	p.setUsername(username);
-	p.setEmail(email);
 	p.setPassword(password);
+	p.setEmail(email);
 	m_db.insert(p);
 	//m_db.insert(Player{username,password,email})
 }
