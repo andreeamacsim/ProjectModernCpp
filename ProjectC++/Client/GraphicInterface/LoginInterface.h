@@ -6,6 +6,7 @@
 #include "ProfileInterface.h"
 #include "ui_ProfileInterface.h"
 
+
 class LoginInterface : public QMainWindow
 {
 	Q_OBJECT
@@ -15,9 +16,8 @@ public:
 	~LoginInterface();
 
 private slots:
-	void on_pushButton_LogIn_clicked();
 	void on_pushButton_4_clicked();
-	void onLoginButtonClicked();
+	void logIn();
 
 private:
 	Ui::LoginInterfaceClass ui;
