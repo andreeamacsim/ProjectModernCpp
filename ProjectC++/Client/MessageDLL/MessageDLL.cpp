@@ -15,7 +15,7 @@ int MessageDLL::CheckAnswer(const char* answer)
     return static_cast<int>(result);
 }
 
-std::string GetCurrentWordFromServer()
+std::string MessageDLL::GetCurrentWordFromServer()
 {
     cpr::Response wordResponse = cpr::Get(cpr::Url{ "http://localhost:18080/getword" });
     return wordResponse.text;
