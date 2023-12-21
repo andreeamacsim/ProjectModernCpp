@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 #ifdef MESSAGEDLL_EXPORTS
 #define MESSAGEDLL_API __declspec(dllexport)
