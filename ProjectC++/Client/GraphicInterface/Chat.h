@@ -10,10 +10,12 @@ class Chat : public QMainWindow
 public:
 	Chat(QWidget *parent = nullptr);
 	~Chat();
+	QString getLastSentMessage() const;
 
 private slots:
 	void sendMessage();
 
 private:
 	Ui::ChatClass ui;
+	QString lastSentMessage;
 };

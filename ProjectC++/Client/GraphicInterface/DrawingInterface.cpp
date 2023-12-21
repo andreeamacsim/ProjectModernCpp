@@ -2,6 +2,9 @@
 #include <QColorDialog>
 #include <QInputDialog>
 #include <QFileDialog>
+#include <qmessagebox.h>
+#include "../MessageDLL/MessageDLL.h"
+#include "Chat.h"
 
 DrawingInterface::DrawingInterface(QWidget *parent)
 	: QMainWindow(parent)
@@ -162,6 +165,28 @@ void DrawingInterface::draw(const QColor& color,QPainter &p,const uint8_t &width
 	p.setPen(pen);
 
 	p.drawLine(line);
+}
+
+void DrawingInterface::checkAnswerAndShowMessage()
+{
+	QString userAnswer = m_chatInstance->getLastSentMessage();
+
+	QByteArray byteArray = userAnswer.toUtf8();
+	const char* answer = byteArray.constData();
+
+	int result = MessageDLL::CheckAnswer(answer);
+
+	if (result == Congratulations) {
+		QMessageBox::information(this, "Felicitări!", "Cuvântul este corect!");
+	}
+	else {
+		QMessageBox::warning(this, "Încercare", "Cuvântul este greșit. Încearcă din nou.");
+	}
+}
+
+void DrawingInterface::setChatReference(Chat* chatInstance)
+{
+	m_chatInstance = chatInstance;
 }
 
 void DrawingInterface::on_widthSlider_valueChanged()

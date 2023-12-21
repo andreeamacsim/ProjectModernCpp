@@ -10,9 +10,15 @@ Chat::Chat(QWidget *parent)
 
 Chat::~Chat()
 {}
+QString Chat::getLastSentMessage() const
+{
+	return lastSentMessage;
+}
 void Chat::sendMessage()
 {
     QString message = ui.textEdit->toPlainText();
     ui.listWidget->addItem(message);
     ui.textEdit->clear();
+	lastSentMessage = message;
+
 }

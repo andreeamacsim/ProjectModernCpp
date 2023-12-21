@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QPainter>
 #include <QCheckBox>
-
+#include "Chat.h"
 class DrawingInterface : public QMainWindow
 {
 	Q_OBJECT
@@ -20,6 +20,8 @@ protected:
 	void mouseReleaseEvent(QMouseEvent* event) override;
 	void paintEvent(QPaintEvent* event) override;
 	void draw(const QColor& color, QPainter& p, const uint8_t& width, const QLine& line) const;
+	void checkAnswerAndShowMessage();
+	void setChatReference(Chat* chatInstance);
 private slots:
 	void on_widthSlider_valueChanged();
 private:
@@ -31,4 +33,5 @@ private:
 	//QAction* m_penWidthAct;
 	//QAction* m_clearDrawingArea;
 	Ui::DrawingInterfaceClass ui;
+	Chat* m_chatInstance;
 };
