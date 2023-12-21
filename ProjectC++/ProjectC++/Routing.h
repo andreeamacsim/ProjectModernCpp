@@ -22,6 +22,8 @@ namespace game
 		static crow::response GetAnswers(PlayerStorage& storage, int drawingId);
 		static std::string GenerateUniqueLobbyCode();
 
+		crow::response GetWordRoute(PlayerStorage& storage);
+
 	private:
 		crow::SimpleApp m_app;
 	};

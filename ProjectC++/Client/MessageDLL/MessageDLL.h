@@ -6,12 +6,13 @@
 #define MESSAGEDLL_API __declspec(dllimport)
 #endif
 
-enum GameResult {
-    Congratulations,
-    TryAgain
-};
-
 class MESSAGEDLL_API MessageDLL {
 public:
+    enum GameResult {
+        Congratulations,
+        TryAgain
+    };
+
     static int CheckAnswer(const char* answer);
+    static std::string GetCurrentWordFromServer();
 };

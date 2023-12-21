@@ -46,10 +46,17 @@ void game::Routing::Run(PlayerStorage& storage)
 		return SubmitAnswer(storage, req, playerId); 
 		});// TODO
 
+	CROW_ROUTE(m_app, "/getword")([this, &storage]() {
+		return this->GetWordRoute(storage);
+		});
+
+
 	/*CROW_ROUTE(m_app, "/finalrankings")([&storage, this]() {
 		return GetFinalRankings(storage);
 		});*/
 	// de calculat aici si scorul total 
+
+	
 
 
 	m_app.port(18080).multithreaded().run();
@@ -132,4 +139,12 @@ std::string game::Routing::GenerateUniqueLobbyCode()
 	}
 
 	return lobbyCodeStream.str();
+
+}
+
+crow::response game::Routing::GetWordRoute(PlayerStorage& storage)
+{
+	Word currentWord = storage.GetCurrentWord();
+	std::string word = currentWord.getWord();
+	return crow::response(word);
 }

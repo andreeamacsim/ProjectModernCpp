@@ -11,6 +11,7 @@ public:
 	Chat(QWidget *parent = nullptr);
 	~Chat();
 	QString getLastSentMessage() const;
+	void checkAnswerAndShowMessage();
 
 private slots:
 	void sendMessage();
@@ -18,4 +19,5 @@ private slots:
 private:
 	Ui::ChatClass ui;
 	QString lastSentMessage;
+
 };
