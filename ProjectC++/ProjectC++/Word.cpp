@@ -50,7 +50,7 @@ std::string Word::revealCharacter()
     return revealedWord;
 }
 
-uint32_t game::Word::getId()
+int game::Word::getId() const
 {
     return m_id;
 }
@@ -65,7 +65,7 @@ int game::Word::getLanguage() const
     return static_cast<int>(m_language);
 }
 
-void game::Word::setId( uint32_t id)
+void game::Word::setId( int id)
 {
     m_id = id;
 }

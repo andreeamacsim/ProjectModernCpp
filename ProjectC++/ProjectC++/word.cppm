@@ -14,20 +14,20 @@ namespace game {
 		Word();
 		Word(uint32_t id, std::string word, Difficulty difficulty, Language language);
 		std::string getWord() const;
-		uint32_t getId();
+		int getId()const;
 		int getDifficulty() const;
 		int getLanguage() const;
 
 
 		void setWord(std::string word);
-		void setId(uint32_t id);
+		void setId(int id);
 		void setDifficulty(int difficulty);
 		void setLanguage(int language);
 
 
 		std::string revealCharacter();
 	private:
-		uint32_t m_id;
+		int m_id;
 		std::string m_word;
 		Difficulty m_difficulty;
 		Language m_language;

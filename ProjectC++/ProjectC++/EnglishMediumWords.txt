@@ -12,7 +12,7 @@ Dexter
 Easter
 Eminem
 Europe
-Formula 1
+Formula_1
 France
 Gandhi
 Google
@@ -27,7 +27,7 @@ Mexico
 Minion
 Monday
 Mozart
-Mr. Bean
+Mr._Bean
 NASCAR
 Norway
 Obelix

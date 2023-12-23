@@ -3,7 +3,7 @@ mit
 vegetarian
 farmacist
 tipat
-sos de pizza
+sos_de_pizza
 sclipici
 frizer
 vitamina
@@ -13,7 +13,7 @@ sotie
 sabot
 taran
 parola
-buletin informativ
+buletin_informativ
 laser
 peisaj
 descarcat
@@ -23,9 +23,9 @@ confortabil
 diagonala
 tesatura
 intuneric
-ochelari de schi
-Mona Lisa
-Leonardo Da Vinci
+ochelari_de_schi
+Mona_Lisa
+Leonardo_Da_Vinci
 hibernare
 ceata
 fermoar
@@ -37,31 +37,31 @@ jumatate
 pilot
 mlastina
 somon
-mamut lanos
+mamut_lanos
 scurgere
 vis
-arsuri solare
+arsuri_solare
 ventilator
-deschizator de scrisori
+deschizator_de_scrisori
 benzina
 adancitura
-perdea de dus
+perdea_de_dus
 cosmar
 aplauze
 cavaler
 picnic
-tort de nunta
+tort_de_nunta
 bunic
 bunica
 pion
-coleg de munca
+coleg_de_munca
 tuse
 geolog
 pasager
 aburi
 maree
 magie
-protectie solara
+protectie_solara
 imaginatie
 panica
 alarma
@@ -70,11 +70,11 @@ rollercoaster
 patinoar
 contabil
 sampon
-cantec de leagan
+cantec_de_leagan
 sufragerie
 copilas
 mucegai
 scufundari
-stalp de pompieri
+stalp_de_pompieri
 religie
 librarie

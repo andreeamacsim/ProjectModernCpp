@@ -25,6 +25,21 @@ void game::Routing::Run(PlayerStorage& storage)
 		}
 		return crow::json::wvalue{ players_json };
 		});
+	CROW_ROUTE(m_app, "/words")([&storage]() {
+		std::vector<crow::json::wvalue>words_json;
+		auto words = storage.getWords();
+		for (const auto& word : words)
+		{
+			words_json.push_back(crow::json::wvalue{
+				{"id", word.getId()},
+				{"word", word.getWord()},
+				{"difficulty", word.getDifficulty()},
+				{"language",word.getLanguage()}
+				});
+
+		}
+		return crow::json::wvalue{ words_json };
+		});
 	CROW_ROUTE(m_app, "/addplayertogame/<int>")([&storage, this](const crow::request& req, int playerId) {
 		return AddPlayerToGameRoute(storage, req, playerId);
 

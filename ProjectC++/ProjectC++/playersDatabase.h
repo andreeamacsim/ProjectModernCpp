@@ -2,7 +2,7 @@
 
 #include <string>
 #include <vector>
-
+#include <fstream>
 #include <crow.h>
 #include <sqlite_orm/sqlite_orm.h>
 
@@ -25,11 +25,11 @@ namespace game
                 sql::make_column("email", &Player::setEmail, &Player::getEmail)
             ),
             sql::make_table(
-                "Words",
+                "Word",
                 sql::make_column("id",&Word::setId,&Word::getId, sql::primary_key().autoincrement()),
                 sql::make_column("word",&Word::setWord,&Word::getWord),
                 sql::make_column("difficulty",&Word::setDifficulty, &Word::getDifficulty),
-                sql::make_column("language",&Word::setLanguage, &Word::getLanguage )
+                sql::make_column("language",&Word::setLanguage, &Word::getLanguage)
             )
             //sql::make_table(
     //	"Profile",
@@ -50,14 +50,15 @@ namespace game
 
 
         std::vector<Player>getPlayers();
+        std::vector<Word>getWords();
         void AddPlayerToStorage(std::string username, std::string password, std::string email);
         Game& getGame();
         Word GetCurrentWord() const;
-
+        std::vector<Word> readWordsFromFile(Language language, Difficulty difficuly, std::string fileName);
 
     private:
         void PopulateStorage();
-        const std::string kDbFile{ "players2.sqlite" };
+        const std::string kDbFile{ "database.sqlite" };
         Storage m_db = CreateStorage(kDbFile);
         Game m_game;
         Word  m_currentWord;

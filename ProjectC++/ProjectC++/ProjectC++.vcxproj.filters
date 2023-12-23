@@ -72,4 +72,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="EnglishEasyWords.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="EnglishHardWords.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="EnglishMediumWords.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="RomanianEasyWords.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="RomanianHardWords.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="RomanianMediumWords.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

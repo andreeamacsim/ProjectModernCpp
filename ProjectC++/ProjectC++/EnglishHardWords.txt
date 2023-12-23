@@ -3,7 +3,7 @@ myth
 vegetarian
 pharmacist
 scream
-pizza sauce
+pizza_sauce
 glitter
 barber
 vitamin
@@ -24,9 +24,9 @@ ringleader
 diagonal
 fabric
 darkness
-ski goggles
-Mona Lisa
-Leonardo Da Vinci
+ski_goggles
+Mona_Lisa
+Leonardo_Da_Vinci
 hibernation
 fog
 zipper
@@ -38,20 +38,20 @@ half
 pilot
 swamp
 salmon
-wooly mammoth
+wooly_mammoth
 leak
 dream
 sunburn
-ceiling fan
-letter opener
+ceiling_fan
+letter_opener
 gasoline
 dent
-shower curtain
+shower_curtain
 nightmare
 applause
 knight
 picnic
-wedding cake
+wedding_cake
 grandpa
 grandma
 pawn
@@ -68,15 +68,15 @@ imagination
 panic
 alarm
 pain
-roller coaster
-skating ring
+roller_coaster
+skating_ring
 accountant
 shampoo
 lullaby
-living room
+living_room
 toddler
 mold
-scuba diving
-firreman pole
+scuba_diving
+firreman_pole
 religion
 bookstore

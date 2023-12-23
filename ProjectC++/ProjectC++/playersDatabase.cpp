@@ -19,6 +19,11 @@ std::vector<Player> PlayerStorage::getPlayers()
 	return m_db.get_all<Player>();
 }
 
+std::vector<Word> game::PlayerStorage::getWords()
+{
+	return m_db.get_all<Word>();
+}
+
 void PlayerStorage::AddPlayerToStorage(std::string username, std::string password, std::string email)
 {
 	Player p;
@@ -39,6 +44,21 @@ Word game::PlayerStorage::GetCurrentWord() const
 	return m_currentWord;
 }
 
+std::vector<Word> game::PlayerStorage::readWordsFromFile(Language language, Difficulty difficuly, std::string fileName)
+{
+	std::vector<Word> words;
+	std::ifstream file(fileName);
+	std::string word;
+	while (!file.eof())
+	{
+		file >> word;
+		Word w(-1, word, difficuly, language);
+		words.push_back(w);
+	}
+	return words;
+	file.close();
+}
+
 
 
 void game::PlayerStorage::PopulateStorage()
@@ -50,12 +70,26 @@ void game::PlayerStorage::PopulateStorage()
 			Player{-1,"Alex","alexandru","alexalexandru@gmail.com"}
 	};
 	m_db.insert_range(players.begin(), players.end());
-	//Word word;
-	//word.generateWords();
-	//std::vector<Word> words = word.getWords();
-	////for (const auto& word : words)
-	////{
-	////	m_db.insert(word.getWord());
-	////}
+	std::vector<Word> RomanianEasyWords=readWordsFromFile(Language::Romanian,Difficulty::Easy,"RomanianEasyWords.txt");
+	std::vector<Word> RomanianHardWords = readWordsFromFile(Language::Romanian, Difficulty::Hard, "RomanianHardWords.txt");
+
+	std::vector<Word>RomanianMediumWords = readWordsFromFile(Language::Romanian, Difficulty::Medium, "RomanianMediumWords.txt");
+
+	std::vector<Word>EnglishEasyWords = readWordsFromFile(Language::English, Difficulty::Easy, "EnglishEasyWords.txt");
+
+	std::vector<Word>EnglishHardWords = readWordsFromFile(Language::English, Difficulty::Hard, "EnglishHardWords.txt");
+
+	std::vector<Word>EnglishMediumWords = readWordsFromFile(Language::English, Difficulty::Medium, "EnglishMediumWords.txt");
+
+	std::vector<Word> words;
+	words.insert(words.end(), RomanianEasyWords.begin(), RomanianEasyWords.end());
+	words.insert(words.end(), RomanianHardWords.begin(), RomanianHardWords.end());
+	words.insert(words.end(), RomanianMediumWords.begin(), RomanianMediumWords.end());
+	words.insert(words.end(), EnglishEasyWords.begin(), EnglishEasyWords.end());
+	words.insert(words.end(), EnglishHardWords.begin(), EnglishHardWords.end());
+	words.insert(words.end(), EnglishMediumWords.begin(), EnglishMediumWords.end());
+	m_db.insert_range(words.begin(), words.end());
+
+
 
 }

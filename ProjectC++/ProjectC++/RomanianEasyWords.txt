@@ -44,7 +44,7 @@ majordom
 unt
 buton
 cactus
-aparat foto
+aparat_foto
 canar
 lumanare
 tun
@@ -91,7 +91,7 @@ magar
 balaur
 sertar
 sofer
-ceara de urechi
+ceara_de_urechi
 e-mail
 jaratic
 motor
@@ -139,7 +139,7 @@ foame
 vanator
 dificultate
 iPhone
-cub de gheata
+cub_de_gheata
 impact
 insecta
 interior
