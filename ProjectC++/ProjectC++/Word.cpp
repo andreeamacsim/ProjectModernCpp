@@ -1,21 +1,16 @@
 ﻿module word;
 import <string>;
 import <vector>;
-import <fstream>;
 import <cstdlib>;
 import <ctime>;
-import <iostream>;
 using game::Word;
-bool Word::verify()
+game::Word::Word()
 {
-    std::ifstream inputFile("words.txt");
-    if (!inputFile.is_open()) {
-        std::cerr << "Eroare la deschiderea fișierului cu cuvinte.\n";
-        return false;
-    }
-    return true;
 }
-
+game::Word::Word(uint32_t id, std::string word, Difficulty difficulty, Language language):
+    m_id(id),m_word(word),m_difficulty(difficulty),m_language(language)
+{
+}
 std::string game::Word::getWord() const
 {
     return m_word;
@@ -26,27 +21,6 @@ void game::Word::setWord(std::string word)
     this->m_word = word;
 }
 
-void Word::generateWords()
-{
-    std::ifstream inputFile("words.txt");
-    std::string word;
-    while (std::getline(inputFile, word)) 
-    {
-        Word w;
-        w.setWord(word);
-        m_words.push_back(w);
-    }
-}
-
-
-std::string Word::selectRandomWord()
-{
-    if (verify())
-    {
-        int randomIndex = rand() % m_words.size();
-        return m_words[randomIndex].getWord();
-    }
-}
 
 std::string Word::revealCharacter()
 {
@@ -81,12 +55,27 @@ uint32_t game::Word::getId()
     return m_id;
 }
 
+int game::Word::getDifficulty() const
+{
+    return static_cast<int>(m_difficulty);
+}
+
+int game::Word::getLanguage() const
+{
+    return static_cast<int>(m_language);
+}
+
 void game::Word::setId( uint32_t id)
 {
     m_id = id;
 }
 
-std::vector<Word> game::Word::getWords()
+void game::Word::setDifficulty(int difficulty)
 {
-    return m_words;
+    this->m_difficulty = static_cast<Difficulty>(difficulty);
+}
+
+void game::Word::setLanguage(int language)
+{
+    this->m_language = static_cast<Language>(language);
 }

@@ -1,10 +1,9 @@
 module;
 import <string>;
 import <vector>;
-import <fstream>;
 import <cstdlib>;
 import <ctime>;
-import <iostream>;
+import "Enums.h";
 
 export module word;
 
@@ -12,18 +11,26 @@ namespace game {
 	export class Word
 	{
 	public:
-		std::string selectRandomWord();
-		bool verify();
+		Word();
+		Word(uint32_t id, std::string word, Difficulty difficulty, Language language);
 		std::string getWord() const;
-		void setWord(std::string word);
-		void generateWords();
-		std::string revealCharacter();
 		uint32_t getId();
+		int getDifficulty() const;
+		int getLanguage() const;
+
+
+		void setWord(std::string word);
 		void setId(uint32_t id);
-		std::vector<Word> getWords();
+		void setDifficulty(int difficulty);
+		void setLanguage(int language);
+
+
+		std::string revealCharacter();
 	private:
 		uint32_t m_id;
 		std::string m_word;
-		std::vector<Word>m_words;
+		Difficulty m_difficulty;
+		Language m_language;
+		
 	};
 }

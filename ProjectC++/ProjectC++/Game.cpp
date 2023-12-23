@@ -81,13 +81,13 @@ void Game::setDifficultyLevel()
 		const int numSubrounds = m_players.size();
 		for (int subround = 1; subround <= numSubrounds; ++subround) 
 		{
-			Word wordSubround;
-			wordSubround.generateWords();
-			std::string newWord = wordSubround.selectRandomWord();
-			
-			Player subroundDrawer = m_players[subround];
-			Round newSubround(newWord, subroundDrawer.getUsername());
-			
+			//Word wordSubround;
+			//wordSubround.generateWords();
+			//std::string newWord = wordSubround.selectRandomWord();
+			//
+			//Player subroundDrawer = m_players[subround];
+			//Round newSubround(newWord, subroundDrawer.getUsername());
+			//
 		}
 }
 

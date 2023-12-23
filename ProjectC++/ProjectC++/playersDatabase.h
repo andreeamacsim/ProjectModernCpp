@@ -27,7 +27,9 @@ namespace game
             sql::make_table(
                 "Words",
                 sql::make_column("id",&Word::setId,&Word::getId, sql::primary_key().autoincrement()),
-                sql::make_column("word",&Word::setWord,&Word::getWord)
+                sql::make_column("word",&Word::setWord,&Word::getWord),
+                sql::make_column("difficulty",&Word::setDifficulty, &Word::getDifficulty),
+                sql::make_column("language",&Word::setLanguage, &Word::getLanguage )
             )
             //sql::make_table(
     //	"Profile",

@@ -5,15 +5,15 @@ Avatar
 Batman
 Brazilia
 Canada
-Crăciun
+Craciun
 Chrome
 Darwin
 Dexter
-Paște
+Paste
 Eminem
 Europa
 Formula 1
-Franța
+Franta
 Gandhi
 Google
 Grecia
@@ -33,7 +33,7 @@ Obelix
 Paypal
 Popeye
 Reddit
-România
+Romania
 Rusia
 Saturn
 Segway

@@ -161,6 +161,7 @@
     <ClCompile Include="word.cppm" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="playersDatabase.h" />
     <ClInclude Include="Routing.h" />
   </ItemGroup>
