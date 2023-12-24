@@ -27,7 +27,7 @@ namespace game {
 
 		std::string revealCharacter();
 	private:
-		int m_id;
+		uint32_t m_id;
 		std::string m_word;
 		Difficulty m_difficulty;
 		Language m_language;

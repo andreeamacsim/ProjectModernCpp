@@ -8,7 +8,7 @@ game::Word::Word()
 {
 }
 game::Word::Word(uint32_t id, std::string word, Difficulty difficulty, Language language):
-    m_id(id),m_word(word),m_difficulty(difficulty),m_language(language)
+    m_id{ id }, m_word{ word }, m_difficulty{ difficulty }, m_language{ language }
 {
 }
 std::string game::Word::getWord() const

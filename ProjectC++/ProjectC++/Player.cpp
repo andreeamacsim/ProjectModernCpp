@@ -9,7 +9,7 @@ Player::Player()
 }
 
 Player::Player(int id,std::string username, std::string password, std::string email)
-	:m_email(email),m_username(username),m_password(password),m_id(id)
+	:m_email{ email }, m_username{ username }, m_password{ password }, m_id{ id }
 {
 }
 
