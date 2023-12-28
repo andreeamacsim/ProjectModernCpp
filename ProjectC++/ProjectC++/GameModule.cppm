@@ -3,6 +3,7 @@ import <vector>;
 import player;
 import round;
 import word;
+import <iostream>;
 
 export module GameModule;
 namespace game 
@@ -20,6 +21,10 @@ namespace game
         void setCurrentDrawer(Player currentDrawer);
         void setDifficultyLevel();
         void  StartNewRound();
+        
+        void DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width);
+
+        std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>>& getDrawingTable();
 
         std::vector<Player>& getPlayers() ;
         std::vector<Round>& getRounds() ;
@@ -35,5 +40,6 @@ namespace game
         uint8_t m_currentRound;
         uint8_t m_difficultyLevel;
         Player m_currentDrawer;
+        std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>> m_drawingTable;
     };
 }

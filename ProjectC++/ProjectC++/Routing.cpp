@@ -64,8 +64,29 @@ void game::Routing::Run(PlayerStorage& storage)
 	CROW_ROUTE(m_app, "/getword")([this, &storage]() {
 		return this->GetWordRoute(storage);
 		});
+	CROW_ROUTE(m_app, "/drawingTable")([&storage,this]() {
 
-
+		std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>> drawingTable;
+		drawingTable = storage.getGame().getDrawingTable();
+		std::vector<crow::json::wvalue> drawingTable_json;
+		for (const auto& line : drawingTable)
+		{
+			const auto& [lineCoordinates, color, width] = line;
+			const auto& [startPoint, finalPoint] = lineCoordinates;
+			drawingTable_json.push_back(crow::json::wvalue{
+				{"startPointX",startPoint.first},
+				{"startPointY",startPoint.second},
+				{"finalPointX",finalPoint.first},
+				{"finalPointY",finalPoint.second},
+				{"color",color},
+				{"width",width}
+				});
+		}
+		return crow::json::wvalue{ drawingTable_json};
+		});
+	CROW_ROUTE(m_app, "/addline")([&storage, this](const crow::request& req) {
+		return AddLineToTableRoute(storage, req);
+		});
 	/*CROW_ROUTE(m_app, "/finalrankings")([&storage, this]() {
 		return GetFinalRankings(storage);
 		});*/
@@ -93,7 +114,7 @@ crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const
 		return crow::response(200);
 	}
 	else {
-		// Întoarce o eroare sau răspuns corespunzător
+
 		return crow::response(400);
 	}
 }
@@ -154,7 +175,6 @@ std::string game::Routing::GenerateUniqueLobbyCode()
 	}
 
 	return lobbyCodeStream.str();
-
 }
 
 crow::response game::Routing::GetWordRoute(PlayerStorage& storage)
@@ -162,4 +182,28 @@ crow::response game::Routing::GetWordRoute(PlayerStorage& storage)
 	Word currentWord = storage.GetCurrentWord();
 	std::string word = currentWord.getWord();
 	return crow::response(word);
+}
+
+crow::response game::Routing::AddLineToTableRoute(PlayerStorage& storage, const crow::request& req)
+{
+	char* startPointX_chr = req.url_params.get("startPointX");
+	char* startPointY_chr = req.url_params.get("startPointY");
+	char* finalPointX_chr = req.url_params.get("finalPointX");
+	char* finalPointY_chr = req.url_params.get("finalPointY");
+	char* color_chr = req.url_params.get("color");
+	char* width_chr = req.url_params.get("width");
+	if (startPointX_chr != nullptr && startPointY_chr != nullptr && finalPointX_chr != nullptr && finalPointY_chr != nullptr && color_chr != nullptr && width_chr != nullptr)
+	{
+		float startPointX = std::stof(startPointX_chr);
+		float startPointY = std::stof(startPointY_chr);
+		float finalPointX = std::stof(finalPointX_chr);
+		float finalPointY = std::stof(finalPointY_chr);
+		std::string color = std::string(color_chr);
+		uint8_t width = std::stoi(width_chr);
+		std::pair<std::pair<float, float>, std::pair<float, float>>line = std::make_pair(std::make_pair(startPointX, startPointY), std::make_pair(finalPointX, finalPointY));
+		storage.addLine(line, color, width);
+		return crow::response(200);
+	}
+	else
+		return crow::response(400);
 }

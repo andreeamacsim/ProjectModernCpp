@@ -90,6 +90,16 @@ void Game::setDifficultyLevel()
 		}
 }
 
+void Game::DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>> line, std::string color, uint8_t width)
+{
+	this->m_drawingTable.push_back({ line,color,width });
+}
+
+std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>>& game::Game::getDrawingTable()
+{
+	return m_drawingTable;
+}
+
 
  std::vector<Player>& Game::getPlayers() 
 {
