@@ -41,36 +41,38 @@ void DrawingInterface::mouseMoveEvent(QMouseEvent* event)
 		if (m_drawingBox.contains(startPoint) && m_drawingBox.contains(event->pos())) {
 
 			uint8_t penWidth = m_drawingArea->getPenWidth();
-			QLine line(startPoint, event->pos());
+			std::pair<float,float>lPoint = std::make_pair(startPoint.x(),startPoint.y());
+			std::pair<float,float>rPoint = std::make_pair(event->pos().x(), event->pos().y());
+			std::pair<std::pair<float, float>, std::pair<float, float>> line = std::make_pair(lPoint, rPoint);
 			
 			if (ui.red->isChecked())
-				m_drawingArea->addLine(line, Qt::red, penWidth);
+				m_drawingArea->addLine(line,"red", penWidth);
 			else if(ui.blue->isChecked())
-				m_drawingArea->addLine(line, Qt::blue, penWidth);
+				m_drawingArea->addLine(line, "blue", penWidth);
 			else if(ui.cyan->isChecked())
-				m_drawingArea->addLine(line, Qt::cyan, penWidth);
+				m_drawingArea->addLine(line, "cyan", penWidth);
 			else if(ui.green->isChecked())
-				m_drawingArea->addLine(line, Qt::green, penWidth);
+				m_drawingArea->addLine(line, "green", penWidth);
 			else if(ui.magenta->isChecked())
-				m_drawingArea->addLine(line, Qt::magenta, penWidth);
+				m_drawingArea->addLine(line, "magenta", penWidth);
 			else if(ui.yellow->isChecked())
-				m_drawingArea->addLine(line, Qt::yellow, penWidth);
+				m_drawingArea->addLine(line, "yellow", penWidth);
 			else if (ui.black->isChecked())
-				m_drawingArea->addLine(line, Qt::black, penWidth);
+				m_drawingArea->addLine(line, "black", penWidth);
 			else if (ui.brown->isChecked()) {
 				QColor brown(139, 69, 19);
-				m_drawingArea->addLine(line,brown, penWidth);
+				m_drawingArea->addLine(line,"brown", penWidth);
 			}
 			else if (ui.gray->isChecked())
-				m_drawingArea->addLine(line, Qt::gray, penWidth);
+				m_drawingArea->addLine(line, "gray", penWidth);
 			else if (ui.darkBlue->isChecked())
-				m_drawingArea->addLine(line, Qt::darkBlue, penWidth);
+				m_drawingArea->addLine(line, "darkBlue", penWidth);
 			else if (ui.darkGreen->isChecked())
-				m_drawingArea->addLine(line, Qt::darkGreen, penWidth);
+				m_drawingArea->addLine(line, "darkGreen", penWidth);
 			else if (ui.eraser->isChecked())
-				m_drawingArea->addLine(line, Qt::white, penWidth);
+				m_drawingArea->addLine(line, "white", penWidth);
 			else if(ui.orange->isChecked())
-				m_drawingArea->addLine(line, QColor(255, 165, 0), penWidth);
+				m_drawingArea->addLine(line,"orange", penWidth);
 			m_drawingArea->setStartPoint(event->pos());
 			update();
 		}
@@ -89,82 +91,80 @@ void DrawingInterface::paintEvent(QPaintEvent* event)
 	p.drawRect(m_drawingBox);
 	for (const auto& l: m_drawingArea->getLines())
 	{
-		QLine line  = std::get<0>(l);
+		std::pair line  = std::get<0>(l);
 		uint8_t width = std::get<2>(l);
-		QColor color = std::get<1>(l);
-		if (m_drawingBox.contains(std::get<0>(l).p1()) && m_drawingBox.contains(std::get<0>(l).p2())) {
-			if (color == Qt::red)
+		std::string color = std::get<1>(l);
+			if (color == "red")
 			{
 				draw(Qt::red, p, width, line);
 			}
-			else if (color == Qt::blue)
+			else if (color == "blue")
 			{
 				draw(Qt::blue, p, width, line);
 			}
-			else if (color == Qt::cyan)
+			else if (color == "cyan")
 			{
 				draw(Qt::cyan, p, width, line);
 			}
-			else if (color == Qt::green)
+			else if (color == "green")
 			{
 				draw(Qt::green, p, width, line);
 
 			}
-			else if (color == Qt::magenta)
+			else if (color == "magenta")
 			{
 				draw(Qt::magenta, p, width, line);
 
 			}
-			else if (color == Qt::yellow)
+			else if (color == "yellow")
 			{
 				draw(Qt::yellow, p, width, line);
 
 			}
-			else if (color == QColor(139, 69, 19)) //Color :Brown
+			else if (color == "brown") //Color :Brown
 			{
 				draw(QColor(139, 69, 19), p, width, line);
 
 			}
-			else if (color == Qt::black)
+			else if (color == "black")
 			{
 				draw(Qt::black, p, width, line);
 
 			}
-			else if (color == Qt::gray)
+			else if (color == "gray")
 			{
 				draw(Qt::gray, p, width, line);
 
 			}
-			else if (color == Qt::darkGreen)
+			else if (color == "darkGreen")
 			{
 				draw(Qt::darkGreen, p, width, line);
 
 			}
-			else if (color == Qt::darkBlue)
+			else if (color == "darkBlue")
 			{
 				draw(Qt::darkBlue, p, width, line);
 
 			}
-			else if (color == Qt::white)
+			else if (color == "white")
 			{
 				draw(Qt::white, p, width, line);
 			}
-			else if (color == QColor(255, 165, 0)) //Color: Orange
+			else if (color == "orange") //Color: Orange
 			{
 				draw(QColor(255,165,0), p, width, line);
 			}
-		}
 	}
 	update();
 }
 
-void DrawingInterface::draw(const QColor& color,QPainter &p,const uint8_t &width,const QLine &line) const
+void DrawingInterface::draw(const QColor& color,QPainter &p,const uint8_t &width, std::pair<std::pair<float, float>, std::pair<float, float>> line) const
 {
 	QPen pen(color);
 	pen.setWidth(width);
 	p.setPen(pen);
 
-	p.drawLine(line);
+	p.drawLine(line.first.first,line.first.second,line.second.first,line.second.second);
 }
 
 

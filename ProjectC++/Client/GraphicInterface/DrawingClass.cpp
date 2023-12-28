@@ -26,7 +26,7 @@ void DrawingClass::setPenWidth(const uint8_t width)
 	this->m_penWidth = width;
 }
 
-std::vector<std::tuple<QLine, QColor,uint8_t>> & DrawingClass::getLines()
+std::vector<std::tuple<std::pair<std::pair<float,float>,std::pair<float,float>>, std::string, uint8_t>>& DrawingClass::getLines()
 {
 	return this->m_drawingLines;
 }
@@ -40,7 +40,7 @@ const uint8_t& DrawingClass::getPenWidth() const
 {
 	return this->m_penWidth;
 }
-void DrawingClass::addLine(QLine line,QColor color,uint8_t width)
+void DrawingClass::addLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width)
 {
 	m_drawingLines.push_back({ line,color,width });
 }

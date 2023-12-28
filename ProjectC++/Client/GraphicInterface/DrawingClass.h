@@ -20,10 +20,10 @@ public:
 
 	void setPenColor(const QColor& color);
 	void setPenWidth(const uint8_t width);
-	std::vector<std::tuple<QLine, QColor,uint8_t>>& getLines();
+	std::vector<std::tuple<std::pair<std::pair<float, float>,std::pair<float,float>>, std::string, uint8_t>>& getLines();
 	const QColor& getPenColor() const;
 	const uint8_t& getPenWidth() const;
-	void addLine(QLine line,QColor color,uint8_t);
+	void addLine(std::pair<std::pair<float,float>,std::pair<float,float>>line,std::string color,uint8_t width);
 	bool isDrawing();
 	void setDrawing(bool drawing);
 	QPoint& getStartPoint();
@@ -39,7 +39,7 @@ private:
 
 	QColor m_penColor;
 	uint8_t m_penWidth;
-	std::vector<std::tuple<QLine,QColor,uint8_t>> m_drawingLines;
+	std::vector<std::tuple<std::pair<std::pair<float,float>,std::pair<float,float>>,std::string,uint8_t>> m_drawingLines;
 	bool m_drawing;
 	QPoint m_startPoint;
 
