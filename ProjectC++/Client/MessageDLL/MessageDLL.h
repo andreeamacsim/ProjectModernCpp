@@ -14,6 +14,6 @@ public:
         TryAgain
     };
 
-    static int CheckAnswer(const char* answer);
-    static std::string GetCurrentWordFromServer();
+    static int CheckAnswer(const char* answer, const std::string& currentWord);
+    //static std::string GetCurrentWordFromServer();
 };

@@ -1,4 +1,5 @@
 #include "Chat.h"
+#include <cpr/cpr.h>
 #include "DrawingInterface.h"
 #include "../MessageDLL/MessageDLL.h"
 #include <qmessagebox.h>
@@ -24,7 +25,9 @@ void Chat::checkAnswerAndShowMessage()
     QByteArray byteArray = userAnswer.toUtf8();
     const char* answer = byteArray.constData();
 
-    int result = MessageDLL::CheckAnswer(answer);
+    cpr::Response wordResponse = cpr::Get(cpr::Url{ "http://localhost:18080/getword" });
+
+    int result = MessageDLL::CheckAnswer(answer, wordResponse.text);
 
     if (result == MessageDLL::Congratulations) {
         QMessageBox::information(this, "Felicitari!", "Cuvantul este corect!");
