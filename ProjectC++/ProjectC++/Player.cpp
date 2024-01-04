@@ -33,10 +33,6 @@ std::string Player::getPassword() const
 	return this->m_password;
 }
 
-//Profile Player::getProfile() const
-//{
-//	return this->m_playerProfile;
-//}
 
 void Player::setId(int16_t id)
 {

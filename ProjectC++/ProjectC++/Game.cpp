@@ -51,25 +51,26 @@ void Game::setDifficultyLevel()
 	   {"Hard", 3}
 	};
 
-	uint8_t option = 0;
-	while (option == 0)
-	{
+	auto printOptions = [&]() {
 		std::cout << "Choose difficulty level:" << std::endl;
-		std::cout << "1: Easy" << std::endl;
-		std::cout << "2: Medium" << std::endl;
-		std::cout << "3: Hard" << std::endl;
+		for (const auto& [name, value] : difficultyOptions) {
+			std::cout << value << ": " << name << std::endl;// functie lambda
+		}
+		};
+
+	uint8_t option = 0;
+	while (option == 0) {
+		printOptions();
 
 		std::string input;
 		std::cin >> input;
 
 		auto it = difficultyOptions.find(input);
-		if (it != difficultyOptions.end())
-		{
+		if (it != difficultyOptions.end()) {
 			option = it->second;
 			m_difficultyLevel = option;
 		}
-		else
-		{
+		else {
 			std::cout << "Invalid input. Please enter a valid difficulty level." << std::endl;
 		}
 	}
