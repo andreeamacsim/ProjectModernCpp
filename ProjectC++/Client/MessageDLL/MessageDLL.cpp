@@ -1,8 +1,9 @@
 //#include <cpr/cpr.h>
-#include "MessageDLL.h"
+#include "MessageDLL.h";
+#include <iostream>;
 
 
-int MessageDLL::CheckAnswer(const char* answer, const std::string& currentWord)
+MessageDLL::GameResult MessageDLL::CheckAnswer(const char* answer, const std::string& currentWord)
 {
     GameResult result = TryAgain;
 
@@ -11,9 +12,21 @@ int MessageDLL::CheckAnswer(const char* answer, const std::string& currentWord)
     if (strcmp(answer, currentWord.c_str()) == 0) {
         result = Congratulations;
     }
-
-    return static_cast<int>(result);
+    return result;
 }
+
+MessageDLL::LoginStatus MessageDLL::DisplayLoginMessage(bool find)
+{
+    LoginStatus status;
+    if (find == true)
+        status = Connected;
+    else status = NotConnected;
+
+    return status;
+
+}
+
+
 
 /*std::string MessageDLL::GetCurrentWordFromServer()
 {

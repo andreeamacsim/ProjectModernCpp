@@ -14,6 +14,12 @@ public:
         TryAgain
     };
 
-    static int CheckAnswer(const char* answer, const std::string& currentWord);
+    enum LoginStatus {
+        Connected,
+        NotConnected
+    };
+
+    static GameResult CheckAnswer(const char* answer, const std::string& currentWord);
+    static LoginStatus DisplayLoginMessage(bool find);
     //static std::string GetCurrentWordFromServer();
 };

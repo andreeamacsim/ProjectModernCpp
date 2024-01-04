@@ -7,6 +7,7 @@
 #include "ui_ProfileInterface.h"
 
 
+
 class LoginInterface : public QMainWindow
 {
 	Q_OBJECT

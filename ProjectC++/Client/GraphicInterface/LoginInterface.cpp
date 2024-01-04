@@ -1,6 +1,7 @@
 
 #include "LoginInterface.h"
 #include "CreateAccount.h"
+#include "../MessageDLL/MessageDLL.h"
 
 LoginInterface::LoginInterface(QWidget *parent)
 	: QMainWindow(parent)
@@ -37,13 +38,15 @@ void LoginInterface::logIn()
             break;
         }
     }
-    if (found)
+    MessageDLL::LoginStatus loginStatus = MessageDLL::DisplayLoginMessage(found);
+
+    if (loginStatus == MessageDLL::Connected)
     {
         message = "<font color='white'>Username and password are correct</font>";
         QMessageBox::information(this, "Login", message);
         ProfileInterface* profileInterface = new ProfileInterface(this);
         QString emailQStr = QString::fromUtf8(email);
-        profileInterface->initialize(usernameQStr,emailQStr);
+        profileInterface->initialize(usernameQStr, emailQStr);
         profileInterface->show();
         this->hide();
     }
