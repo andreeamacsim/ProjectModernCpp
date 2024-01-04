@@ -9,15 +9,15 @@ namespace game {
 	{
 	public:
 		Player();
-		Player(uint16_t id, std::string username, std::string password, std::string email);
+		Player(int16_t id, std::string username, std::string password, std::string email);
 
 		std::string getEmail()const;
 		std::string getUsername()const;
 		std::string getPassword()const;
-		uint16_t getId() const;
+		int16_t getId() const;
 
 
-		void setId(uint16_t id);
+		void setId(int16_t id);
 		void setEmail(std::string email);
 		void setUsername(std::string username);
 		void setPassword(std::string password);
@@ -27,7 +27,7 @@ namespace game {
 		bool isUsernameUnique(const std::string& username);
 
 	private:
-		uint16_t m_id;
+		int16_t m_id;
 		std::string m_email;
 		std::string m_username;
 		std::string m_password;

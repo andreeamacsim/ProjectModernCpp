@@ -8,7 +8,7 @@ Player::Player()
 {
 }
 
-Player::Player(uint16_t id,std::string username, std::string password, std::string email)
+Player::Player(int16_t id,std::string username, std::string password, std::string email)
 	:m_email{ email }, m_username{ username }, m_password{ password }, m_id{ id }
 {
 }
@@ -23,7 +23,7 @@ std::string Player::getUsername() const
 	return this->m_username;
 }
 
-uint16_t Player::getId() const
+int16_t Player::getId() const
 { 
 	return m_id;
 }
@@ -38,7 +38,7 @@ std::string Player::getPassword() const
 //	return this->m_playerProfile;
 //}
 
-void Player::setId(uint16_t id)
+void Player::setId(int16_t id)
 {
 	m_id = id;
 }

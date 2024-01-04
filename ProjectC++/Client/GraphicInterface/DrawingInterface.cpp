@@ -5,6 +5,8 @@
 #include <qmessagebox.h>
 #include "../MessageDLL/MessageDLL.h"
 #include "Chat.h"
+#include <cpr/cpr.h>
+#include <crow.h>
 
 DrawingInterface::DrawingInterface(QWidget *parent)
 	: QMainWindow(parent)
@@ -40,41 +42,62 @@ void DrawingInterface::mouseMoveEvent(QMouseEvent* event)
 		QPoint startPoint = m_drawingArea->getStartPoint();
 		if (m_drawingBox.contains(startPoint) && m_drawingBox.contains(event->pos())) {
 
-			uint8_t penWidth = m_drawingArea->getPenWidth();
+			int penWidth = m_drawingArea->getPenWidth();
 			std::pair<float,float>lPoint = std::make_pair(startPoint.x(),startPoint.y());
 			std::pair<float,float>rPoint = std::make_pair(event->pos().x(), event->pos().y());
 			std::pair<std::pair<float, float>, std::pair<float, float>> line = std::make_pair(lPoint, rPoint);
-			
+			std::string color;
 			if (ui.red->isChecked())
-				m_drawingArea->addLine(line,"red", penWidth);
-			else if(ui.blue->isChecked())
-				m_drawingArea->addLine(line, "blue", penWidth);
-			else if(ui.cyan->isChecked())
-				m_drawingArea->addLine(line, "cyan", penWidth);
-			else if(ui.green->isChecked())
-				m_drawingArea->addLine(line, "green", penWidth);
-			else if(ui.magenta->isChecked())
-				m_drawingArea->addLine(line, "magenta", penWidth);
-			else if(ui.yellow->isChecked())
-				m_drawingArea->addLine(line, "yellow", penWidth);
+				color = "red";
+
+			else if (ui.blue->isChecked())
+				color = "blue";
+
+			else if (ui.cyan->isChecked())
+				color = "cyan";
+
+			else if (ui.green->isChecked())
+				color = "green";
+
+			else if (ui.magenta->isChecked())
+				color = "magenta";
+
+			else if (ui.yellow->isChecked())
+				color = "yellow";
+
 			else if (ui.black->isChecked())
-				m_drawingArea->addLine(line, "black", penWidth);
+				color = "black";
+
 			else if (ui.brown->isChecked()) {
 				QColor brown(139, 69, 19);
-				m_drawingArea->addLine(line,"brown", penWidth);
+				color = "brown";
+
 			}
 			else if (ui.gray->isChecked())
-				m_drawingArea->addLine(line, "gray", penWidth);
+				color = "gray";
+
 			else if (ui.darkBlue->isChecked())
-				m_drawingArea->addLine(line, "darkBlue", penWidth);
+				color = "darkBlue";
+
 			else if (ui.darkGreen->isChecked())
-				m_drawingArea->addLine(line, "darkGreen", penWidth);
+				color = "darkGreen";
+
 			else if (ui.eraser->isChecked())
-				m_drawingArea->addLine(line, "white", penWidth);
-			else if(ui.orange->isChecked())
-				m_drawingArea->addLine(line,"orange", penWidth);
-			m_drawingArea->setStartPoint(event->pos());
+				color = "white";
+
+			else if (ui.orange->isChecked())
+				color = "orange";
 			update();
+			m_drawingArea->addLine(line, color, penWidth);
+			cpr::Parameters parameters = cpr::Parameters{
+				{"startPointX", std::to_string(lPoint.first)},
+				{"startPointY", std::to_string(lPoint.second)},
+				{"finalPointX", std::to_string(rPoint.first)},
+				{"finalPointY", std::to_string(lPoint.second)},
+				{"color", color},
+				{"width", std::to_string(penWidth)} };
+			auto response = cpr::Get(cpr::Url{ "http://localhost:18080/addline" }, parameters);
+			m_drawingArea->setStartPoint(event->pos());
 		}
 	}
 }
@@ -86,14 +109,24 @@ void DrawingInterface::mouseReleaseEvent(QMouseEvent* event)
 
 void DrawingInterface::paintEvent(QPaintEvent* event)
 {
-	QPainter p(this);
-	p.fillRect(m_drawingBox, Qt::white);
-	p.drawRect(m_drawingBox);
-	for (const auto& l: m_drawingArea->getLines())
-	{
-		std::pair line  = std::get<0>(l);
-		uint8_t width = std::get<2>(l);
-		std::string color = std::get<1>(l);
+		QPainter p(this);
+		p.fillRect(m_drawingBox, Qt::white);
+		p.drawRect(m_drawingBox);
+	if (!m_drawingArea->getLines().empty()) {
+		cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/drawingTable" });
+		auto lines = crow::json::load(response.text);
+		for (const auto& l : lines)
+		{
+			float startPointX = l["startPointX"].d();
+			float startPointY = l["startPointY"].d();
+			float finalPointX= l["finalPointX"].d();
+			float finalPointY = l["finalPointY"].d();
+			std::string color = l["color"].s();
+			int width= l["width"].i();
+			std::pair<float, float> sPoint = std::make_pair(startPointX, startPointY);
+			std::pair<float, float>fPoint = std::make_pair(finalPointX, finalPointY);
+			auto line = std::make_pair(sPoint, fPoint);
+
 			if (color == "red")
 			{
 				draw(Qt::red, p, width, line);
@@ -152,10 +185,11 @@ void DrawingInterface::paintEvent(QPaintEvent* event)
 			}
 			else if (color == "orange") //Color: Orange
 			{
-				draw(QColor(255,165,0), p, width, line);
+				draw(QColor(255, 165, 0), p, width, line);
 			}
+		}
+		update();
 	}
-	update();
 }
 
 void DrawingInterface::draw(const QColor& color,QPainter &p,const uint8_t &width, std::pair<std::pair<float, float>, std::pair<float, float>> line) const
