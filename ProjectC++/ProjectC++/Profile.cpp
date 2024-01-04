@@ -33,7 +33,7 @@ void Profile::setPlayerName(const std::string& playerName)
     this->m_playerName = playerName;
 }
 
-void Profile::setAge(int age)
+void Profile::setAge(uint16_t age)
 {
     this->m_age = age;
 }
@@ -43,7 +43,7 @@ void Profile::setCountry(const std::string& country)
     this->m_country = country;
 }
 
-void Profile::setLevel(int level)
+void Profile::setLevel(uint32_t level)
 {
     this->m_level = level;
 }

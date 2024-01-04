@@ -18,9 +18,9 @@ namespace game {
         std::string getDescription() const;
 
         void setPlayerName(const std::string& playerName);
-        void setAge(int age);
+        void setAge(uint16_t age);
         void setCountry(const std::string& country);
-        void setLevel(int level);
+        void setLevel(uint32_t level);
         void setDescription(const std::string& description);
 
     private:
