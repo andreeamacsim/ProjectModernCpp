@@ -71,11 +71,7 @@ void Player::checkPassword(const std::string& password)
 		throw std::exception("Invalid password!\nThe password must contain at least:\n-8 characters\n-a number\n-a special character");
 	}
 }
-bool Player::isUsernameUnique(const std::string& username)
-{
-	//TODO: se va face cand vom avea baza de date 
-	return false;
-}
+
 
 void Player::checkEmail(const std::string& email)
 {
@@ -103,10 +99,7 @@ void Player::checkUsername(const std::string& username)
 	{
 		throw std::exception("Invalid username");
 	}
-	if (!isUsernameUnique(username))
-	{
-		throw std::exception("Username is not unique");
-	}
+	
 }
 
 
