@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     auto words = crow::json::load(responseWord.text);
     for (const auto& word : words)
     {
-        std::cout << word["id"] << " " << word["word"] << " " << word["difficuly"] << " " << word["language"] << " \n";
+        std::cout << word["id"] << " " << word["word"] << " " << word["difficulty"] << " " << word["language"] << " \n";
     }
     return a.exec();
 }
