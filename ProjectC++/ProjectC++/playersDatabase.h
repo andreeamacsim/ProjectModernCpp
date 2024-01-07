@@ -5,6 +5,7 @@
 #include <fstream>
 #include <crow.h>
 #include <sqlite_orm/sqlite_orm.h>
+#include <time.h>
 
 namespace sql = sqlite_orm;
 import profile;
@@ -47,7 +48,6 @@ namespace game
     class PlayerStorage {
     public:
         bool Initialize();
-
 
         std::vector<Player>getPlayers();
         std::vector<Word>getWords();

@@ -91,6 +91,14 @@ void Game::setDifficultyLevel()
 		}
 }
 
+	int game::Game::getLobbyNumber()
+	{
+		srand(time(0));
+		int nr = std::rand() % 900000 + 100000;
+		m_Lobbies.push_back(nr);
+		return nr;
+	}
+
 void Game::DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>> line, std::string color, uint8_t width)
 {
 	this->m_drawingTable.push_back({ line,color,width });

@@ -14,6 +14,7 @@ bool PlayerStorage::Initialize()
 	return playerCount != 0;
 }
 
+
 std::vector<Player> PlayerStorage::getPlayers()
 {
 	return m_db.get_all<Player>();
