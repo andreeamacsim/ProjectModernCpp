@@ -23,7 +23,8 @@ namespace game
 		static std::string GenerateUniqueLobbyCode();
 		crow::response GetWordRoute(PlayerStorage& storage);
 		crow::response AddLineToTableRoute(PlayerStorage& storage, const crow::request& req);
-
+		crow::response VerifyPlayer(PlayerStorage& storage, const crow::request& req);
+		crow::response connectPlayer(PlayerStorage& storage, const crow::request& req);
 	private:
 		crow::SimpleApp m_app;
 	};

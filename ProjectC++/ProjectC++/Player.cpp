@@ -6,6 +6,7 @@ using namespace game;
 
 Player::Player()
 {
+	this->m_id = -1;
 }
 
 Player::Player(int16_t id,std::string username, std::string password, std::string email)

@@ -56,7 +56,7 @@ namespace game
         void addLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width);
         Word GetCurrentWord() const;
         std::vector<Word> readWordsFromFile(Language language, Difficulty difficuly, std::string fileName);
-
+        Player checkUser(const std::string& username);
     private:
         void PopulateStorage();
         const std::string kDbFile{ "database.sqlite" };

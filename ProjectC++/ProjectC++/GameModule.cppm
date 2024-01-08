@@ -23,7 +23,7 @@ namespace game
         void  StartNewRound();
         int getLobbyNumber();
         void DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width);
-
+        void addPlayerToGame(Player p);
         std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>>& getDrawingTable();
 
         std::vector<Player>& getPlayers() ;
@@ -41,6 +41,5 @@ namespace game
         uint8_t m_difficultyLevel;
         Player m_currentDrawer;
         std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>> m_drawingTable;
-        std::vector<int> m_Lobbies;
     };
 }

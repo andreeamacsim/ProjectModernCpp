@@ -27,17 +27,11 @@ void LoginInterface::logIn()
     std::string password = passwordQStr.toUtf8().constData();
     QString message;
     std::string email;
-    cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/players" });
-    auto players = crow::json::load(response.text);
-    for (const auto& player : players)
-    {
-        if (player["username"] == username && player["password"] == password)
-        {
-            email = player["email"].s();
-            found = true;
-            break;
-        }
-    }
+    cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/verifyUser" }, cpr::Parameters{
+        {"username",username}
+        });
+    if (response.status_code == 200)
+        found = true;
     MessageDLL::LoginStatus loginStatus = MessageDLL::DisplayLoginMessage(found);
 
     if (loginStatus == MessageDLL::Connected)
@@ -57,6 +51,8 @@ void LoginInterface::logIn()
         msgBox.setStyleSheet("QPushButton { color: white; }");
         msgBox.exec();
     }
+    cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{
+    {"username",username}});
 }
 
 LoginInterface::~LoginInterface()

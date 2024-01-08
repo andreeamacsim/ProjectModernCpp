@@ -91,7 +91,12 @@ void game::Routing::Run(PlayerStorage& storage)
 		return GetFinalRankings(storage);
 		});*/
 	// de calculat aici si scorul total 
-
+	CROW_ROUTE(m_app, "/verifyUser")([&storage, this](const crow::request& req) {
+		return VerifyPlayer(storage,req);
+		});
+	CROW_ROUTE(m_app, "/connectedPlayers")([&storage, this](const crow::request& req) {
+		return connectPlayer(storage, req);
+		});
 	
 
 
@@ -206,4 +211,29 @@ crow::response game::Routing::AddLineToTableRoute(PlayerStorage& storage, const 
 	}
 	else
 		return crow::response(400);
+}
+
+crow::response game::Routing::VerifyPlayer(PlayerStorage& storage, const crow::request& req)
+{
+	char* username = req.url_params.get("username");
+	auto player =storage.checkUser(username);
+	if (player.getId() != -1)
+	{
+		return crow::response(200);
+	}
+	else
+		return crow::response(401);
+}
+
+crow::response game::Routing::connectPlayer(PlayerStorage& storage, const crow::request& req)
+{
+	char* username = req.url_params.get("username");
+	auto player = storage.checkUser(username);
+	if (player.getId() != -1)
+	{
+		storage.getGame().addPlayerToGame(player);
+		return crow::response(200);
+	}
+	else
+		return crow::response(401);
 }
