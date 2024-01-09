@@ -12,14 +12,13 @@ void game::Routing::Run(PlayerStorage& storage)
 	CROW_ROUTE(m_app, "/players")([&storage]() {
 		std::vector<crow::json::wvalue> players_json;
 
-		auto players = storage.getPlayers();
+		auto players = storage.getGame().getPlayers();
 		for (const auto& player : players)
 		{
 			players_json.push_back(crow::json::wvalue{
-				{"id", player.getId()}, 
-				{"username", player.getUsername()},
-				{"password", player.getPassword()},
-				{"email", player.getEmail()}
+				{"id", player.second.getId()}, 
+				{"username", player.second.getUsername()},
+				{"email", player.second.getEmail()}
 			});
 
 		}
@@ -96,6 +95,10 @@ void game::Routing::Run(PlayerStorage& storage)
 		});
 	CROW_ROUTE(m_app, "/connectedPlayers")([&storage, this](const crow::request& req) {
 		return connectPlayer(storage, req);
+		});
+
+	CROW_ROUTE(m_app, "/disconnectPlayer")([&storage,this](const crow::request& req) {
+		return disconnectPlayer(storage, req);
 		});
 	
 
@@ -232,6 +235,19 @@ crow::response game::Routing::connectPlayer(PlayerStorage& storage, const crow::
 	if (player.getId() != -1)
 	{
 		storage.getGame().addPlayerToGame(player);
+		return crow::response(200);
+	}
+	else
+		return crow::response(401);
+}
+
+crow::response game::Routing::disconnectPlayer(PlayerStorage& storage, const crow::request& req)
+{
+	char* username = req.url_params.get("username");
+	auto player = storage.checkUser(username);
+	if (player.getId() != -1)
+	{
+		storage.getGame().disconnetPlayer(player);
 		return crow::response(200);
 	}
 	else

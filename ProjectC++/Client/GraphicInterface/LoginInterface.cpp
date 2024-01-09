@@ -56,4 +56,9 @@ void LoginInterface::logIn()
 }
 
 LoginInterface::~LoginInterface()
-{}
+{
+    QString usernameQStr = ui.userName->text();
+    std::string username= usernameQStr.toUtf8().constData();
+    cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/disconnectPlayer" }, cpr::Parameters{
+        {"username",username} });
+}

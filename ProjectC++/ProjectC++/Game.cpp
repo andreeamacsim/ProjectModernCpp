@@ -9,7 +9,7 @@ Game::Game()
 {
 }
 
-Game::Game(const std::vector<Player>& players, const std::vector<Round>& rounds, const std::vector<Word>& wordList,  uint8_t currentRound, Player currentDrawer)
+Game::Game(std::unordered_map<int, Player>& players, const std::vector<Round>& rounds, const std::vector<Word>& wordList,  uint8_t currentRound, Player currentDrawer)
 	: m_players{ players }
 	, m_rounds{ rounds }
 	, m_wordList{ wordList }
@@ -18,7 +18,7 @@ Game::Game(const std::vector<Player>& players, const std::vector<Round>& rounds,
 {
 }
 
-void Game::setPlayers( const std::vector<Player>& players)
+void Game::setPlayers(std::unordered_map<int, Player>& players)
 {
 	m_players = players;
 }
@@ -105,7 +105,12 @@ void Game::DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>> 
 
 void game::Game::addPlayerToGame(Player p)
 {
-	m_players.push_back(p);
+	m_players[p.getId()]=p;
+}
+
+void game::Game::disconnetPlayer(Player p)
+{
+	m_players.erase(p.getId());
 }
 
 std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>>& game::Game::getDrawingTable()
@@ -114,7 +119,7 @@ std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float
 }
 
 
- std::vector<Player>& Game::getPlayers() 
+std::unordered_map<int, Player>& Game::getPlayers()
 {
 	return this->m_players;
 }
