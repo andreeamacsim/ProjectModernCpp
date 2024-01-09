@@ -16,10 +16,13 @@ public:
 
     enum LoginStatus {
         Connected,
-        NotConnected
+        NotConnected,
+        AlreadyConnected,
+        IncorrectCredentials
+
     };
 
     static GameResult CheckAnswer(const char* answer, const std::string& currentWord);
-    static LoginStatus DisplayLoginMessage(bool find);
-    //static std::string GetCurrentWordFromServer();
+    static LoginStatus DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials);
+    
 };

@@ -7,7 +7,6 @@ MessageDLL::GameResult MessageDLL::CheckAnswer(const char* answer, const std::st
 {
     GameResult result = TryAgain;
 
-    //std::string currentWord = GetCurrentWordFromServer();
 
     if (strcmp(answer, currentWord.c_str()) == 0) {
         result = Congratulations;
@@ -15,15 +14,16 @@ MessageDLL::GameResult MessageDLL::CheckAnswer(const char* answer, const std::st
     return result;
 }
 
-MessageDLL::LoginStatus MessageDLL::DisplayLoginMessage(bool find)
+MessageDLL::LoginStatus MessageDLL::DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials)
 {
-    LoginStatus status;
-    if (find == true)
-        status = Connected;
-    else status = NotConnected;
-
-    return status;
-
+    if (find && !alreadyConnected && !incorrectCredentials)
+        return Connected;
+    else if (alreadyConnected)
+        return AlreadyConnected;
+    else if (incorrectCredentials)
+        return IncorrectCredentials;
+    else
+        return NotConnected;
 }
 
 

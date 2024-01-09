@@ -36,12 +36,16 @@ void LoginInterface::logIn()
     cpr::Response response1 = cpr::Get(cpr::Url{ "http://localhost:18080/checkAlreadyConnected" }, cpr::Parameters{
         {"username",username}
         });
-    if(response1.status_code==200&& found==true)
-         loginStatus = MessageDLL::DisplayLoginMessage(found);
-    //else
-         //aici trb dll de deja conectat
-    //else if ...
-        // aici intra loginstatus:: mesaju de user/parola incorecta
+    if (response1.status_code == 200 && found == true)
+    {
+        loginStatus = MessageDLL::DisplayLoginMessage(true, true, false);
+    }
+    else
+    {
+        // incorrect username/password
+        loginStatus = MessageDLL::DisplayLoginMessage(found, false, true);
+    }
+
     
     if (loginStatus == MessageDLL::Connected)
     {
@@ -55,7 +59,12 @@ void LoginInterface::logIn()
         cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{
         {"username",username}});
     }
-    else
+    else if (loginStatus == MessageDLL::AlreadyConnected)
+    {
+        message = "<font color='white'>User is already connected</font>";
+        QMessageBox::information(this, "Login", message);
+    }
+    else if (loginStatus == MessageDLL::IncorrectCredentials)
     {
         message = "<font color='white'>Username and password are incorrect</font>";
         QMessageBox msgBox(QMessageBox::Warning, "Login", message, QMessageBox::Ok, this);
