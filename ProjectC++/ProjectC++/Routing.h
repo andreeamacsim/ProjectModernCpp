@@ -26,6 +26,7 @@ namespace game
 		crow::response VerifyPlayer(PlayerStorage& storage, const crow::request& req);
 		crow::response connectPlayer(PlayerStorage& storage, const crow::request& req);
 		crow::response disconnectPlayer(PlayerStorage& storage, const crow::request& req);
+		crow::response CheckAlreadyConnected(PlayerStorage& storage, const crow::request& req);
 	private:
 		crow::SimpleApp m_app;
 	};

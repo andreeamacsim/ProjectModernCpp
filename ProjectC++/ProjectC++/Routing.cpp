@@ -106,6 +106,9 @@ void game::Routing::Run(PlayerStorage& storage)
 	CROW_ROUTE(m_app, "/disconnectPlayer")([&storage,this](const crow::request& req) {
 		return disconnectPlayer(storage, req);
 		});
+	CROW_ROUTE(m_app, "/checkAlreadyConnected")([&storage, this](const crow::request& req) {
+		return CheckAlreadyConnected(storage, req);
+		});
 	
 
 
@@ -258,4 +261,19 @@ crow::response game::Routing::disconnectPlayer(PlayerStorage& storage, const cro
 	}
 	else
 		return crow::response(401);
+}
+
+crow::response game::Routing::CheckAlreadyConnected(PlayerStorage& storage, const crow::request& req)
+{
+	char* username = req.url_params.get("username");
+	auto player = storage.checkUser(username);
+	if (player.getId() != -1)
+	{
+		auto players = storage.getGame().getPlayers();
+		auto it = players.find(player.getId());
+		if (it != players.end())
+			return crow::response(465);
+	}
+	else
+		return crow::response(200);
 }

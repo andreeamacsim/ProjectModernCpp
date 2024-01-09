@@ -21,6 +21,7 @@ void LoginInterface::on_pushButton_4_clicked()
 void LoginInterface::logIn()
 {
     bool found = false;
+    MessageDLL::LoginStatus loginStatus;
     QString usernameQStr = ui.userName->text();
     std::string username = usernameQStr.toUtf8().constData();
     QString passwordQStr = ui.password->text();
@@ -32,8 +33,16 @@ void LoginInterface::logIn()
         });
     if (response.status_code == 200)
         found = true;
-    MessageDLL::LoginStatus loginStatus = MessageDLL::DisplayLoginMessage(found);
-
+    cpr::Response response1 = cpr::Get(cpr::Url{ "http://localhost:18080/checkAlreadyConnected" }, cpr::Parameters{
+        {"username",username}
+        });
+    if(response1.status_code==200&& found==true)
+         loginStatus = MessageDLL::DisplayLoginMessage(found);
+    //else
+         //aici trb dll de deja conectat
+    //else if ...
+        // aici intra loginstatus:: mesaju de user/parola incorecta
+    
     if (loginStatus == MessageDLL::Connected)
     {
         message = "<font color='white'>Username and password are correct</font>";
@@ -43,6 +52,8 @@ void LoginInterface::logIn()
         profileInterface->initialize(usernameQStr, emailQStr);
         profileInterface->show();
         this->hide();
+        cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{
+        {"username",username}});
     }
     else
     {
@@ -51,8 +62,6 @@ void LoginInterface::logIn()
         msgBox.setStyleSheet("QPushButton { color: white; }");
         msgBox.exec();
     }
-    cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{
-    {"username",username}});
 }
 
 LoginInterface::~LoginInterface()
