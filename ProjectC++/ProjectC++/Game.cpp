@@ -115,12 +115,12 @@ void game::Game::StartNewRound()
 	const int numSubrounds = m_players.size();
 	for (int subround = 1; subround <= numSubrounds; ++subround) 
 	{
-		/*Word wordSubround;
-		wordSubround.generateWords();
-		std::string newWord = wordSubround.selectRandomWord();
+		Word wordSubround;
+		wordSubround.generateWords(getLanguage(),getDifficultyLevel());
+		/*std::string newWord = wordSubround.selectRandomWord();*/
 			
 		Player subroundDrawer = m_players[subround];
-		Round newSubround(newWord, subroundDrawer.getUsername());*/
+		/*Round newSubround(newWord, subroundDrawer.getUsername());*/
 			
 	}
 }

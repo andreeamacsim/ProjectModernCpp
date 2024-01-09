@@ -17,6 +17,7 @@ namespace game {
 		int getId()const;
 		int getDifficulty() const;
 		int getLanguage() const;
+		std::vector<std::string> generateWords(uint8_t language, uint8_t difficulty);
 
 
 		void setWord(std::string word);
