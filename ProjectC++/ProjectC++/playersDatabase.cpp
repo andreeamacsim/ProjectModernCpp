@@ -68,9 +68,9 @@ std::vector<Word> game::PlayerStorage::readWordsFromFile(Language language, Diff
 Player game::PlayerStorage::checkUser(const std::string& username)
 {
 	auto players = m_db.get_all<Player>(sql::where(sql::c(&Player::getUsername) == username));
-	Player player = players[0];
-	if (player.getId()!=-1)
+	if (!players.empty())
 	{
+		Player player = players[0];
 		return player;
 	}
 	else

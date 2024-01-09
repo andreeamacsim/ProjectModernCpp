@@ -21,55 +21,56 @@ void LoginInterface::on_pushButton_4_clicked()
 void LoginInterface::logIn()
 {
     bool found = false;
-    MessageDLL::LoginStatus loginStatus;
-    QString usernameQStr = ui.userName->text();
-    std::string username = usernameQStr.toUtf8().constData();
-    QString passwordQStr = ui.password->text();
-    std::string password = passwordQStr.toUtf8().constData();
     QString message;
-    std::string email;
+    MessageDLL::LoginStatus loginStatus;
+    QString email;
+    std::string username = ui.userName->text().toUtf8().constData();
+    std::string password = ui.password->text().toUtf8().constData();
     cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/verifyUser" }, cpr::Parameters{
-        {"username",username}
+        {"username",username},
+        {"password",password}
         });
     if (response.status_code == 200)
-        found = true;
-    cpr::Response response1 = cpr::Get(cpr::Url{ "http://localhost:18080/checkAlreadyConnected" }, cpr::Parameters{
-        {"username",username}
-        });
-    if (response1.status_code == 200 && found == true)
     {
-        loginStatus = MessageDLL::DisplayLoginMessage(true, true, false);
+        found = true;
+        cpr::Response response1 = cpr::Get(cpr::Url{ "http://localhost:18080/checkAlreadyConnected" }, cpr::Parameters{
+    {"username",username}
+            });
+        if (response1.status_code == 405 && found == true)
+        {
+            loginStatus = MessageDLL::DisplayLoginMessage(found, false, false);
+        }
+        else if (response1.status_code == 200 && found == true)
+        {
+            loginStatus = MessageDLL::DisplayLoginMessage(found, true, false);
+        }
+        if (loginStatus == MessageDLL::Connected)
+        {
+            message = "<font color='white'>Username and password are correct</font>";
+            QMessageBox::information(this, "Login", message);
+            ProfileInterface* profileInterface = new ProfileInterface(this);
+            profileInterface->initialize(QString::fromUtf8(username), email);
+            profileInterface->show();
+            this->hide();
+            cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{
+            {"username",username} });
+        }
+        else if (loginStatus == MessageDLL::AlreadyConnected)
+        {
+            message = "<font color='white'>User is already connected</font>";
+            QMessageBox::information(this, "Login", message);
+        }
+
     }
     else
     {
-        // incorrect username/password
         loginStatus = MessageDLL::DisplayLoginMessage(found, false, true);
-    }
-
-    
-    if (loginStatus == MessageDLL::Connected)
-    {
-        message = "<font color='white'>Username and password are correct</font>";
-        QMessageBox::information(this, "Login", message);
-        ProfileInterface* profileInterface = new ProfileInterface(this);
-        QString emailQStr = QString::fromUtf8(email);
-        profileInterface->initialize(usernameQStr, emailQStr);
-        profileInterface->show();
-        this->hide();
-        cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{
-        {"username",username}});
-    }
-    else if (loginStatus == MessageDLL::AlreadyConnected)
-    {
-        message = "<font color='white'>User is already connected</font>";
-        QMessageBox::information(this, "Login", message);
-    }
-    else if (loginStatus == MessageDLL::IncorrectCredentials)
-    {
         message = "<font color='white'>Username and password are incorrect</font>";
         QMessageBox msgBox(QMessageBox::Warning, "Login", message, QMessageBox::Ok, this);
         msgBox.setStyleSheet("QPushButton { color: white; }");
         msgBox.exec();
+        
+
     }
 }
 

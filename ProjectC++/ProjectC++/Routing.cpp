@@ -228,13 +228,16 @@ crow::response game::Routing::AddLineToTableRoute(PlayerStorage& storage, const 
 crow::response game::Routing::VerifyPlayer(PlayerStorage& storage, const crow::request& req)
 {
 	char* username = req.url_params.get("username");
-	auto player =storage.checkUser(username);
-	if (player.getId() != -1)
-	{
-		return crow::response(200);
+	char* password = req.url_params.get("password");
+	if (username != nullptr && password != nullptr) {
+		auto player = storage.checkUser(username);
+		if (player.getId() != -1)
+		{
+			if (player.getPassword() == password)
+				return crow::response(200);
+		}
 	}
-	else
-		return crow::response(401);
+	return crow::response(401);
 }
 
 crow::response game::Routing::connectPlayer(PlayerStorage& storage, const crow::request& req)
@@ -272,8 +275,9 @@ crow::response game::Routing::CheckAlreadyConnected(PlayerStorage& storage, cons
 		auto players = storage.getGame().getPlayers();
 		auto it = players.find(player.getId());
 		if (it != players.end())
-			return crow::response(465);
+			return crow::response(200);
 	}
-	else
-		return crow::response(200);
+
+	return crow::response(405);
+
 }
