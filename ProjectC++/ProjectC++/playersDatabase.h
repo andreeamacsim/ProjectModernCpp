@@ -57,6 +57,7 @@ namespace game
         Word GetCurrentWord() const;
         std::vector<Word> readWordsFromFile(Language language, Difficulty difficuly, std::string fileName);
         Player checkUser(const std::string& username);
+        std::vector<Word>getWords(Language language, Difficulty difficulty);
     private:
         void PopulateStorage();
         const std::string kDbFile{ "database.sqlite" };
