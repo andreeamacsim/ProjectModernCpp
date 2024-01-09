@@ -48,9 +48,15 @@ void game::Routing::Run(PlayerStorage& storage)
 		return StartNewRoundRoute(storage);
 		});
 
-	/*CROW_ROUTE(m_app, "/draw/<int>")([&storage, this](const crow::request& req, int playerId) {
-		return ProcessDrawing(storage, req, playerId);
-		});*/
+	CROW_ROUTE(m_app, "/startsubround")([&storage, this]() {
+		if (storage.getGame().isReadyForNewSubround()) {
+			storage.getGame().startSubround();
+			return crow::response("Subround started.");
+		}
+		else {
+			return crow::response(400, "Bad Request - Game not ready for a new subround");
+		}
+		});
 
 	CROW_ROUTE(m_app, "/revealletters/<int>")([&storage, this](const crow::request& req, int playerId) {
 		return RevealLetters(storage, req, playerId);

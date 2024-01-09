@@ -1,6 +1,7 @@
 module;
 import <vector>;
 import <string>;
+#include <ctime>
 
 export module round;
 
@@ -22,5 +23,6 @@ namespace game {
         std::string m_drawer;
         std::vector<std::string> m_guesses;
         bool m_guessed;
+        
     };
 }

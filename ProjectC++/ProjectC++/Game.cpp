@@ -149,6 +149,38 @@ uint8_t Game::getDifficultyLevel() const
 	return m_difficultyLevel;
 }
 
+bool game::Game::isReadyForNewSubround() const
+{
+	if (m_currentRound < m_rounds.size()) {
+		const Round& currentSubround = m_rounds[m_currentRound];
+
+		std::time_t currentTime = std::time(nullptr);
+		std::time_t subroundStartTime = currentSubround.getStartTime(); // de facut functia getStartTime
+
+		if (currentTime - subroundStartTime >= 60) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void game::Game::startSubround()
+{
+	if (m_currentRound < m_rounds.size()) {
+		std::string newWord = m_wordList[std::rand() % m_wordList.size()].getWord(); 
+
+		Player subroundDrawer = m_players[m_currentRound + 1]; 
+
+		//Round newSubround(newWord, subroundDrawer.getUsername(), std::time(nullptr))
+
+		//m_rounds.push_back(newSubround);
+
+		m_currentDrawer = subroundDrawer;
+		++m_currentRound;
+	}
+}
+
 
 
 

@@ -34,6 +34,8 @@ namespace game
         uint8_t getCurrentRound() const;
         Player getCurrentDrawer() const;
         uint8_t getDifficultyLevel() const;
+        bool isReadyForNewSubround() const;
+        void startSubround();
 
     private:
         std::unordered_map<int,Player> m_players;
