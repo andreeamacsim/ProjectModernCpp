@@ -1,7 +1,7 @@
 module;
+#include <ctime>;
 import <vector>;
 import <string>;
-#include <ctime>
 
 export module round;
 
@@ -17,6 +17,7 @@ namespace game {
         const std::string& GetDrawer() const;
         const std::vector<std::string>& GetGuesses() const;
         std::vector<std::string> GetGuessesForPlayer(const std::string& player) const;
+        std::time_t getStartTime() const;
 
     private:
         std::string m_word;

@@ -1,5 +1,9 @@
+#include <ctime>;
+import <string>;
+import <vector>;
 module round;
 using game::Round;
+
 Round::Round()
 {
 }
@@ -39,5 +43,13 @@ std::vector<std::string> Round::GetGuessesForPlayer(const std::string& player) c
 {
 	return std::vector<std::string>();
 }
+
+std::time_t Round::getStartTime() const
+{
+	std::time_t now=time(nullptr);
+	return now;
+}
+
+
 
 

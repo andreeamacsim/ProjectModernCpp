@@ -21,6 +21,7 @@ namespace game
         void setCurrentRound(uint8_t currentRound);
         void setCurrentDrawer(Player currentDrawer);
         void setDifficultyLevel();
+        void setLanguage();
         void  StartNewRound();
         int getLobbyNumber();
         void DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width);
@@ -34,6 +35,7 @@ namespace game
         uint8_t getCurrentRound() const;
         Player getCurrentDrawer() const;
         uint8_t getDifficultyLevel() const;
+        uint8_t getLanguage() const;
         bool isReadyForNewSubround() const;
         void startSubround();
 
@@ -43,6 +45,7 @@ namespace game
         std::vector<Word> m_wordList;
         uint8_t m_currentRound;
         uint8_t m_difficultyLevel;
+        uint8_t m_language;
         Player m_currentDrawer;
         std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>> m_drawingTable;
     };

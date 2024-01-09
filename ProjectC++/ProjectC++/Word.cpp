@@ -1,8 +1,9 @@
-﻿module word;
+﻿import <ctime>;
+module word;
 import <string>;
 import <vector>;
 import <cstdlib>;
-import <ctime>;
+
 using game::Word;
 game::Word::Word()
 {

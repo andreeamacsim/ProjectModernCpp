@@ -1,6 +1,8 @@
 #include  <iostream>;
+#include <ctime>;
 #include<algorithm>;
 #include <map>
+
 module  GameModule;
 import <vector>;
 import player;
@@ -76,27 +78,59 @@ void Game::setDifficultyLevel()
 	}
 }
 
-	void game::Game::StartNewRound()
+void game::Game::setLanguage()
 {
-		const int numSubrounds = m_players.size();
-		for (int subround = 1; subround <= numSubrounds; ++subround) 
-		{
-			//Word wordSubround;
-			//wordSubround.generateWords();
-			//std::string newWord = wordSubround.selectRandomWord();
-			//
-			//Player subroundDrawer = m_players[subround];
-			//Round newSubround(newWord, subroundDrawer.getUsername());
-			//
+	std::map<std::string, uint8_t> languageOptions{
+	   {"English", 1},
+	   {"Romanian", 2}
+	};
+
+	auto printOptions = [&]() {
+		std::cout << "Choose difficulty level:" << std::endl;
+		for (const auto& [name, value] : languageOptions) {
+			std::cout << value << ": " << name << std::endl;// functie lambda
 		}
+		};
+
+	uint8_t option = 0;
+	while (option == 0) {
+		printOptions();
+
+		std::string input;
+		std::cin >> input;
+
+		auto it = languageOptions.find(input);
+		if (it != languageOptions.end()) {
+			option = it->second;
+			m_language = option;
+		}
+		else {
+			std::cout << "Invalid input. Please enter a valid language number." << std::endl;
+		}
+	}
 }
 
-	int game::Game::getLobbyNumber()
+void game::Game::StartNewRound()
+{
+	const int numSubrounds = m_players.size();
+	for (int subround = 1; subround <= numSubrounds; ++subround) 
 	{
-		srand(time(0));
-		int nr = std::rand() % 900000 + 100000;
-		return nr;
+		/*Word wordSubround;
+		wordSubround.generateWords();
+		std::string newWord = wordSubround.selectRandomWord();
+			
+		Player subroundDrawer = m_players[subround];
+		Round newSubround(newWord, subroundDrawer.getUsername());*/
+			
 	}
+}
+
+int game::Game::getLobbyNumber()
+{
+	srand(time(0));
+	int nr = std::rand() % 900000 + 100000;
+	return nr;
+}
 
 void Game::DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>> line, std::string color, uint8_t width)
 {
@@ -149,6 +183,11 @@ uint8_t Game::getDifficultyLevel() const
 	return m_difficultyLevel;
 }
 
+uint8_t game::Game::getLanguage() const
+{
+	return m_language;
+}
+
 bool game::Game::isReadyForNewSubround() const
 {
 	if (m_currentRound < m_rounds.size()) {
@@ -180,7 +219,6 @@ void game::Game::startSubround()
 		++m_currentRound;
 	}
 }
-
 
 
 
