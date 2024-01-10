@@ -39,6 +39,31 @@ std::pair<MessageDLL::LoginStatus, std::string> MessageDLL::DisplayLoginMessage(
     return std::make_pair(status, message);
 }
 
+MessageDLL::LoginStatus MessageDLL::DisplayLoginMessage2(bool find, bool alreadyConnected, bool incorrectCredentials)
+{
+    LoginStatus status;
+    std::string message;
+
+    if (find && !alreadyConnected && !incorrectCredentials) {
+        status = LoginStatus::Connected;
+        message = "Username and password are correct";
+    }
+    else if (alreadyConnected) {
+        status = LoginStatus::AlreadyConnected;
+        message = "User is already connected";
+    }
+    else if (incorrectCredentials) {
+        status = LoginStatus::IncorrectCredentials;
+        message = "Username and password are incorrect";
+    }
+    else {
+        status = LoginStatus::NotConnected;
+        message = "";
+    }
+
+    return status;
+}
+
 
 
 

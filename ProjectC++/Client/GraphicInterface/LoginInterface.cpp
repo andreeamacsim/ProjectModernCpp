@@ -21,7 +21,7 @@ void LoginInterface::on_pushButton_4_clicked()
 void LoginInterface::logIn()
 {
     bool found = false;
-    std::pair<MessageDLL::LoginStatus, std::string> loginResult;
+    MessageDLL::LoginStatus loginResult;
     QString message;
     QString email;
 
@@ -42,21 +42,20 @@ void LoginInterface::logIn()
 
         if (response1.status_code == 405 && found == true)
         {
-            loginResult = MessageDLL::DisplayLoginMessage(found, false, false);
+            loginResult = MessageDLL::DisplayLoginMessage2(found, false, false);
         }
         else if (response1.status_code == 200 && found == true)
         {
-            loginResult = MessageDLL::DisplayLoginMessage(found, true, false);
+            loginResult = MessageDLL::DisplayLoginMessage2(found, true, false);
         }
 
-        MessageDLL::LoginStatus loginStatus = loginResult.first;
-        message = QString::fromStdString(loginResult.second);
+        MessageDLL::LoginStatus loginStatus = loginResult;
+        //message =QString::fromStdString(loginResult.second);
 
         if (loginStatus == MessageDLL::LoginStatus::Connected)
         {
-            QMessageBox::information(this, "Login", message);
+            QMessageBox::information(this, "Login", "Hello");
             ProfileInterface* profileInterface = new ProfileInterface(this);
-            profileInterface->initialize(QString::fromUtf8(username), email);
             profileInterface->show();
             this->hide();
             cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{
@@ -70,9 +69,8 @@ void LoginInterface::logIn()
     }
     else
     {
-        loginResult = MessageDLL::DisplayLoginMessage(found, false, true);
-        MessageDLL::LoginStatus loginStatus = loginResult.first;
-        message = QString::fromStdString(loginResult.second);
+        loginResult = MessageDLL::DisplayLoginMessage2(found, false, true);
+        MessageDLL::LoginStatus loginStatus = loginResult;
 
         QMessageBox msgBox(QMessageBox::Warning, "Login", message, QMessageBox::Ok, this);
         msgBox.setStyleSheet("QPushButton { color: white; }");
