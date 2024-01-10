@@ -109,6 +109,12 @@ void game::Routing::Run(PlayerStorage& storage)
 	CROW_ROUTE(m_app, "/checkAlreadyConnected")([&storage, this](const crow::request& req) {
 		return CheckAlreadyConnected(storage, req);
 		});
+	CROW_ROUTE(m_app,"/setLanguage")([&storage, this](const crow::request& req) {
+		return SetLanguageRoute(storage, req);
+		});
+	CROW_ROUTE(m_app, "/setDifficulty")([&storage, this](const crow::request& req) {
+		return SetDifficultyRoute(storage, req);
+		});
 	
 
 
@@ -238,6 +244,7 @@ crow::response game::Routing::VerifyPlayer(PlayerStorage& storage, const crow::r
 		}
 	}
 	return crow::response(401);
+
 }
 
 crow::response game::Routing::connectPlayer(PlayerStorage& storage, const crow::request& req)
@@ -279,5 +286,32 @@ crow::response game::Routing::CheckAlreadyConnected(PlayerStorage& storage, cons
 	}
 
 	return crow::response(405);
+
+}
+
+crow::response game::Routing::SetLanguageRoute(PlayerStorage& storage, const crow::request& req)
+{
+	char* languageChr = req.url_params.get("language");
+	if (languageChr != nullptr)
+	{
+		int language = std::stoi(languageChr);
+		storage.getGame().setLanguage(language);
+		return crow::response(200);
+	}
+
+	return crow::response(406);
+
+}
+
+crow::response game::Routing::SetDifficultyRoute(PlayerStorage& storage, const crow::request& req)
+{
+	char* difficultyChr = req.url_params.get("difficulty");
+	if ( difficultyChr!= nullptr)
+	{
+		int difficulty = std::stoi(difficultyChr);
+		storage.getGame().setDifficultyLevel(difficulty);
+		return crow::response(200);
+	}
+	return crow::response();
 
 }

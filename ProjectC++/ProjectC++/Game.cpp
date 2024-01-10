@@ -45,69 +45,14 @@ void Game::setCurrentDrawer(Player currentDrawer)
 	m_currentDrawer = currentDrawer;
 }
 
-void Game::setDifficultyLevel()
+void Game::setDifficultyLevel(int difficulty)
 {
-	std::map<std::string, uint8_t> difficultyOptions{
-	   {"Easy", 1},
-	   {"Medium", 2},
-	   {"Hard", 3}
-	};
-
-	auto printOptions = [&]() {
-		std::cout << "Choose difficulty level:" << std::endl;
-		for (const auto& [name, value] : difficultyOptions) {
-			std::cout << value << ": " << name << std::endl;// functie lambda
-		}
-		};
-
-	uint8_t option = 0;
-	while (option == 0) {
-		printOptions();
-
-		std::string input;
-		std::cin >> input;
-
-		auto it = difficultyOptions.find(input);
-		if (it != difficultyOptions.end()) {
-			option = it->second;
-			m_difficultyLevel = option;
-		}
-		else {
-			std::cout << "Invalid input. Please enter a valid difficulty level." << std::endl;
-		}
-	}
+	this->m_difficultyLevel = static_cast<Difficulty>(difficulty);
 }
 
-void game::Game::setLanguage()
+void game::Game::setLanguage(int language)
 {
-	std::map<std::string, uint8_t> languageOptions{
-	   {"English", 1},
-	   {"Romanian", 2}
-	};
-
-	auto printOptions = [&]() {
-		std::cout << "Choose difficulty level:" << std::endl;
-		for (const auto& [name, value] : languageOptions) {
-			std::cout << value << ": " << name << std::endl;// functie lambda
-		}
-		};
-
-	uint8_t option = 0;
-	while (option == 0) {
-		printOptions();
-
-		std::string input;
-		std::cin >> input;
-
-		auto it = languageOptions.find(input);
-		if (it != languageOptions.end()) {
-			option = it->second;
-			m_language = option;
-		}
-		else {
-			std::cout << "Invalid input. Please enter a valid language number." << std::endl;
-		}
-	}
+	this->m_language = static_cast<Language>(language);
 }
 
 void game::Game::StartNewRound()
@@ -116,7 +61,7 @@ void game::Game::StartNewRound()
 	for (int subround = 1; subround <= numSubrounds; ++subround) 
 	{
 		Word wordSubround;
-		wordSubround.generateWords(getLanguage(),getDifficultyLevel());
+		//wordSubround.generateWords(getLanguage(),getDifficultyLevel());
 		/*std::string newWord = wordSubround.selectRandomWord();*/
 			
 		Player subroundDrawer = m_players[subround];
@@ -180,12 +125,12 @@ Player Game::getCurrentDrawer() const
 
 uint8_t Game::getDifficultyLevel() const
 {
-	return m_difficultyLevel;
+	return static_cast<int>(m_difficultyLevel);
 }
 
 uint8_t game::Game::getLanguage() const
 {
-	return m_language;
+	return static_cast<int>(m_language);
 }
 
 bool game::Game::isReadyForNewSubround() const

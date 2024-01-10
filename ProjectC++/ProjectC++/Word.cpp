@@ -67,40 +67,6 @@ int game::Word::getLanguage() const
     return static_cast<int>(m_language);
 }
 
-std::vector<std::string> game::Word::generateWords(uint8_t language, uint8_t difficulty)
-{
-    std::ifstream f;
-    if(language==1)
-        if(difficulty==1)
-            f.open("EnglishEasyWords.txt");
-        else
-            if(difficulty==2)
-                f.open("EnglishMediumWords.txt");
-            else
-                if(difficulty==3)
-                    f.open("EnglishHardWords.txt");
-     if(language==2)
-         if (difficulty == 1)
-             f.open("RomanianEasyWords.txt");
-         else
-             if (difficulty == 2)
-                 f.open("RomanaianMediumWords.txt");
-             else
-                 if (difficulty == 3)
-                     f.open("RomanaianHardWords.txt");
-     std::vector<std::string> words;
-     words.clear();
-     std::string word;
-     while (std::getline(f, word)) {
-         words.push_back(word);
-     }
-     f.close();
-
-    return words;
-}
-
-
-
 void game::Word::setId( int id)
 {
     m_id = id;

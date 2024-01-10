@@ -27,6 +27,8 @@ namespace game
 		crow::response connectPlayer(PlayerStorage& storage, const crow::request& req);
 		crow::response disconnectPlayer(PlayerStorage& storage, const crow::request& req);
 		crow::response CheckAlreadyConnected(PlayerStorage& storage, const crow::request& req);
+		crow::response SetLanguageRoute(PlayerStorage& storage, const crow::request& req);
+		crow::response SetDifficultyRoute(PlayerStorage& storage, const crow::request& req);
 	private:
 		crow::SimpleApp m_app;
 	};

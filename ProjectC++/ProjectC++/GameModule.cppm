@@ -5,6 +5,7 @@ import round;
 import word;
 import <iostream>;
 import <unordered_map>;
+import "Enums.h";
 
 export module GameModule;
 namespace game 
@@ -20,8 +21,8 @@ namespace game
         void setWordList(const std::vector<Word>& wordList);
         void setCurrentRound(uint8_t currentRound);
         void setCurrentDrawer(Player currentDrawer);
-        void setDifficultyLevel();
-        void setLanguage();
+        void setDifficultyLevel(int difficulty);
+        void setLanguage(int language);
         void  StartNewRound();
         int getLobbyNumber();
         void DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width);
@@ -44,8 +45,8 @@ namespace game
         std::vector<Round> m_rounds;
         std::vector<Word> m_wordList;
         uint8_t m_currentRound;
-        uint8_t m_difficultyLevel;
-        uint8_t m_language;
+        Difficulty m_difficultyLevel;
+        Language m_language;
         Player m_currentDrawer;
         std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>> m_drawingTable;
     };

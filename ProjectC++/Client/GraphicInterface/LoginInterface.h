@@ -14,6 +14,7 @@ class LoginInterface : public QMainWindow
 
 public:
 	LoginInterface(QWidget *parent = nullptr);
+
 	~LoginInterface();
 
 private slots:

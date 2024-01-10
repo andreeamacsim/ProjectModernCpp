@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>607</width>
+    <width>606</width>
     <height>409</height>
    </rect>
   </property>
@@ -68,75 +68,6 @@ border-radius: 10px;</string>
      <string>Choose difficulty </string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>160</y>
-      <width>91</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Lucida Console</family>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
-color: white;
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string>Easy</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>200</y>
-      <width>91</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Lucida Console</family>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
-color: white;
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string>Medium</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_5">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>240</y>
-      <width>91</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Lucida Console</family>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
-color: white;
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string>Hard</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
@@ -186,7 +117,7 @@ border-radius: 10px;</string>
      <string>Back to profile</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="generateCode">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -226,13 +157,144 @@ border-radius: 10px;</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="Language">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>120</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Lucida Fax</family>
+      <pointsize>9</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Language</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Romanian">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>160</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Romanian</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">LanguageGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="English">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>200</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>English</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">LanguageGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="Hard">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>220</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Hard</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">difficultyGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="Easy">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>160</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Easy</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">difficultyGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="Medium">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>190</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(75, 0, 130, 255), stop:0.5 rgba(147, 112, 219, 255), stop:1 rgba(255, 182, 193, 255));
+color: white;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Medium</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">difficultyGroup</string>
+    </attribute>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>607</width>
+     <width>606</width>
      <height>22</height>
     </rect>
    </property>
@@ -250,4 +312,16 @@ border-radius: 10px;</string>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="difficultyGroup">
+   <property name="exclusive">
+    <bool>true</bool>
+   </property>
+  </buttongroup>
+  <buttongroup name="LanguageGroup">
+   <property name="exclusive">
+    <bool>true</bool>
+   </property>
+  </buttongroup>
+ </buttongroups>
 </ui>

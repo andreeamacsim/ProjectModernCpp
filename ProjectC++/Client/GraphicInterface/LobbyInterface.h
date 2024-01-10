@@ -11,6 +11,8 @@ public:
 	LobbyInterface(QWidget *parent = nullptr);
 	~LobbyInterface();
 public slots:
+	void setLanguage();
+	void setDifficulty();
 	void goToProfile();
 	void goToDrawing();
 private:
