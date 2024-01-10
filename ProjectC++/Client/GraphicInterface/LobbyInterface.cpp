@@ -3,6 +3,7 @@
 #include "ProfileInterface.h"
 #include "DrawingInterface.h"
 #include "Chat.h"
+#include <ctime>
 
 LobbyInterface::LobbyInterface(QWidget *parent)
 	: QMainWindow(parent)
@@ -13,8 +14,9 @@ LobbyInterface::LobbyInterface(QWidget *parent)
 	ui.Easy->setEnabled(m_Owner);
 	ui.Medium->setEnabled(m_Owner);
 	ui.Hard->setEnabled(m_Owner);
+	ui.startGame->setEnabled(m_Owner);
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &LobbyInterface::goToProfile);
-	connect(ui.pushButton_6, &QPushButton::clicked, this, &LobbyInterface::goToDrawing);
+	connect(ui.startGame, &QPushButton::clicked, this, &LobbyInterface::goToDrawing);
 	connect(ui.Easy, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
 	connect(ui.Medium, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
 	connect(ui.Hard, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
@@ -25,18 +27,14 @@ LobbyInterface::LobbyInterface(QWidget *parent)
 LobbyInterface::LobbyInterface(bool Owner, QWidget* parent) :QMainWindow(parent),m_Owner{Owner}
 {
 	ui.setupUi(this);
-	ui.Romanian->setEnabled(m_Owner);
-	ui.English->setEnabled(m_Owner);
-	ui.Easy->setEnabled(m_Owner);
-	ui.Medium->setEnabled(m_Owner);
-	ui.Hard->setEnabled(m_Owner);
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &LobbyInterface::goToProfile);
-	connect(ui.pushButton_6, &QPushButton::clicked, this, &LobbyInterface::goToDrawing);
+	connect(ui.startGame, &QPushButton::clicked, this, &LobbyInterface::goToDrawing);
 	connect(ui.Easy, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
 	connect(ui.Medium, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
 	connect(ui.Hard, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
 	connect(ui.Romanian, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
 	connect(ui.English, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
+	connect(ui.generateCode, &QPushButton::clicked, this, &LobbyInterface::generateCode);
 }
 void LobbyInterface::setLanguage()
 {
@@ -84,4 +82,14 @@ void LobbyInterface::goToDrawing()
 	this->close();
 	drawingInterface->show();
 	chatInterface->show();
+}
+void LobbyInterface::generateCode()
+{
+	std::srand(static_cast<unsigned int>(std::time(0)));
+	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/getLobbyCode" });
+	auto generatedCodeJSON = crow::json::load(response.text);
+	std::string generatedCode = generatedCodeJSON["generatedCode"].s();
+
+	QString code = QString::fromUtf8(generatedCode);
+	ui.code->setText(code);
 }

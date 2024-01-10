@@ -51,7 +51,7 @@ color: white;
      <string>Enter code</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="connect">
+   <widget class="QPushButton" name="connectButton">
     <property name="geometry">
      <rect>
       <x>260</x>

@@ -10,7 +10,8 @@ class JoinLobby : public QMainWindow
 public:
 	JoinLobby(QWidget *parent = nullptr);
 	~JoinLobby();
-
+private slots:
+	void connectButton();
 private:
 	Ui::JoinLobbyClass ui;
 };

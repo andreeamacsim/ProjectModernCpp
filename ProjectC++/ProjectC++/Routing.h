@@ -14,6 +14,7 @@ namespace game
 	public:
 		void Run(PlayerStorage& storage);
 
+
 	private:
 		crow::response AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const;
 		crow::response StartNewRoundRoute(PlayerStorage& storage) const;
@@ -29,6 +30,7 @@ namespace game
 		crow::response CheckAlreadyConnected(PlayerStorage& storage, const crow::request& req);
 		crow::response SetLanguageRoute(PlayerStorage& storage, const crow::request& req);
 		crow::response SetDifficultyRoute(PlayerStorage& storage, const crow::request& req);
+		crow::json::wvalue getLobbyCode(PlayerStorage& storage, const crow::request& req);
 	private:
 		crow::SimpleApp m_app;
 	};

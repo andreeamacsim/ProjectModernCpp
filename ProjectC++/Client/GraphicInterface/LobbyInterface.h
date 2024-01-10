@@ -13,7 +13,7 @@ public:
 	~LobbyInterface();
 	void setOwner(bool owner);
 public slots:
-
+	void generateCode();
 	void setLanguage();
 	void setDifficulty();
 	void goToProfile();

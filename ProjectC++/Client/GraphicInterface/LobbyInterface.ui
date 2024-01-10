@@ -68,7 +68,7 @@ border-radius: 10px;</string>
      <string>Choose difficulty </string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="startGame">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -141,7 +141,7 @@ border-radius: 10px;</string>
      <string>Generate code for lobby</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="code">
     <property name="geometry">
      <rect>
       <x>370</x>

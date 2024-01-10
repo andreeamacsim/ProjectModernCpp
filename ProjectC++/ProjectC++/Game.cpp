@@ -1,5 +1,5 @@
-#include  <iostream>;
 #include <ctime>;
+#include  <iostream>;
 #include<algorithm>;
 #include <map>
 
@@ -70,12 +70,6 @@ void game::Game::StartNewRound()
 	}
 }
 
-int game::Game::getLobbyNumber()
-{
-	srand(time(0));
-	int nr = std::rand() % 900000 + 100000;
-	return nr;
-}
 
 void Game::DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>> line, std::string color, uint8_t width)
 {

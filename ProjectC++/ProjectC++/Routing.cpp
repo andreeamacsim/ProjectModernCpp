@@ -1,7 +1,7 @@
 ﻿#include "Routing.h"
 
+import random;
 using namespace game;
-
 import player;
 
 void game::Routing::Run(PlayerStorage& storage)
@@ -114,6 +114,9 @@ void game::Routing::Run(PlayerStorage& storage)
 		});
 	CROW_ROUTE(m_app, "/setDifficulty")([&storage, this](const crow::request& req) {
 		return SetDifficultyRoute(storage, req);
+		});
+	CROW_ROUTE(m_app, "/getLobbyCode")([&storage, this](const crow::request& req) {
+		return getLobbyCode(storage, req);
 		});
 	
 
@@ -315,3 +318,14 @@ crow::response game::Routing::SetDifficultyRoute(PlayerStorage& storage, const c
 	return crow::response();
 
 }
+
+crow::json::wvalue game::Routing::getLobbyCode(PlayerStorage& storage, const crow::request& req)
+{
+	srand(time(0));
+	int generatedCode = game::generateGameCode();
+	crow::json::wvalue code{
+		{"generatedCode",std::to_string(generatedCode)}
+	};
+	return code;
+}
+

@@ -149,6 +149,8 @@
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="profile.cppm" />
     <ClCompile Include="ProjectC++.cpp" />
+    <ClCompile Include="random.cpp" />
+    <ClCompile Include="random.cppm" />
     <ClCompile Include="Round.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpplatest</LanguageStandard>
       <EnableModules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableModules>
