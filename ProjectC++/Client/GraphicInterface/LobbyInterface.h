@@ -9,12 +9,16 @@ class LobbyInterface : public QMainWindow
 
 public:
 	LobbyInterface(QWidget *parent = nullptr);
+	LobbyInterface(bool Owner,QWidget *parent = nullptr);
 	~LobbyInterface();
+	void setOwner(bool owner);
 public slots:
+
 	void setLanguage();
 	void setDifficulty();
 	void goToProfile();
 	void goToDrawing();
 private:
+	bool m_Owner;
 	Ui::LobbyInterfaceClass ui;
 };

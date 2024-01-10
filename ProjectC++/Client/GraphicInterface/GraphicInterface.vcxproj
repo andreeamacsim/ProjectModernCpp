@@ -102,7 +102,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chat.cpp" />
+    <ClCompile Include="JoinLobby.cpp" />
     <ClCompile Include="LobbyInterface.cpp" />
+    <ClCompile Include="PickJoinLobby.cpp" />
     <ClCompile Include="ProfileInterface.cpp" />
     <QtRcc Include="GraphicInterface.qrc" />
     <QtUic Include="Chat.ui" />
@@ -116,8 +118,10 @@
     <ClCompile Include="GraphicInterface.cpp" />
     <ClCompile Include="LoginInterface.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="JoinLobby.ui" />
     <QtUic Include="LobbyInterface.ui" />
     <QtUic Include="LoginInterface.ui" />
+    <QtUic Include="PickJoinLobby.ui" />
     <QtUic Include="ProfileInterface.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +148,12 @@
     <ProjectReference Include="..\MessageDLL\MessageDLL.vcxproj">
       <Project>{f1b2ae88-6719-4108-a70c-621aa4e67c11}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="PickJoinLobby.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="JoinLobby.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

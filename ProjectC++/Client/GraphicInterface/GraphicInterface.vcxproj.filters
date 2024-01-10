@@ -61,6 +61,12 @@
     <ClCompile Include="Chat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PickJoinLobby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JoinLobby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LoginInterface.h">
@@ -84,6 +90,12 @@
     <QtMoc Include="Chat.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="PickJoinLobby.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="JoinLobby.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginInterface.ui">
@@ -102,6 +114,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Chat.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="PickJoinLobby.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="JoinLobby.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

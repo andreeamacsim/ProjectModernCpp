@@ -2,6 +2,7 @@
 #include "LoginInterface.h"
 #include "CreateAccount.h"
 #include "../MessageDLL/MessageDLL.h"
+#include "PickJoinLobby.h"
 
 LoginInterface::LoginInterface(QWidget *parent)
 	: QMainWindow(parent)
@@ -55,8 +56,8 @@ void LoginInterface::logIn()
         if (loginStatus == MessageDLL::LoginStatus::Connected)
         {
             QMessageBox::information(this, "Login", "Hello");
-            ProfileInterface* profileInterface = new ProfileInterface(this);
-            profileInterface->show();
+            PickJoinLobby* pickJoinInterface = new PickJoinLobby(this);
+            pickJoinInterface->show();
             this->hide();
             cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{
                 {"username", username}

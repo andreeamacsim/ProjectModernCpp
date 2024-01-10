@@ -8,6 +8,11 @@ LobbyInterface::LobbyInterface(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+	ui.Romanian->setEnabled(m_Owner);
+	ui.English->setEnabled(m_Owner);
+	ui.Easy->setEnabled(m_Owner);
+	ui.Medium->setEnabled(m_Owner);
+	ui.Hard->setEnabled(m_Owner);
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &LobbyInterface::goToProfile);
 	connect(ui.pushButton_6, &QPushButton::clicked, this, &LobbyInterface::goToDrawing);
 	connect(ui.Easy, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
@@ -17,8 +22,25 @@ LobbyInterface::LobbyInterface(QWidget *parent)
 	connect(ui.English, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
 
 }
+LobbyInterface::LobbyInterface(bool Owner, QWidget* parent) :QMainWindow(parent),m_Owner{Owner}
+{
+	ui.setupUi(this);
+	ui.Romanian->setEnabled(m_Owner);
+	ui.English->setEnabled(m_Owner);
+	ui.Easy->setEnabled(m_Owner);
+	ui.Medium->setEnabled(m_Owner);
+	ui.Hard->setEnabled(m_Owner);
+	connect(ui.pushButton_7, &QPushButton::clicked, this, &LobbyInterface::goToProfile);
+	connect(ui.pushButton_6, &QPushButton::clicked, this, &LobbyInterface::goToDrawing);
+	connect(ui.Easy, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
+	connect(ui.Medium, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
+	connect(ui.Hard, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
+	connect(ui.Romanian, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
+	connect(ui.English, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
+}
 void LobbyInterface::setLanguage()
 {
+
 	int language=-1;
 	if (ui.Romanian->isChecked())
 		language = 0;
@@ -49,6 +71,11 @@ void LobbyInterface::goToProfile()
 }
 LobbyInterface::~LobbyInterface()
 {}
+
+void LobbyInterface::setOwner(bool owner)
+{
+	this->m_Owner = owner;
+}
 
 void LobbyInterface::goToDrawing()
 {
