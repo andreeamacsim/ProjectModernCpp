@@ -14,12 +14,14 @@ namespace game {
 		void applyGuessingPoints(uint32_t guessingTime);
 		void applyFailedGuessingPoints();
 		uint32_t PointsPerRound();//punctele adaugate fiecarui jocator per runda jucata
-		uint32_t getPoints();
-		void setUserId(uint8_t userId);
-		uint8_t getUserId();
+		void setUserId(uint32_t userId);
+		uint32_t getUserId() const;
+		uint32_t getId()const;
+		void setId(uint32_t id);
 	private:
+		uint32_t m_id;
 		uint32_t m_points;
-		uint8_t m_userId;
+		uint32_t m_userId;
 	};
 }
 

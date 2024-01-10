@@ -32,13 +32,13 @@ namespace game
                 sql::make_column("word",&Word::setWord,&Word::getWord),
                 sql::make_column("difficulty",&Word::setDifficulty, &Word::getDifficulty),
                 sql::make_column("language",&Word::setLanguage, &Word::getLanguage)
-            )
-            /*sql::make_table(
+            ),
+            sql::make_table(
                 "Points",
-                sql::make_column("id", &Player::setId, &Player::getId, sql::primary_key().autoincrement()),
-                sql::make_column("id_username", &Points::setUserId, &Points::getUserId),
-                sql::make_column("player_points", &Points::setPoints, &Points::getPoints)     
-            )*/
+                sql::make_column("id",&Points::setId,&Points::getId,sql::primary_key().autoincrement()),
+                sql::make_column("userId",&Points::setUserId,&Points::getUserId),
+                sql::make_column("playerPoints",&Points::setPoints,&Points::getPoints)
+                )
             //sql::make_table(
     //	"Profile",
     //	sql::make_column("username", &Profile::getPlayerName, &Profile::setPlayerName, sql::primary_key()),

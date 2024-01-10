@@ -66,17 +66,23 @@ void Points::applyFailedGuessingPoints()
 	m_points -= 50;
 }
 
-uint32_t Points::getPoints()
-{
-	return m_points;
-}
 
-void Points::setUserId(uint8_t userId)
+void Points::setUserId(uint32_t userId)
 {
 	m_userId = userId;
 }
 
-uint8_t Points::getUserId()
+uint32_t Points::getUserId() const
 {
 	return m_userId;
+}
+
+uint32_t game::Points::getId() const
+{
+	return m_id;
+}
+
+void game::Points::setId(uint32_t id)
+{
+	this->m_id = id;
 }
