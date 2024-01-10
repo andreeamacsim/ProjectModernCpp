@@ -65,3 +65,18 @@ void Points::applyFailedGuessingPoints()
 {
 	m_points -= 50;
 }
+
+uint32_t Points::getPoints()
+{
+	return m_points;
+}
+
+void Points::setUserId(uint8_t userId)
+{
+	m_userId = userId;
+}
+
+uint8_t Points::getUserId()
+{
+	return m_userId;
+}

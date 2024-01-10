@@ -11,6 +11,7 @@ namespace sql = sqlite_orm;
 import profile;
 import player;
 import GameModule;
+import PointsModule;
 import word;
 
 namespace game
@@ -32,6 +33,12 @@ namespace game
                 sql::make_column("difficulty",&Word::setDifficulty, &Word::getDifficulty),
                 sql::make_column("language",&Word::setLanguage, &Word::getLanguage)
             )
+            /*sql::make_table(
+                "Points",
+                sql::make_column("id", &Player::setId, &Player::getId, sql::primary_key().autoincrement()),
+                sql::make_column("id_username", &Points::setUserId, &Points::getUserId),
+                sql::make_column("player_points", &Points::setPoints, &Points::getPoints)     
+            )*/
             //sql::make_table(
     //	"Profile",
     //	sql::make_column("username", &Profile::getPlayerName, &Profile::setPlayerName, sql::primary_key()),
