@@ -14,17 +14,32 @@ MessageDLL::GameResult MessageDLL::CheckAnswer(const char* answer, const std::st
     return result;
 }
 
-MessageDLL::LoginStatus MessageDLL::DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials)
+std::pair<MessageDLL::LoginStatus, std::string> MessageDLL::DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials)
 {
-    if (find && !alreadyConnected && !incorrectCredentials)
-        return Connected;
-    else if (alreadyConnected)
-        return AlreadyConnected;
-    else if (incorrectCredentials)
-        return IncorrectCredentials;
-    else
-        return NotConnected;
+    LoginStatus status;
+    std::string message;
+
+    if (find && !alreadyConnected && !incorrectCredentials) {
+        status = LoginStatus::Connected;
+        message = "Username and password are correct";
+    }
+    else if (alreadyConnected) {
+        status = LoginStatus::AlreadyConnected;
+        message = "User is already connected";
+    }
+    else if (incorrectCredentials) {
+        status = LoginStatus::IncorrectCredentials;
+        message = "Username and password are incorrect";
+    }
+    else {
+        status = LoginStatus::NotConnected;
+        message = ""; 
+    }
+
+    return std::make_pair(status, message);
 }
+
+
 
 
 

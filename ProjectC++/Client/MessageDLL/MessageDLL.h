@@ -23,6 +23,6 @@ public:
     };
 
     static GameResult CheckAnswer(const char* answer, const std::string& currentWord);
-    static LoginStatus DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials);
+    static std::pair<LoginStatus, std::string> DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials);
     
 };
