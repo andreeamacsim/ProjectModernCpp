@@ -8,6 +8,7 @@
 LobbyInterface::LobbyInterface(QWidget *parent)
 	: QMainWindow(parent)
 {
+	m_Owner = false;
 	ui.setupUi(this);
 	ui.Romanian->setEnabled(m_Owner);
 	ui.English->setEnabled(m_Owner);
@@ -86,7 +87,7 @@ void LobbyInterface::goToDrawing()
 void LobbyInterface::generateCode()
 {
 	std::srand(static_cast<unsigned int>(std::time(0)));
-	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/getLobbyCode" });
+	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/generateLobbyCode" });
 	auto generatedCodeJSON = crow::json::load(response.text);
 	std::string generatedCode = generatedCodeJSON["generatedCode"].s();
 

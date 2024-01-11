@@ -23,8 +23,6 @@ void LoginInterface::logIn()
 {
     bool found = false;
     MessageDLL::LoginStatus loginResult;
-    QString message;
-    QString email;
 
     std::string username = ui.userName->text().toUtf8().constData();
     std::string password = ui.password->text().toUtf8().constData();
@@ -43,19 +41,10 @@ void LoginInterface::logIn()
 
         if (response1.status_code == 405 && found == true)
         {
-            loginResult = MessageDLL::DisplayLoginMessage2(found, false, false);
-        }
-        else if (response1.status_code == 200 && found == true)
-        {
-            loginResult = MessageDLL::DisplayLoginMessage2(found, true, false);
-        }
-
-        MessageDLL::LoginStatus loginStatus = loginResult;
-        //message =QString::fromStdString(loginResult.second);
-
-        if (loginStatus == MessageDLL::LoginStatus::Connected)
-        {
-            QMessageBox::information(this, "Login", "Hello");
+            loginResult = MessageDLL::GetMessageStatus(found, false, false);
+            //auto  mess = MessageDLL::GetMessageText(loginResult);
+            //QString message = QString::fromStdString(mess);
+            QMessageBox::information(this, "Login","da");
             PickJoinLobby* pickJoinInterface = new PickJoinLobby(this);
             pickJoinInterface->show();
             this->hide();
@@ -63,17 +52,23 @@ void LoginInterface::logIn()
                 {"username", username}
                 });
         }
-        else if (loginStatus == MessageDLL::LoginStatus::AlreadyConnected)
+        else if (response1.status_code == 200 && found == true)
         {
-            QMessageBox::information(this, "Login", message);
+            loginResult = MessageDLL::GetMessageStatus(found, true, false);
+            //auto mess = MessageDLL::GetMessageText(loginResult);
+           // QString message = QString::fromStdString(mess);
+            QMessageBox msgBox(QMessageBox::Warning, "Login", "ac", QMessageBox::Ok, this);
+            msgBox.setStyleSheet("QPushButton { color: white; }");
+            msgBox.exec();
         }
     }
     else
     {
-        loginResult = MessageDLL::DisplayLoginMessage2(found, false, true);
-        MessageDLL::LoginStatus loginStatus = loginResult;
+        loginResult = MessageDLL::GetMessageStatus(found, false, true);
+        //auto mess = MessageDLL::GetMessageText(loginResult);
+       // QString message = QString::fromStdString(mess);
 
-        QMessageBox msgBox(QMessageBox::Warning, "Login", message, QMessageBox::Ok, this);
+        QMessageBox msgBox(QMessageBox::Warning, "Login", "nu", QMessageBox::Ok, this);
         msgBox.setStyleSheet("QPushButton { color: white; }");
         msgBox.exec();
     }

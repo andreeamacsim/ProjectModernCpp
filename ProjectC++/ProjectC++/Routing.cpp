@@ -115,10 +115,13 @@ void game::Routing::Run(PlayerStorage& storage)
 	CROW_ROUTE(m_app, "/setDifficulty")([&storage, this](const crow::request& req) {
 		return SetDifficultyRoute(storage, req);
 		});
+	CROW_ROUTE(m_app, "/generateLobbyCode")([&storage, this](const crow::request& req) {
+		return generateLobbyCode(storage, req);
+		});
 	CROW_ROUTE(m_app, "/getLobbyCode")([&storage, this](const crow::request& req) {
 		return getLobbyCode(storage, req);
 		});
-	
+
 
 
 	m_app.port(18080).multithreaded().run();
@@ -256,7 +259,7 @@ crow::response game::Routing::connectPlayer(PlayerStorage& storage, const crow::
 	auto player = storage.checkUser(username);
 	if (player.getId() != -1)
 	{
-		storage.getGame().addPlayerToGame(player);
+		connectedPlayers[player.getId()] = player;
 		return crow::response(200);
 	}
 	else
@@ -269,7 +272,7 @@ crow::response game::Routing::disconnectPlayer(PlayerStorage& storage, const cro
 	auto player = storage.checkUser(username);
 	if (player.getId() != -1)
 	{
-		storage.getGame().disconnetPlayer(player);
+		connectedPlayers.erase(player.getId());
 		return crow::response(200);
 	}
 	else
@@ -282,9 +285,8 @@ crow::response game::Routing::CheckAlreadyConnected(PlayerStorage& storage, cons
 	auto player = storage.checkUser(username);
 	if (player.getId() != -1)
 	{
-		auto players = storage.getGame().getPlayers();
-		auto it = players.find(player.getId());
-		if (it != players.end())
+		auto it = connectedPlayers.find(player.getId());
+		if (it != connectedPlayers.end())
 			return crow::response(200);
 	}
 
@@ -319,13 +321,20 @@ crow::response game::Routing::SetDifficultyRoute(PlayerStorage& storage, const c
 
 }
 
-crow::json::wvalue game::Routing::getLobbyCode(PlayerStorage& storage, const crow::request& req)
+crow::json::wvalue game::Routing::generateLobbyCode(PlayerStorage& storage, const crow::request& req)
 {
 	srand(time(0));
-	int generatedCode = game::generateGameCode();
+	generatedCode = game::generateGameCode();
 	crow::json::wvalue code{
 		{"generatedCode",std::to_string(generatedCode)}
 	};
 	return code;
 }
 
+crow::json::wvalue game::Routing::getLobbyCode(PlayerStorage& storage, const crow::request& req)
+{
+	crow::json::wvalue code{
+		{"generatedCode",std::to_string(generatedCode)}
+	};
+	return code;
+}

@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <sstream>
+#include <unordered_map>
 
 
 namespace game
@@ -30,8 +31,12 @@ namespace game
 		crow::response CheckAlreadyConnected(PlayerStorage& storage, const crow::request& req);
 		crow::response SetLanguageRoute(PlayerStorage& storage, const crow::request& req);
 		crow::response SetDifficultyRoute(PlayerStorage& storage, const crow::request& req);
+		crow::json::wvalue generateLobbyCode(PlayerStorage& storage, const crow::request& req);
 		crow::json::wvalue getLobbyCode(PlayerStorage& storage, const crow::request& req);
+
 	private:
+		int generatedCode;
 		crow::SimpleApp m_app;
+		std::unordered_map<int, Player> connectedPlayers;
 	};
 }
