@@ -23,7 +23,6 @@ namespace game
         void setCurrentDrawer(Player currentDrawer);
         void setDifficultyLevel(int difficulty);
         void setLanguage(int language);
-        void  startNewRound();
         void DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width);
         void addPlayerToGame(Player p);
         void disconnetPlayer(Player p);

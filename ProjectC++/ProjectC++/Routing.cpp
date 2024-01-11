@@ -44,9 +44,9 @@ void game::Routing::Run(PlayerStorage& storage)
 
 		});
 
-	CROW_ROUTE(m_app, "/startround")([&storage, this]() {
+	/*CROW_ROUTE(m_app, "/startround")([&storage, this]() {
 		return StartNewRoundRoute(storage);
-		});
+		});*/
 
 	CROW_ROUTE(m_app, "/startsubround")([&storage, this]() {
 		if (storage.getGame().isReadyForNewSubround()) {
@@ -145,12 +145,12 @@ crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const
 	}
 }
 
-crow::response game::Routing::StartNewRoundRoute(PlayerStorage& storage) const
-{
-	Game& game = storage.getGame();
-	game.startNewRound();
-	return crow::response{ "New round started." };
-}
+//crow::response game::Routing::StartNewRoundRoute(PlayerStorage& storage) const
+//{
+//	Game& game = storage.getGame();
+//	game.startNewRound();
+//	return crow::response{ "New round started." };
+//}
 
 crow::response game::Routing::RevealLetters(PlayerStorage& storage, const crow::request& req, int playerId)
 {

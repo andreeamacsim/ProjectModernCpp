@@ -55,21 +55,6 @@ void game::Game::setLanguage(int language)
 	this->m_language = static_cast<Language>(language);
 }
 
-void game::Game::startNewRound()
-{
-	const int numSubrounds = m_players.size();
-	for (int subround = 1; subround <= numSubrounds; ++subround) 
-	{
-		Word wordSubround;
-		/*wordSubround.generateWords(getLanguage(),getDifficultyLevel());
-		std::string newWord = wordSubround.selectRandomWord();*/
-			
-		Player subroundDrawer = m_players[subround];
-		//Round newSubround(newWord, subroundDrawer.getUsername());
-			
-	}
-}
-
 
 void Game::DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>> line, std::string color, uint8_t width)
 {
@@ -161,19 +146,22 @@ void game::Game::startSubround()
 
 void game::Game::RunGame()
 {
-	startNewRound();  
+	const uint8_t numRounds = 4;// din fisierul cu proiectul 
 
-	while (m_currentRound < m_rounds.size()) {
-		if (isReadyForNewSubround()) {
-			startSubround();
-		}
-		else {
-			std::time_t start = std::time(nullptr);
-			while (std::time(nullptr) - start < 1)
-			{
-				
+	for (uint8_t roundNumber = 0; roundNumber < numRounds; ++roundNumber)
+	{
+		while (m_currentRound < m_rounds.size()) {
+			if (isReadyForNewSubround()) {
+				startSubround();
 			}
-			
+			else {
+				std::time_t start = std::time(nullptr);
+				while (std::time(nullptr) - start < 1)
+				{
+
+				}
+
+			}
 		}
 	}
 }
