@@ -23,4 +23,5 @@ private slots:
 
 private:
 	Ui::LoginInterfaceClass ui;
+	QString m_username;
 };

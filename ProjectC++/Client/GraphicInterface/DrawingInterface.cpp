@@ -8,9 +8,10 @@
 #include <cpr/cpr.h>
 #include <crow.h>
 
-DrawingInterface::DrawingInterface(QWidget *parent)
+DrawingInterface::DrawingInterface(QString username,QWidget *parent)
 	: QMainWindow(parent)
 { 
+	m_username = username;
 	ui.setupUi(this);
 	m_drawingArea = new DrawingClass;
 	setWindowTitle("Gartic");

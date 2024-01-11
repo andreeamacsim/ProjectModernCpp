@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     GraphicInterface w;
     w.show();
-    DrawingInterface d;
     //d.show();
    
     //cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/players" });

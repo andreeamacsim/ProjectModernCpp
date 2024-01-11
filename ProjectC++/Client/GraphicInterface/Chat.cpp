@@ -4,9 +4,10 @@
 #include "../MessageDLL/MessageDLL.h"
 #include <qmessagebox.h>
 
-Chat::Chat(QWidget *parent)
+Chat::Chat(QString username,QWidget *parent)
 	: QMainWindow(parent)
 {
+    this->m_username = username;
 	ui.setupUi(this);
 	connect(ui.pushButton, &QPushButton::clicked, this, &Chat::sendMessage);
 	

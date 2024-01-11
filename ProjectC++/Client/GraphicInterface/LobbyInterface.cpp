@@ -5,9 +5,10 @@
 #include "Chat.h"
 #include <ctime>
 
-LobbyInterface::LobbyInterface(QWidget *parent)
+LobbyInterface::LobbyInterface(QString username,QWidget *parent)
 	: QMainWindow(parent)
 {
+	m_username = username;
 	m_Owner = false;
 	ui.setupUi(this);
 	ui.Romanian->setEnabled(m_Owner);
@@ -25,8 +26,9 @@ LobbyInterface::LobbyInterface(QWidget *parent)
 	connect(ui.English, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
 
 }
-LobbyInterface::LobbyInterface(bool Owner, QWidget* parent) :QMainWindow(parent),m_Owner{Owner}
+LobbyInterface::LobbyInterface(QString username,bool Owner, QWidget* parent) :QMainWindow(parent),m_Owner{Owner}
 {
+	m_username = username;
 	ui.setupUi(this);
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &LobbyInterface::goToProfile);
 	connect(ui.startGame, &QPushButton::clicked, this, &LobbyInterface::goToDrawing);
@@ -64,7 +66,7 @@ void LobbyInterface::setDifficulty()
 }
 void LobbyInterface::goToProfile()
 {
-	ProfileInterface* profileInterface = new ProfileInterface();
+	ProfileInterface* profileInterface = new ProfileInterface(m_username);
 	this->close();
 	profileInterface->show();
 }
@@ -78,8 +80,8 @@ void LobbyInterface::setOwner(bool owner)
 
 void LobbyInterface::goToDrawing()
 {
-	DrawingInterface* drawingInterface = new DrawingInterface();
-	Chat* chatInterface = new Chat();
+	DrawingInterface* drawingInterface = new DrawingInterface(m_username);
+	Chat* chatInterface = new Chat(m_username);
 	this->close();
 	drawingInterface->show();
 	chatInterface->show();

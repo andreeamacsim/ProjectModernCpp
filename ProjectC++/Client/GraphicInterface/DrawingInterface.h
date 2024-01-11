@@ -12,7 +12,7 @@ class DrawingInterface : public QMainWindow
 	Q_OBJECT
 
 public:
-	DrawingInterface(QWidget *parent = nullptr);
+	DrawingInterface(QString username,QWidget *parent = nullptr);
 	~DrawingInterface();
 
 protected:
@@ -25,6 +25,7 @@ protected:
 private slots:
 	void on_widthSlider_valueChanged();
 private:
+	QString m_username;
 	QRect m_drawingBox;
 	DrawingClass* m_drawingArea;
 	//QMenu* fileMenu;

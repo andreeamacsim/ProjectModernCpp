@@ -8,10 +8,11 @@ class JoinLobby : public QMainWindow
 	Q_OBJECT
 
 public:
-	JoinLobby(QWidget *parent = nullptr);
+	JoinLobby(QString username,QWidget *parent = nullptr);
 	~JoinLobby();
 private slots:
 	void connectButton();
 private:
+	QString m_username;
 	Ui::JoinLobbyClass ui;
 };

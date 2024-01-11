@@ -4,9 +4,10 @@
 #include "LobbyInterface.h"
 #include <qmessagebox.h>
 
-JoinLobby::JoinLobby(QWidget *parent)
+JoinLobby::JoinLobby(QString username,QWidget *parent)
 	: QMainWindow(parent)
 {
+	m_username = username;
 	ui.setupUi(this);
 	connect(ui.connectButton, &QPushButton::clicked, this, &JoinLobby::connectButton);
 }
@@ -21,7 +22,7 @@ void JoinLobby::connectButton()
 
 	if (ui.lineEdit->text()==code)
 	{
-		LobbyInterface* lobby = new LobbyInterface();
+		LobbyInterface* lobby = new LobbyInterface(m_username);
 		lobby->show();
 		this->hide();
 	}

@@ -1,17 +1,17 @@
 #include "ProfileInterface.h"
 #include "LobbyInterface.h"
 
-ProfileInterface::ProfileInterface(QWidget *parent)
+ProfileInterface::ProfileInterface(QString username,QWidget *parent)
 	: QMainWindow(parent)
 {
+	this->m_username = username;
 	ui.setupUi(this);
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &ProfileInterface::goToLobby);
-	ui.usernameLabel->setText(m_username);
-	ui.emailLabel->setText(m_email);
+
 }
 void ProfileInterface::goToLobby()
 {
-	LobbyInterface* lobbyInterface = new LobbyInterface();
+	LobbyInterface* lobbyInterface = new LobbyInterface(m_username);
 	this->close();
 	lobbyInterface->show();
 }
@@ -19,12 +19,4 @@ void ProfileInterface::goToLobby()
 ProfileInterface::~ProfileInterface()
 {}
 
-void ProfileInterface::initialize(const QString & username, const QString & email)
-{
-	m_username = username;
-	m_email = email;
-
-	ui.usernameLabel->setText(m_username);
-	ui.emailLabel->setText(m_email);
-}
 
