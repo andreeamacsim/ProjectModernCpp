@@ -23,7 +23,7 @@ namespace game
         void setCurrentDrawer(Player currentDrawer);
         void setDifficultyLevel(int difficulty);
         void setLanguage(int language);
-        void  StartNewRound();
+        void  startNewRound();
         void DrawLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width);
         void addPlayerToGame(Player p);
         void disconnetPlayer(Player p);
@@ -38,6 +38,7 @@ namespace game
         uint8_t getLanguage() const;
         bool isReadyForNewSubround() const;
         void startSubround();
+        void RunGame();
 
     private:
         std::unordered_map<int,Player> m_players;

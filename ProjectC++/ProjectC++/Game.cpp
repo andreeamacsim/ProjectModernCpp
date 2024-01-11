@@ -55,7 +55,7 @@ void game::Game::setLanguage(int language)
 	this->m_language = static_cast<Language>(language);
 }
 
-void game::Game::StartNewRound()
+void game::Game::startNewRound()
 {
 	const int numSubrounds = m_players.size();
 	for (int subround = 1; subround <= numSubrounds; ++subround) 
@@ -65,7 +65,7 @@ void game::Game::StartNewRound()
 		std::string newWord = wordSubround.selectRandomWord();*/
 			
 		Player subroundDrawer = m_players[subround];
-		/*Round newSubround(newWord, subroundDrawer.getUsername());*/
+		//Round newSubround(newWord, subroundDrawer.getUsername());
 			
 	}
 }
@@ -133,7 +133,7 @@ bool game::Game::isReadyForNewSubround() const
 		const Round& currentSubround = m_rounds[m_currentRound];
 
 		std::time_t currentTime = std::time(nullptr);
-		std::time_t subroundStartTime = currentSubround.getStartTime(); // de facut functia getStartTime
+		std::time_t subroundStartTime = currentSubround.getStartTime(); 
 
 		if (currentTime - subroundStartTime >= 60) {
 			return true;
@@ -156,6 +156,25 @@ void game::Game::startSubround()
 
 		m_currentDrawer = subroundDrawer;
 		++m_currentRound;
+	}
+}
+
+void game::Game::RunGame()
+{
+	startNewRound();  
+
+	while (m_currentRound < m_rounds.size()) {
+		if (isReadyForNewSubround()) {
+			startSubround();
+		}
+		else {
+			std::time_t start = std::time(nullptr);
+			while (std::time(nullptr) - start < 1)
+			{
+				
+			}
+			
+		}
 	}
 }
 

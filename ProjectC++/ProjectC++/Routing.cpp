@@ -148,7 +148,7 @@ crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const
 crow::response game::Routing::StartNewRoundRoute(PlayerStorage& storage) const
 {
 	Game& game = storage.getGame();
-	game.StartNewRound();
+	game.startNewRound();
 	return crow::response{ "New round started." };
 }
 
