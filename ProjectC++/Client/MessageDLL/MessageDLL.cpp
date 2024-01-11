@@ -3,6 +3,7 @@
 #include <iostream>;
 
 
+
 MessageDLL::GameResult MessageDLL::CheckAnswer(const char* answer, const std::string& currentWord)
 {
     GameResult result = TryAgain;
@@ -14,30 +15,6 @@ MessageDLL::GameResult MessageDLL::CheckAnswer(const char* answer, const std::st
     return result;
 }
 
-std::pair<MessageDLL::LoginStatus, std::string> MessageDLL::DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials)
-{
-    LoginStatus status;
-    std::string message;
-
-    if (find && !alreadyConnected && !incorrectCredentials) {
-        status = LoginStatus::Connected;
-        message = "Username and password are correct";
-    }
-    else if (alreadyConnected) {
-        status = LoginStatus::AlreadyConnected;
-        message = "User is already connected";
-    }
-    else if (incorrectCredentials) {
-        status = LoginStatus::IncorrectCredentials;
-        message = "Username and password are incorrect";
-    }
-    else {
-        status = LoginStatus::NotConnected;
-        message = ""; 
-    }
-
-    return std::make_pair(status, message);
-}
 
 MessageDLL::LoginStatus MessageDLL::DisplayLoginMessage2(bool find, bool alreadyConnected, bool incorrectCredentials)
 {
@@ -64,6 +41,47 @@ MessageDLL::LoginStatus MessageDLL::DisplayLoginMessage2(bool find, bool already
     return status;
 }
 
+MessageDLL::LoginStatus MessageDLL::GetMessageStatus(bool find, bool alreadyConnected, bool incorrectCredentials)
+{
+     LoginStatus status;
+
+     if (find && !alreadyConnected && !incorrectCredentials) {
+         status = LoginStatus::Connected;
+     }
+     else if (alreadyConnected) {
+         status = LoginStatus::AlreadyConnected;
+     }
+     else if (incorrectCredentials) {
+         status = LoginStatus::IncorrectCredentials;
+     }
+     else {
+         status = LoginStatus::NotConnected;
+     }
+
+     return status;
+}
+
+std::string MessageDLL::GetMessageText(LoginStatus status)
+{
+    std::string message;
+
+    switch (status) {
+    case MessageDLL::LoginStatus::Connected:
+        message = "Username and password are correct";
+        break;
+    case MessageDLL::LoginStatus::AlreadyConnected:
+        message = "User is already connected";
+        break;
+    case MessageDLL::LoginStatus::IncorrectCredentials:
+        message = "Username and password are incorrect";
+        break;
+    case MessageDLL::LoginStatus::NotConnected:
+        message = "";
+        break;
+    }
+
+    return message;
+}
 
 
 

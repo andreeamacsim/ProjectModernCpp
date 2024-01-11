@@ -23,7 +23,9 @@ public:
     };
 
     static GameResult CheckAnswer(const char* answer, const std::string& currentWord);
-    static std::pair<LoginStatus, std::string> DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials);
+    //static std::pair<LoginStatus, std::string> DisplayLoginMessage(bool find, bool alreadyConnected, bool incorrectCredentials);
     static LoginStatus DisplayLoginMessage2(bool find, bool alreadyConnected, bool incorrectCredentials);
+    LoginStatus GetMessageStatus(bool find, bool alreadyConnected, bool incorrectCredentials);
+    std::string GetMessageText(LoginStatus status);
     
 };
