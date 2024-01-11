@@ -146,6 +146,7 @@ void game::Game::startSubround()
 
 void game::Game::RunGame()
 {
+
 	const uint8_t numRounds = 4;// din fisierul cu proiectul 
 
 	for (uint8_t roundNumber = 0; roundNumber < numRounds; ++roundNumber)
