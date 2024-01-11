@@ -14,6 +14,13 @@ Round::Round(const std::string& word, const std::string& drawer)
 	m_drawer = drawer;
 }
 
+game::Round::Round(const std::string& word, const std::string& drawer, std::time_t startTime)
+{
+	m_word = word;
+	m_drawer = drawer;
+	m_startTime = startTime;
+}
+
 void Round::AddGuess(const std::string& guess)
 {
 	m_guesses.emplace_back(guess);

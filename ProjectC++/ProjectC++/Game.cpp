@@ -61,8 +61,8 @@ void game::Game::StartNewRound()
 	for (int subround = 1; subround <= numSubrounds; ++subround) 
 	{
 		Word wordSubround;
-		//wordSubround.generateWords(getLanguage(),getDifficultyLevel());
-		/*std::string newWord = wordSubround.selectRandomWord();*/
+		/*wordSubround.generateWords(getLanguage(),getDifficultyLevel());
+		std::string newWord = wordSubround.selectRandomWord();*/
 			
 		Player subroundDrawer = m_players[subround];
 		/*Round newSubround(newWord, subroundDrawer.getUsername());*/
@@ -150,9 +150,9 @@ void game::Game::startSubround()
 
 		Player subroundDrawer = m_players[m_currentRound + 1]; 
 
-		//Round newSubround(newWord, subroundDrawer.getUsername(), std::time(nullptr))
+		Round newSubround(newWord, subroundDrawer.getUsername(), std::time(nullptr));
 
-		//m_rounds.push_back(newSubround);
+			m_rounds.push_back(newSubround);
 
 		m_currentDrawer = subroundDrawer;
 		++m_currentRound;

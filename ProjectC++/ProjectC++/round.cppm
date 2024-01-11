@@ -11,6 +11,7 @@ namespace game {
     public:
         Round();
         Round(const std::string& word, const std::string& drawer);
+        Round(const std::string& word, const std::string& drawer, std::time_t startTime);
         void AddGuess(const std::string& guess);
         bool IsGuessed() const;
         const std::string& GetWord() const;
@@ -24,6 +25,7 @@ namespace game {
         std::string m_drawer;
         std::vector<std::string> m_guesses;
         bool m_guessed;
+        std::time_t m_startTime;
         
     };
 }

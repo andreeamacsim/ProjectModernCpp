@@ -82,14 +82,10 @@ Player game::PlayerStorage::checkUser(const std::string& username)
 
 std::vector<Word> game::PlayerStorage::getWords(Language language, Difficulty difficulty)
 {
-	std::vector<Word> allWords = m_db.get_all<Word>();
-	std::vector<Word> result;
-	for(const Word& word:allWords)
-		if (word.getLanguage() == language && word.getDifficulty() == difficulty) 
-		{
-			result.push_back(word);
-		}
-	return result;
+	auto allWords = m_db.get_all<Word>(sql::where(sql::and_(sql::c(&Word::getLanguage) == static_cast<int>(language),
+		sql::c(&Word::getDifficulty) == static_cast<int>(difficulty))));
+
+	return allWords;
 }
 
 
