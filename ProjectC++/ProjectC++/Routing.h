@@ -35,7 +35,7 @@ namespace game
 		crow::json::wvalue generateLobbyCode(Game& game, const crow::request& req);
 		crow::json::wvalue getLobbyCode(Game& game, const crow::request& req);
 		crow::response addPlayerToLobby(PlayerStorage& storage, Game& game, const crow::request& req);
-
+		crow::json::wvalue getCurrentDrawer(Game& game, const crow::request& req);
 	private:
 		crow::SimpleApp m_app;
 	};

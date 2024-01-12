@@ -14,7 +14,8 @@ class DrawingInterface : public QMainWindow
 public:
 	DrawingInterface(std::string username,QWidget *parent = nullptr);
 	~DrawingInterface();
-	void setDrawingLines(bool drawer);
+	void setDrawingLines();
+	void setDrawer();
 protected:
 	void mousePressEvent(QMouseEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;
@@ -24,9 +25,9 @@ protected:
 	
 private slots:
 	void on_widthSlider_valueChanged();
-	void setDrawer();
 private:
-	uint8_t m_timer;
+	QTimer* m_timerForDrawing;
+	QTimer* m_timerForDrawer;
 	bool m_drawer;
 	std::string m_username;
 	QRect m_drawingBox;

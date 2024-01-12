@@ -7,10 +7,15 @@
 #include "Chat.h"
 #include <cpr/cpr.h>
 #include <crow.h>
+#include <qtimer.h>
 
 DrawingInterface::DrawingInterface(std::string username,QWidget *parent)
 	: QMainWindow(parent)
 { 
+	m_timerForDrawing = new QTimer(this);
+	m_timerForDrawing->setInterval(2000);
+	m_timerForDrawer = new QTimer(this);
+	m_timerForDrawer->setInterval(10000);
 	m_username = username;
 	ui.setupUi(this);
 	m_drawingArea = new DrawingClass;
@@ -18,6 +23,11 @@ DrawingInterface::DrawingInterface(std::string username,QWidget *parent)
 	m_drawingBox= QRect(50, 50, 600, 400);
 	connect(ui.drawing, &QPushButton::clicked, this, &DrawingInterface::setDrawer);
 	m_drawer = false;
+	connect(m_timerForDrawing, &QTimer::timeout,this,&DrawingInterface::setDrawingLines);
+	m_timerForDrawing->start();
+	connect(m_timerForDrawer, &QTimer::timeout, this, &DrawingInterface::setDrawer);
+	m_timerForDrawer->start();
+
 
 }
 
@@ -26,9 +36,10 @@ DrawingInterface::~DrawingInterface()
 
 }
 
-void DrawingInterface::setDrawingLines(bool drawer)
+void DrawingInterface::setDrawingLines()
 {
-	if (drawer == false&& m_timer%50==0)
+
+	if (m_drawer == false)
 	{
 		cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/drawingTable" });
 		auto lines = crow::json::load(response.text);
@@ -53,7 +64,11 @@ void DrawingInterface::setDrawingLines(bool drawer)
 
 void DrawingInterface::setDrawer()
 {
-	m_drawer = true;
+	//cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/getCurrentDrawer" });
+	//auto usernameJSSON = crow::json::load(response.text);
+	//auto username = usernameJSSON["username"].s();
+	//if (username == m_username)
+	//	m_username = username;
 }
 
 void DrawingInterface::mousePressEvent(QMouseEvent* event)
@@ -145,7 +160,6 @@ void DrawingInterface::paintEvent(QPaintEvent* event)
 	QPainter p(this);
 	p.fillRect(m_drawingBox, Qt::white);
 	p.drawRect(m_drawingBox);
-	setDrawingLines(m_drawer);
 	auto lines = m_drawingArea->getLines();
 	if (!lines.empty()) {
 
@@ -219,7 +233,6 @@ void DrawingInterface::paintEvent(QPaintEvent* event)
 		}
 		update();
 	}
-	m_timer++;
 }
 
 void DrawingInterface::draw(const QColor& color,QPainter &p,const uint8_t &width, std::pair<std::pair<float, float>, std::pair<float, float>> line) const
