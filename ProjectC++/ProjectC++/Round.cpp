@@ -2,6 +2,7 @@
 import <string>;
 import <vector>;
 module round;
+import player;
 using game::Round;
 
 Round::Round()
@@ -21,9 +22,20 @@ game::Round::Round(const std::string& word, const std::string& drawer, std::time
 	m_startTime = startTime;
 }
 
-void Round::AddGuess(const std::string& guess)
+//void Round::AddGuess(const std::string& guess)
+//{
+//	m_guesses.emplace_back(guess);
+//}
+
+void Round::AddGuess(const std::string& guess, const game::Player& guesser)
 {
 	m_guesses.emplace_back(guess);
+
+	if (guess == m_word && !m_guessed) {
+		Player player(guesser);
+		m_playerScores[player]++;
+		m_guessed = true;
+	}
 }
 
 bool Round::IsGuessed() const
@@ -56,6 +68,8 @@ std::time_t Round::getStartTime() const
 	std::time_t now=time(nullptr);
 	return now;
 }
+
+
 
 
 

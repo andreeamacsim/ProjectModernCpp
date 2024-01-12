@@ -8,6 +8,16 @@ namespace game {
 	export class Player
 	{
 	public:
+		bool operator<(const Player& other) const {
+			return m_username < other.m_username;
+		}
+
+		bool operator==(const Player& other) const {
+			return m_username == other.m_username;
+		}
+		bool operator!=(const Player& other) const {
+			return !(*this == other);
+		}
 		Player();
 		Player(int16_t id, std::string username, std::string password, std::string email);
 

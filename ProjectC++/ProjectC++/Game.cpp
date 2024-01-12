@@ -131,12 +131,27 @@ bool game::Game::isReadyForNewSubround() const
 		std::time_t subroundStartTime = currentSubround.getStartTime(); 
 
 		if (currentTime - subroundStartTime >= 60) {
-			return true;
-		}
-	}
+			if (m_currentRound > 0) {
 
+				const Round& previousSubround = m_rounds[m_currentRound - 1];
+
+				const std::map<Player, int>& currentScores = currentSubround.GetPlayerScores();
+				const std::map<Player, int>& previousScores = previousSubround.GetPlayerScores();
+
+				if (currentScores != previousScores) {
+					return true;
+				}
+			}
+			else {
+				return true;
+			}
+
+			}
+		
+	}
 	return false;
 }
+
 
 void game::Game::startSubround()
 {
