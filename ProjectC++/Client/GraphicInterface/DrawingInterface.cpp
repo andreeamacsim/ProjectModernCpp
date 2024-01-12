@@ -16,7 +16,8 @@ DrawingInterface::DrawingInterface(QString username,QWidget *parent)
 	m_drawingArea = new DrawingClass;
 	setWindowTitle("Gartic");
 	m_drawingBox= QRect(50, 50, 600, 400);
-	
+	connect(ui.drawing, &QPushButton::clicked, this, &DrawingInterface::setDrawer);
+	m_drawer = false;
 
 }
 
@@ -25,14 +26,45 @@ DrawingInterface::~DrawingInterface()
 
 }
 
+void DrawingInterface::setDrawingLines(bool drawer)
+{
+	if (drawer == false&& m_timer%50==0)
+	{
+		cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/drawingTable" });
+		auto lines = crow::json::load(response.text);
+		if (m_drawingArea->getLines().size() != lines.size()) {
+			for (const auto& l : lines)
+			{
+				float startPointX = l["startPointX"].d();
+				float startPointY = l["startPointY"].d();
+				float finalPointX = l["finalPointX"].d();
+				float finalPointY = l["finalPointY"].d();
+				std::string color = l["color"].s();
+				int width = l["width"].i();
+				std::pair<float, float> sPoint = std::make_pair(startPointX, startPointY);
+				std::pair<float, float>fPoint = std::make_pair(finalPointX, finalPointY);
+				auto line = std::make_pair(sPoint, fPoint);
+				m_drawingArea->addLine(line, color, width);
+			}
+		}
+	}
+}
+
+
+void DrawingInterface::setDrawer()
+{
+	m_drawer = true;
+}
 
 void DrawingInterface::mousePressEvent(QMouseEvent* event)
 {
-	if (event->button() == Qt::LeftButton)
-	{
-		m_drawingArea->setDrawing(true);
-		m_drawingArea->getStartPoint() = event->pos();
+	if (m_drawer == true) {
+		if (event->button() == Qt::LeftButton)
+		{
+			m_drawingArea->setDrawing(true);
+			m_drawingArea->getStartPoint() = event->pos();
 
+		}
 	}
 }
 
@@ -89,15 +121,15 @@ void DrawingInterface::mouseMoveEvent(QMouseEvent* event)
 			else if (ui.orange->isChecked())
 				color = "orange";
 			update();
-			m_drawingArea->addLine(line, color, penWidth);
 			cpr::Parameters parameters = cpr::Parameters{
 				{"startPointX", std::to_string(lPoint.first)},
 				{"startPointY", std::to_string(lPoint.second)},
 				{"finalPointX", std::to_string(rPoint.first)},
-				{"finalPointY", std::to_string(lPoint.second)},
+				{"finalPointY", std::to_string(rPoint.second)},
 				{"color", color},
 				{"width", std::to_string(penWidth)} };
 			auto response = cpr::Get(cpr::Url{ "http://localhost:18080/addline" }, parameters);
+			m_drawingArea->addLine(line, color, penWidth);
 			m_drawingArea->setStartPoint(event->pos());
 		}
 	}
@@ -110,23 +142,19 @@ void DrawingInterface::mouseReleaseEvent(QMouseEvent* event)
 
 void DrawingInterface::paintEvent(QPaintEvent* event)
 {
-		QPainter p(this);
-		p.fillRect(m_drawingBox, Qt::white);
-		p.drawRect(m_drawingBox);
-	if (!m_drawingArea->getLines().empty()) {
-		cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/drawingTable" });
-		auto lines = crow::json::load(response.text);
+	QPainter p(this);
+	p.fillRect(m_drawingBox, Qt::white);
+	p.drawRect(m_drawingBox);
+	setDrawingLines(m_drawer);
+	auto lines = m_drawingArea->getLines();
+	if (!lines.empty()) {
+
 		for (const auto& l : lines)
 		{
-			float startPointX = l["startPointX"].d();
-			float startPointY = l["startPointY"].d();
-			float finalPointX= l["finalPointX"].d();
-			float finalPointY = l["finalPointY"].d();
-			std::string color = l["color"].s();
-			int width= l["width"].i();
-			std::pair<float, float> sPoint = std::make_pair(startPointX, startPointY);
-			std::pair<float, float>fPoint = std::make_pair(finalPointX, finalPointY);
-			auto line = std::make_pair(sPoint, fPoint);
+			
+			auto line = std::get<0>(l);
+			auto color = std::get<1>(l);
+			auto width = std::get<2>(l);
 
 			if (color == "red")
 			{
@@ -191,6 +219,7 @@ void DrawingInterface::paintEvent(QPaintEvent* event)
 		}
 		update();
 	}
+	m_timer++;
 }
 
 void DrawingInterface::draw(const QColor& color,QPainter &p,const uint8_t &width, std::pair<std::pair<float, float>, std::pair<float, float>> line) const

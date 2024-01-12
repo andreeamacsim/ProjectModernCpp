@@ -16,7 +16,6 @@ LobbyInterface::LobbyInterface(QString username,QWidget *parent)
 	ui.Easy->setEnabled(m_Owner);
 	ui.Medium->setEnabled(m_Owner);
 	ui.Hard->setEnabled(m_Owner);
-	ui.startGame->setEnabled(m_Owner);
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &LobbyInterface::goToProfile);
 	connect(ui.startGame, &QPushButton::clicked, this, &LobbyInterface::goToDrawing);
 	connect(ui.Easy, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);

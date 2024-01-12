@@ -334,7 +334,7 @@ border: 2px solid black;</string>
       <x>730</x>
       <y>280</y>
       <width>151</width>
-      <height>42</height>
+      <height>46</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -359,6 +359,19 @@ border: 2px solid black;</string>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QRadioButton" name="drawing">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>350</y>
+      <width>89</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>drawing</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

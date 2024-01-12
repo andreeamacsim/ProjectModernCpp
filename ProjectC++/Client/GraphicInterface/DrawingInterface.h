@@ -14,7 +14,7 @@ class DrawingInterface : public QMainWindow
 public:
 	DrawingInterface(QString username,QWidget *parent = nullptr);
 	~DrawingInterface();
-
+	void setDrawingLines(bool drawer);
 protected:
 	void mousePressEvent(QMouseEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;
@@ -24,15 +24,13 @@ protected:
 	
 private slots:
 	void on_widthSlider_valueChanged();
+	void setDrawer();
 private:
+	uint8_t m_timer;
+	bool m_drawer;
 	QString m_username;
 	QRect m_drawingBox;
 	DrawingClass* m_drawingArea;
-	//QMenu* fileMenu;
-	//QAction* m_openAct;
-	//QAction* m_penColorAct;
-	//QAction* m_penWidthAct;
-	//QAction* m_clearDrawingArea;
 	Ui::DrawingInterfaceClass ui;
 	Chat* m_chatInstance;
 };
