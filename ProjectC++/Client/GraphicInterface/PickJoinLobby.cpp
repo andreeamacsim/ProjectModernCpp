@@ -16,7 +16,7 @@ PickJoinLobby::~PickJoinLobby()
 void PickJoinLobby::toCreateLobby()
 {
 	bool owner = true;
-	LobbyInterface* lobby = new LobbyInterface(m_username,owner,this);
+	LobbyInterface* lobby = new LobbyInterface(m_username,owner," ");
 	lobby->show();
 	this->hide();
 }

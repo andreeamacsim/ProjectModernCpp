@@ -11,7 +11,7 @@ ProfileInterface::ProfileInterface(std::string username,QWidget *parent)
 }
 void ProfileInterface::goToLobby()
 {
-	LobbyInterface* lobbyInterface = new LobbyInterface(m_username);
+	LobbyInterface* lobbyInterface = new LobbyInterface(m_username,false," ");
 	this->close();
 	lobbyInterface->show();
 }

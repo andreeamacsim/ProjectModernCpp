@@ -22,7 +22,7 @@ void JoinLobby::connectButton()
 
 	if (ui.lineEdit->text()==code)
 	{
-		LobbyInterface* lobby = new LobbyInterface(m_username);
+		LobbyInterface* lobby = new LobbyInterface(m_username,false,generatedCode);
 		lobby->show();
 		this->hide();
 	}

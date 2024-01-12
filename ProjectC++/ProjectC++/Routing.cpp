@@ -121,6 +121,9 @@ void game::Routing::Run(PlayerStorage& storage,Game& game, std::unordered_map<in
 	CROW_ROUTE(m_app, "/getLobbyCode")([&game, this](const crow::request& req) {
 		return getLobbyCode(game, req);
 		});
+	CROW_ROUTE(m_app, "/joinGameLobby")([&storage, &game, this](const crow::request& req) {
+		return addPlayerToLobby(storage, game, req);
+		});
 
 
 
@@ -339,4 +342,17 @@ crow::json::wvalue game::Routing::getLobbyCode(Game& game, const crow::request& 
 		{"generatedCode",std::to_string(game.getGameCode())}
 	};
 	return code;
+}
+
+crow::response game::Routing::addPlayerToLobby(PlayerStorage& storage, Game& game, const crow::request& req)
+{
+	char* username = req.url_params.get("username");
+	auto player = storage.checkUser(username);
+	if (player.getId() != -1)
+	{
+		game.addPlayerToGame(player);
+		return crow::response(200);
+	}
+
+	return crow::response(405);
 }
