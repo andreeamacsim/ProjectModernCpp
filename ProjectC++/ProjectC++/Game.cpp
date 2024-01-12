@@ -179,6 +179,7 @@ void game::Game::RunGame()
 		while (m_currentRound < m_rounds.size()) {
 			if (isReadyForNewSubround()) {
 				startSubround();
+				m_drawingTable.clear();
 			}
 			else {
 				std::time_t start = std::time(nullptr);
