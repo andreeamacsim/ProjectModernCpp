@@ -35,15 +35,6 @@ void PlayerStorage::AddPlayerToStorage(std::string username, std::string passwor
 	//m_db.insert(Player{username,password,email})
 }
 
-Game& game::PlayerStorage::getGame()
-{
-	return m_game;
-}
-
-void game::PlayerStorage::addLine(std::pair<std::pair<float, float>, std::pair<float, float>> line, std::string color, uint8_t width)
-{
-	m_game.DrawLine(line, color, width);
-}
 
 Word game::PlayerStorage::GetCurrentWord() const
 {

@@ -4,7 +4,7 @@
 #include "LobbyInterface.h"
 #include <qmessagebox.h>
 
-JoinLobby::JoinLobby(QString username,QWidget *parent)
+JoinLobby::JoinLobby(std::string username,QWidget *parent)
 	: QMainWindow(parent)
 {
 	m_username = username;

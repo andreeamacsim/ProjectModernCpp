@@ -4,7 +4,7 @@
 #include "../MessageDLL/MessageDLL.h"
 #include <qmessagebox.h>
 
-Chat::Chat(QString username,QWidget *parent)
+Chat::Chat(std::string username,QWidget *parent)
 	: QMainWindow(parent)
 {
     this->m_username = username;

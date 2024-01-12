@@ -1,7 +1,7 @@
 #include "ProfileInterface.h"
 #include "LobbyInterface.h"
 
-ProfileInterface::ProfileInterface(QString username,QWidget *parent)
+ProfileInterface::ProfileInterface(std::string username,QWidget *parent)
 	: QMainWindow(parent)
 {
 	this->m_username = username;

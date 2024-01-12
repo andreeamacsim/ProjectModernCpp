@@ -6,6 +6,7 @@ import word;
 #include <sqlite_orm/sqlite_orm.h>
 #include "playersDatabase.h"
 #include "Routing.h"
+#include "ExtraClass.h";
 
 using namespace game;
 int main()
@@ -16,9 +17,8 @@ int main()
 		std::cout << "Failed to initialize the database\n";
 		return -1;
 	}
-	Routing r;
-
-	r.Run(storage);
+	ExtraClass game;
+	game.RunGame();
 
 	return 0;
 }

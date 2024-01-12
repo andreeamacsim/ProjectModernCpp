@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExtraClass.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameModule.cppm" />
     <ClCompile Include="Player.cpp" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enums.h" />
+    <ClInclude Include="ExtraClass.h" />
     <ClInclude Include="playersDatabase.h" />
     <ClInclude Include="Routing.h" />
   </ItemGroup>

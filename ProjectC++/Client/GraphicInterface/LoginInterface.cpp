@@ -45,7 +45,7 @@ void LoginInterface::logIn()
             //auto  mess = MessageDLL::GetMessageText(loginResult);
             //QString message = QString::fromStdString(mess);
             QMessageBox::information(this, "Login","da");
-            PickJoinLobby* pickJoinInterface = new PickJoinLobby(ui.userName->text(), this);
+            PickJoinLobby* pickJoinInterface = new PickJoinLobby(username, this);
             pickJoinInterface->show();
             this->hide();
             cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/connectedPlayers" }, cpr::Parameters{

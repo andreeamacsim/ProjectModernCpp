@@ -10,13 +10,13 @@ class ProfileInterface : public QMainWindow
 	Q_OBJECT
 
 public:
-	ProfileInterface(QString username,QWidget *parent = nullptr);
+	ProfileInterface(std::string username,QWidget *parent = nullptr);
 	~ProfileInterface();
 public slots:
 	void goToLobby();
 	
 
 private:
-	QString m_username;
+	std::string m_username;
 	Ui::ProfileInterfaceClass ui;
 };

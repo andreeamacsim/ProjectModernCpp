@@ -16,6 +16,7 @@ namespace game
         Game() ;
         Game(std::unordered_map<int, Player>& players, const std::vector<Round>& rounds, const std::vector<Word>& wordList, uint8_t currentRound, Player currentDrawer);
 
+        void setGameCode(uint32_t gameCode);
         void setPlayers(std::unordered_map<int, Player>& players);
         void setRounds(const std::vector<Round>& rounds);
         void setWordList(const std::vector<Word>& wordList);
@@ -28,6 +29,7 @@ namespace game
         void disconnetPlayer(Player p);
         std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>>& getDrawingTable();
 
+        uint32_t getGameCode();
         std::unordered_map<int, Player>& getPlayers() ;
         std::vector<Round>& getRounds() ;
         std::vector<Word>& getWordsList()  ;
@@ -48,5 +50,6 @@ namespace game
         Language m_language;
         Player m_currentDrawer;
         std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>> m_drawingTable;
+        uint32_t m_gameCode;
     };
 }

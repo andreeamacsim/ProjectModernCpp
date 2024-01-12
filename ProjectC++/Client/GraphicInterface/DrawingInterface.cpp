@@ -8,7 +8,7 @@
 #include <cpr/cpr.h>
 #include <crow.h>
 
-DrawingInterface::DrawingInterface(QString username,QWidget *parent)
+DrawingInterface::DrawingInterface(std::string username,QWidget *parent)
 	: QMainWindow(parent)
 { 
 	m_username = username;

@@ -8,7 +8,7 @@ class Chat : public QMainWindow
 	Q_OBJECT
 
 public:
-	Chat(QString username,QWidget *parent = nullptr);
+	Chat(std::string username,QWidget *parent = nullptr);
 	~Chat();
 	QString getLastSentMessage() const;
 	void checkAnswerAndShowMessage();
@@ -17,7 +17,7 @@ private slots:
 	void sendMessage();
 
 private:
-	QString m_username;
+	std::string m_username;
 	Ui::ChatClass ui;
 	QString lastSentMessage;
 

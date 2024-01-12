@@ -66,6 +66,9 @@
     <ClCompile Include="random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExtraClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="playersDatabase.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtraClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

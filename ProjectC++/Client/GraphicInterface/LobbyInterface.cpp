@@ -5,7 +5,7 @@
 #include "Chat.h"
 #include <ctime>
 
-LobbyInterface::LobbyInterface(QString username,QWidget *parent)
+LobbyInterface::LobbyInterface(std::string username,QWidget *parent)
 	: QMainWindow(parent)
 {
 	m_username = username;
@@ -23,9 +23,12 @@ LobbyInterface::LobbyInterface(QString username,QWidget *parent)
 	connect(ui.Hard, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
 	connect(ui.Romanian, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
 	connect(ui.English, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
+	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/joinGameLobby" }, cpr::Parameters{
+	{"username",m_username}
+		});
 
 }
-LobbyInterface::LobbyInterface(QString username,bool Owner, QWidget* parent) :QMainWindow(parent),m_Owner{Owner}
+LobbyInterface::LobbyInterface(std::string username,bool Owner, QWidget* parent) :QMainWindow(parent),m_Owner{Owner}
 {
 	m_username = username;
 	ui.setupUi(this);
@@ -37,6 +40,9 @@ LobbyInterface::LobbyInterface(QString username,bool Owner, QWidget* parent) :QM
 	connect(ui.Romanian, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
 	connect(ui.English, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
 	connect(ui.generateCode, &QPushButton::clicked, this, &LobbyInterface::generateCode);
+	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/setDifficulty" }, cpr::Parameters{
+	{"username",m_username}
+		});
 }
 void LobbyInterface::setLanguage()
 {

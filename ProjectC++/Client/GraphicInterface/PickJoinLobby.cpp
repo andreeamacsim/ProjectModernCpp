@@ -2,7 +2,7 @@
 #include "LobbyInterface.h"
 #include "JoinLobby.h"
 
-PickJoinLobby::PickJoinLobby(QString username,QWidget *parent)
+PickJoinLobby::PickJoinLobby(std::string username,QWidget *parent)
 	: QMainWindow(parent)
 {
 	m_username = username;

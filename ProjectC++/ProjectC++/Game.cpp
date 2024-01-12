@@ -20,6 +20,11 @@ Game::Game(std::unordered_map<int, Player>& players, const std::vector<Round>& r
 {
 }
 
+void game::Game::setGameCode(uint32_t gameCode)
+{
+	m_gameCode = gameCode;
+}
+
 void Game::setPlayers(std::unordered_map<int, Player>& players)
 {
 	m_players = players;
@@ -76,6 +81,11 @@ std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float
 	return m_drawingTable;
 }
 
+
+uint32_t game::Game::getGameCode()
+{
+	return this->m_gameCode;
+}
 
 std::unordered_map<int, Player>& Game::getPlayers()
 {

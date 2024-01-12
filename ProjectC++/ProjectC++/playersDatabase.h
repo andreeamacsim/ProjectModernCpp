@@ -10,9 +10,9 @@
 namespace sql = sqlite_orm;
 import profile;
 import player;
-import GameModule;
 import PointsModule;
 import word;
+import GameModule;
 
 namespace game
 {
@@ -59,8 +59,6 @@ namespace game
         std::vector<Player>getPlayers();
         std::vector<Word>getWords();
         void AddPlayerToStorage(std::string username, std::string password, std::string email);
-        Game& getGame();
-        void addLine(std::pair<std::pair<float, float>, std::pair<float, float>>line, std::string color, uint8_t width);
         Word GetCurrentWord() const;
         std::vector<Word> readWordsFromFile(Language language, Difficulty difficuly, std::string fileName);
         Player checkUser(const std::string& username);
@@ -69,7 +67,6 @@ namespace game
         void PopulateStorage();
         const std::string kDbFile{ "database.sqlite" };
         Storage m_db = CreateStorage(kDbFile);
-        Game m_game;
         Word  m_currentWord;
 
     };

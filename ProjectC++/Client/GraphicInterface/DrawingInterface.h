@@ -12,7 +12,7 @@ class DrawingInterface : public QMainWindow
 	Q_OBJECT
 
 public:
-	DrawingInterface(QString username,QWidget *parent = nullptr);
+	DrawingInterface(std::string username,QWidget *parent = nullptr);
 	~DrawingInterface();
 	void setDrawingLines(bool drawer);
 protected:
@@ -28,7 +28,7 @@ private slots:
 private:
 	uint8_t m_timer;
 	bool m_drawer;
-	QString m_username;
+	std::string m_username;
 	QRect m_drawingBox;
 	DrawingClass* m_drawingArea;
 	Ui::DrawingInterfaceClass ui;
