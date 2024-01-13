@@ -8,7 +8,7 @@ bool PlayerStorage::Initialize()
 	auto initPlayerCount = m_db.count<Player>();
 	if (initPlayerCount == 0)
 	{
-		PopulateStorage();
+		populateStorage();
 	}
 	auto playerCount = m_db.count<Player>();
 	return playerCount != 0;
@@ -25,7 +25,7 @@ std::vector<Word> game::PlayerStorage::getWords()
 	return m_db.get_all<Word>();
 }
 
-void PlayerStorage::AddPlayerToStorage(std::string username, std::string password, std::string email)
+void PlayerStorage::addPlayerToStorage(std::string username, std::string password, std::string email)
 {
 	Player p;
 	p.setUsername(username);
@@ -36,7 +36,7 @@ void PlayerStorage::AddPlayerToStorage(std::string username, std::string passwor
 }
 
 
-Word game::PlayerStorage::GetCurrentWord() const
+Word game::PlayerStorage::getCurrentWord() const
 {
 	return m_currentWord;
 }
@@ -85,7 +85,7 @@ std::vector<Word> game::PlayerStorage::getRandomWord(Language language, Difficul
 
 
 
-void game::PlayerStorage::PopulateStorage()
+void game::PlayerStorage::populateStorage()
 {
 	std::vector<Player> players{
 			Player{-1,"Andreea","andreea2003","mandreealavinia@yahoo.com",},

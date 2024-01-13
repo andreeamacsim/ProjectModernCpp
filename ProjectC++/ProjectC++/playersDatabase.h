@@ -16,7 +16,7 @@ import GameModule;
 
 namespace game
 {
-    inline auto CreateStorage(const std::string& filename) {
+    inline auto createStorage(const std::string& filename) {
         return sql::make_storage(
             filename,
             sql::make_table(
@@ -39,18 +39,11 @@ namespace game
                 sql::make_column("userId",&Points::setUserId,&Points::getUserId),
                 sql::make_column("playerPoints",&Points::setPoints,&Points::getPoints)
                 )
-            //sql::make_table(
-    //	"Profile",
-    //	sql::make_column("username", &Profile::getPlayerName, &Profile::setPlayerName, sql::primary_key()),
-    //	sql::make_column("age",&Profile::getAge,&Profile::setAge),
-    //	sql::make_column("country",&Profile::getCountry,&Profile::setCountry),
-    //	sql::make_column("level",&Profile::getLevel,&Profile::setLevel),
-    //	sql::make_column("description",&Profile::getDescription,&Profile::setDescription),
-    //)
+           
         );
     }
 
-    using Storage = decltype(CreateStorage(""));
+    using Storage = decltype(createStorage(""));
 
     class PlayerStorage {
     public:
@@ -58,15 +51,15 @@ namespace game
 
         std::vector<Player>getPlayers();
         std::vector<Word>getWords();
-        void AddPlayerToStorage(std::string username, std::string password, std::string email);
-        Word GetCurrentWord() const;
+        void addPlayerToStorage(std::string username, std::string password, std::string email);
+        Word getCurrentWord() const;
         std::vector<Word> readWordsFromFile(Language language, Difficulty difficuly, std::string fileName);
         Player checkUser(const std::string& username);
         std::vector<Word> getRandomWord(Language language, Difficulty difficulty);
     private:
-        void PopulateStorage();
+        void populateStorage();
         const std::string kDbFile{ "database.sqlite" };
-        Storage m_db = CreateStorage(kDbFile);
+        Storage m_db = createStorage(kDbFile);
         Word  m_currentWord;
 
     };

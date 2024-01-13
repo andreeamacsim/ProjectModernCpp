@@ -27,7 +27,7 @@ game::Round::Round(const std::string& word, const std::string& drawer, std::time
 //	m_guesses.emplace_back(guess);
 //}
 
-void Round::AddGuess(const std::string& guess, const game::Player& guesser)
+void Round::addGuess(const std::string& guess, const game::Player& guesser)
 {
 	m_guesses.emplace_back(guess);
 
@@ -38,27 +38,27 @@ void Round::AddGuess(const std::string& guess, const game::Player& guesser)
 	}
 }
 
-bool Round::IsGuessed() const
+bool Round::isGuessed() const
 {
 	return false;
 }
 
-const std::string& Round::GetWord() const
+const std::string& Round::getWord() const
 {
 	return m_word;
 }
 
-const std::string& Round::GetDrawer() const
+const std::string& Round::getDrawer() const
 {
 	return m_drawer;
 }
 
-const std::vector<std::string>& Round::GetGuesses() const
+const std::vector<std::string>& Round::getGuesses() const
 {
 	return m_guesses;
 }
 
-std::vector<std::string> Round::GetGuessesForPlayer(const std::string& player) const
+std::vector<std::string> Round::getGuessesForPlayer(const std::string& player) const
 {
 	return std::vector<std::string>();
 }

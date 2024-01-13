@@ -2,5 +2,5 @@
 
 void ExtraClass::RunGame()
 {
-	m_r.Run(m_storage, m_game, m_connectedPlayers);
+	m_r.run(m_storage, m_game, m_connectedPlayers);
 }

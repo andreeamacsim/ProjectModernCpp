@@ -12,7 +12,6 @@ namespace game {
         Profile(const std::string& playerName, uint16_t age, const std::string& country, uint32_t level, const std::string& description);
 
         std::string getPlayerName() const;
-        //uint16_t getAge() const;
         std::string getCountry() const;
         uint32_t getLevel() const;
         std::string getDescription() const;

@@ -135,8 +135,8 @@ bool game::Game::isReadyForNewSubround() const
 
 				const Round& previousSubround = m_rounds[m_currentRound - 1];
 
-				const std::map<Player, int>& currentScores = currentSubround.GetPlayerScores();
-				const std::map<Player, int>& previousScores = previousSubround.GetPlayerScores();
+				const std::map<Player, int>& currentScores = currentSubround.getPlayerScores();
+				const std::map<Player, int>& previousScores = previousSubround.getPlayerScores();
 
 				if (currentScores != previousScores) {
 					return true;

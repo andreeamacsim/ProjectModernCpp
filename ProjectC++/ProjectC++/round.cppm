@@ -14,15 +14,15 @@ namespace game {
         Round();
         Round(const std::string& word, const std::string& drawer);
         Round(const std::string& word, const std::string& drawer, std::time_t startTime);
-        //void AddGuess(const std::string& guess);
-        void AddGuess(const std::string& guess, const Player& guesser);
-        bool IsGuessed() const;
-        const std::string& GetWord() const;
-        const std::string& GetDrawer() const;
-        const std::vector<std::string>& GetGuesses() const;
-        std::vector<std::string> GetGuessesForPlayer(const std::string& player) const;
+
+        void addGuess(const std::string& guess, const Player& guesser);
+        bool isGuessed() const;
+        const std::string& getWord() const;
+        const std::string& getDrawer() const;
+        const std::vector<std::string>& getGuesses() const;
+        std::vector<std::string> getGuessesForPlayer(const std::string& player) const;
         std::time_t getStartTime() const;
-        const std::map<Player, int>& GetPlayerScores() const
+        const std::map<Player, int>& getPlayerScores() const
         {
             return m_playerScores;
         }

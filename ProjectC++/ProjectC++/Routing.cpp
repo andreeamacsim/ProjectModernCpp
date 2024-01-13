@@ -4,7 +4,7 @@ import random;
 using namespace game;
 import player;
 
-void game::Routing::Run(PlayerStorage& storage,Game& game, std::unordered_map<int, Player>& connectedPlayers)
+void game::Routing::run(PlayerStorage& storage,Game& game, std::unordered_map<int, Player>& connectedPlayers)
 {
 	CROW_ROUTE(m_app, "/")([]() {
 		return "This is a Gartic Phone type of game";
@@ -40,7 +40,7 @@ void game::Routing::Run(PlayerStorage& storage,Game& game, std::unordered_map<in
 		return crow::json::wvalue{ words_json };
 		});
 	CROW_ROUTE(m_app, "/addplayertogame/<int>")([&storage, this](const crow::request& req, int playerId) {
-		return AddPlayerToGameRoute(storage, req, playerId);
+		return addPlayerToGameRoute(storage, req, playerId);
 
 		});
 
@@ -59,15 +59,15 @@ void game::Routing::Run(PlayerStorage& storage,Game& game, std::unordered_map<in
 		});
 
 	CROW_ROUTE(m_app, "/revealletters/<int>")([&storage, this](const crow::request& req, int playerId) {
-		return RevealLetters(storage, req, playerId);
+		return revealLetters(storage, req, playerId);
 		});
 
 	CROW_ROUTE(m_app, "/submitanswer/<int>")([&storage, this](const crow::request& req, int playerId) {
-		return SubmitAnswer(storage, req, playerId); 
+		return submitAnswer(storage, req, playerId); 
 		});// TODO
 
 	CROW_ROUTE(m_app, "/getword")([this, &storage]() {
-		return this->GetWordRoute(storage);
+		return this->getWordRoute(storage);
 		});
 	CROW_ROUTE(m_app, "/drawingTable")([&game,this]() {
 
@@ -90,14 +90,14 @@ void game::Routing::Run(PlayerStorage& storage,Game& game, std::unordered_map<in
 		return crow::json::wvalue{ drawingTable_json};
 		});
 	CROW_ROUTE(m_app, "/addline")([&game, this](const crow::request& req) {
-		return AddLineToTableRoute(game, req);
+		return addLineToTableRoute(game, req);
 		});
 	/*CROW_ROUTE(m_app, "/finalrankings")([&storage, this]() {
 		return GetFinalRankings(storage);
 		});*/
 	// de calculat aici si scorul total 
 	CROW_ROUTE(m_app, "/verifyUser")([&storage, this](const crow::request& req) {
-		return VerifyPlayer(storage,req);
+		return verifyPlayer(storage,req);
 		});
 	CROW_ROUTE(m_app, "/connectedPlayers")([&storage,&connectedPlayers, this](const crow::request& req) {
 		return connectPlayer(storage, connectedPlayers,req);
@@ -107,13 +107,13 @@ void game::Routing::Run(PlayerStorage& storage,Game& game, std::unordered_map<in
 		return disconnectPlayer(storage, connectedPlayers, req);
 		});
 	CROW_ROUTE(m_app, "/checkAlreadyConnected")([&storage, &connectedPlayers, this](const crow::request& req) {
-		return CheckAlreadyConnected(storage, connectedPlayers, req);
+		return checkAlreadyConnected(storage, connectedPlayers, req);
 		});
 	CROW_ROUTE(m_app,"/setLanguage")([&game, this](const crow::request& req) {
-		return SetLanguageRoute(game, req);
+		return setLanguageRoute(game, req);
 		});
 	CROW_ROUTE(m_app, "/setDifficulty")([&game, this](const crow::request& req) {
-		return SetDifficultyRoute(game, req);
+		return setDifficultyRoute(game, req);
 		});
 	CROW_ROUTE(m_app, "/generateLobbyCode")([&game, this](const crow::request& req) {
 		return generateLobbyCode(game, req);
@@ -133,7 +133,7 @@ void game::Routing::Run(PlayerStorage& storage,Game& game, std::unordered_map<in
 	m_app.port(18080).multithreaded().run();
 }
 
-crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const
+crow::response game::Routing::addPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const
 {
 	char* username_chr = req.url_params.get("username");
 	char* password_chr = req.url_params.get("password");
@@ -145,7 +145,7 @@ crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const
 		username = std::string(username_chr);
 		password = std::string(password_chr);
 		email = std::string(email_chr);
-		storage.AddPlayerToStorage(username,password,email);
+		storage.addPlayerToStorage(username,password,email);
 		return crow::response(200);
 	}
 	else {
@@ -161,14 +161,14 @@ crow::response game::Routing::AddPlayerToGameRoute(PlayerStorage& storage, const
 //	return crow::response{ "New round started." };
 //}
 
-crow::response game::Routing::RevealLetters(PlayerStorage& storage, const crow::request& req, int playerId)
+crow::response game::Routing::revealLetters(PlayerStorage& storage, const crow::request& req, int playerId)
 {
-	Word currentWord = storage.GetCurrentWord();
+	Word currentWord = storage.getCurrentWord();
 	std::string revealedLetters = currentWord.revealCharacter();
 	return crow::response(revealedLetters);
 }
 
-crow::response game::Routing::SubmitAnswer(PlayerStorage& storage, const crow::request& req, int playerId)
+crow::response game::Routing::submitAnswer(PlayerStorage& storage, const crow::request& req, int playerId)
 {
 	if (!req.body.empty()) 
 	{
@@ -185,7 +185,7 @@ crow::response game::Routing::SubmitAnswer(PlayerStorage& storage, const crow::r
 	
 }
 
-crow::response game::Routing::GetAnswers(PlayerStorage& storage, int drawingId)
+crow::response game::Routing::getAnswers(PlayerStorage& storage, int drawingId)
 {
 	std::ostringstream responseStream;
 	responseStream << "Drawing ID: " << drawingId << "\n";
@@ -201,7 +201,7 @@ crow::response game::Routing::GetAnswers(PlayerStorage& storage, int drawingId)
 	//app.port(8080).multithreaded().run();
 }
 
-std::string game::Routing::GenerateUniqueLobbyCode()
+std::string game::Routing::generateUniqueLobbyCode()
 {
 	std::srand(static_cast<unsigned>(std::time(0)));
 	std::ostringstream lobbyCodeStream;
@@ -212,14 +212,14 @@ std::string game::Routing::GenerateUniqueLobbyCode()
 	return lobbyCodeStream.str();
 }
 
-crow::response game::Routing::GetWordRoute(PlayerStorage& storage)
+crow::response game::Routing::getWordRoute(PlayerStorage& storage)
 {
-	Word currentWord = storage.GetCurrentWord();
+	Word currentWord = storage.getCurrentWord();
 	std::string word = currentWord.getWord();
 	return crow::response(word);
 }
 
-crow::response game::Routing::AddLineToTableRoute(Game& game, const crow::request& req)
+crow::response game::Routing::addLineToTableRoute(Game& game, const crow::request& req)
 {
 	char* startPointX_chr = req.url_params.get("startPointX");
 	char* startPointY_chr = req.url_params.get("startPointY");
@@ -243,7 +243,7 @@ crow::response game::Routing::AddLineToTableRoute(Game& game, const crow::reques
 		return crow::response(400);
 }
 
-crow::response game::Routing::VerifyPlayer(PlayerStorage& storage, const crow::request& req)
+crow::response game::Routing::verifyPlayer(PlayerStorage& storage, const crow::request& req)
 {
 	char* username = req.url_params.get("username");
 	char* password = req.url_params.get("password");
@@ -285,7 +285,7 @@ crow::response game::Routing::disconnectPlayer(PlayerStorage& storage, std::unor
 		return crow::response(401);
 }
 
-crow::response game::Routing::CheckAlreadyConnected(PlayerStorage& storage, std::unordered_map<int, Player>& connectedPlayers, const crow::request& req)
+crow::response game::Routing::checkAlreadyConnected(PlayerStorage& storage, std::unordered_map<int, Player>& connectedPlayers, const crow::request& req)
 {
 	char* username = req.url_params.get("username");
 	auto player = storage.checkUser(username);
@@ -300,7 +300,7 @@ crow::response game::Routing::CheckAlreadyConnected(PlayerStorage& storage, std:
 
 }
 
-crow::response game::Routing::SetLanguageRoute(Game& game, const crow::request& req)
+crow::response game::Routing::setLanguageRoute(Game& game, const crow::request& req)
 {
 	char* languageChr = req.url_params.get("language");
 	if (languageChr != nullptr)
@@ -314,7 +314,7 @@ crow::response game::Routing::SetLanguageRoute(Game& game, const crow::request& 
 
 }
 
-crow::response game::Routing::SetDifficultyRoute(Game& game, const crow::request& req)
+crow::response game::Routing::setDifficultyRoute(Game& game, const crow::request& req)
 {
 	char* difficultyChr = req.url_params.get("difficulty");
 	if ( difficultyChr!= nullptr)

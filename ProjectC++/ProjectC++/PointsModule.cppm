@@ -13,7 +13,6 @@ namespace game {
 		void calculateScore(bool wordGuessed, const uint32_t& responseTimes);
 		void applyGuessingPoints(uint32_t guessingTime);
 		void applyFailedGuessingPoints();
-		uint32_t PointsPerRound();//punctele adaugate fiecarui jocator per runda jucata
 		void setUserId(uint32_t userId);
 		uint32_t getUserId() const;
 		uint32_t getId()const;
