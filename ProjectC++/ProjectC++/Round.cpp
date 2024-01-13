@@ -22,19 +22,18 @@ game::Round::Round(const std::string& word, const std::string& drawer, std::time
 	m_startTime = startTime;
 }
 
-//void Round::AddGuess(const std::string& guess)
-//{
-//	m_guesses.emplace_back(guess);
-//}
 
 void Round::addGuess(const std::string& guess, const game::Player& guesser)
 {
 	m_guesses.emplace_back(guess);
-
 	if (guess == m_word && !m_guessed) {
-		Player player(guesser);
-		m_playerScores[player]++;
-		m_guessed = true;
+		//  try_emplace pentru a evita cautarea duplicatelor
+		auto result = m_playerScores.try_emplace(guesser, 0);
+
+		if (result.second) {
+			result.first->second++;
+			m_guessed = true;
+		}
 	}
 }
 

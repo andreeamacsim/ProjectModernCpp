@@ -10,18 +10,19 @@ void game::Routing::run(PlayerStorage& storage,Game& game, std::unordered_map<in
 		return "This is a Gartic Phone type of game";
 		});
 	CROW_ROUTE(m_app, "/players")([&game]() {
+		auto players = game.getPlayers();
 		std::vector<crow::json::wvalue> players_json;
 
-		auto players = game.getPlayers();
-		for (const auto& player : players)
-		{
-			players_json.push_back(crow::json::wvalue{
-				{"id", player.second.getId()}, 
-				{"username", player.second.getUsername()},
-				{"email", player.second.getEmail()}
-			});
+		std::transform(players.begin(), players.end(), std::back_inserter(players_json),
+			[](const auto& player) {
+				return crow::json::wvalue{
+					{"id", player.second.getId()},
+					{"username", player.second.getUsername()},
+					{"email", player.second.getEmail()}
+				};
+			}
+		);
 
-		}
 		return crow::json::wvalue{ players_json };
 		});
 	CROW_ROUTE(m_app, "/words")([&storage]() {
@@ -44,9 +45,6 @@ void game::Routing::run(PlayerStorage& storage,Game& game, std::unordered_map<in
 
 		});
 
-	/*CROW_ROUTE(m_app, "/startround")([&storage, this]() {
-		return StartNewRoundRoute(storage);
-		});*/
 
 	CROW_ROUTE(m_app, "/startsubround")([&game, this]() {
 		if (game.isReadyForNewSubround()) {
@@ -64,7 +62,7 @@ void game::Routing::run(PlayerStorage& storage,Game& game, std::unordered_map<in
 
 	CROW_ROUTE(m_app, "/submitanswer/<int>")([&storage, this](const crow::request& req, int playerId) {
 		return submitAnswer(storage, req, playerId); 
-		});// TODO
+		});
 
 	CROW_ROUTE(m_app, "/getword")([this, &storage]() {
 		return this->getWordRoute(storage);
@@ -92,10 +90,6 @@ void game::Routing::run(PlayerStorage& storage,Game& game, std::unordered_map<in
 	CROW_ROUTE(m_app, "/addline")([&game, this](const crow::request& req) {
 		return addLineToTableRoute(game, req);
 		});
-	/*CROW_ROUTE(m_app, "/finalrankings")([&storage, this]() {
-		return GetFinalRankings(storage);
-		});*/
-	// de calculat aici si scorul total 
 	CROW_ROUTE(m_app, "/verifyUser")([&storage, this](const crow::request& req) {
 		return verifyPlayer(storage,req);
 		});
@@ -154,12 +148,6 @@ crow::response game::Routing::addPlayerToGameRoute(PlayerStorage& storage, const
 	}
 }
 
-//crow::response game::Routing::StartNewRoundRoute(PlayerStorage& storage) const
-//{
-//	Game& game = storage.getGame();
-//	game.startNewRound();
-//	return crow::response{ "New round started." };
-//}
 
 crow::response game::Routing::revealLetters(PlayerStorage& storage, const crow::request& req, int playerId)
 {
@@ -276,13 +264,15 @@ crow::response game::Routing::disconnectPlayer(PlayerStorage& storage, std::unor
 {
 	char* username = req.url_params.get("username");
 	auto player = storage.checkUser(username);
-	if (player.getId() != -1)
-	{
-		connectedPlayers.erase(player.getId());
+	if (player.getId() != -1) {
+		std::erase_if(connectedPlayers, [&player](const auto& connectedPlayer) {
+			return connectedPlayer.first == player.getId();
+			});
 		return crow::response(200);
 	}
-	else
+	else {
 		return crow::response(401);
+	}
 }
 
 crow::response game::Routing::checkAlreadyConnected(PlayerStorage& storage, std::unordered_map<int, Player>& connectedPlayers, const crow::request& req)

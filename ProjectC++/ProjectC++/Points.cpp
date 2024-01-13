@@ -1,3 +1,6 @@
+#include <algorithm>
+#include <numeric>
+
 module PointsModule;
 import <vector>;
 using game::Points;
@@ -19,28 +22,27 @@ Points::Points()
 
 void Points::calculateScore(bool wordGuessed, const uint32_t& responseTimes)
 {
-	if (wordGuessed)
-	{
-		uint32_t totalResponseTime = 0;
-		uint32_t numCorrectResponses = 0;
-		
-			if (responseTimes > 0 && responseTimes <= 60)
-			{
-				totalResponseTime += responseTimes;
-				numCorrectResponses++;
-			}
-		if (numCorrectResponses > 0)
-		{
-			double averageResponseTime = static_cast<double>(totalResponseTime / numCorrectResponses);
+	if (wordGuessed) {
+		std::vector<uint32_t> correctResponseTimes;
+
+		if (responseTimes > 0 && responseTimes <= 60) {
+			correctResponseTimes.push_back(responseTimes);
+		}
+
+		if (!correctResponseTimes.empty()) {
+			auto totalResponseTime = std::accumulate(correctResponseTimes.begin(), correctResponseTimes.end(), 0);
+			auto numCorrectResponses = correctResponseTimes.size();
+
+			//  move semantics pentru eficienta
+			double averageResponseTime = static_cast<double>(std::move(totalResponseTime)) / numCorrectResponses;
+
 			m_points += static_cast<uint32_t>(((60 - averageResponseTime) * 100) / 60);
 		}
-		else
-		{
+		else {
 			m_points = -100;
 		}
 	}
-	else
-	{
+	else {
 		m_points = -100;
 	}
 }

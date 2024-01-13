@@ -49,7 +49,6 @@ std::vector<Word> game::PlayerStorage::readWordsFromFile(Language language, Diff
 	while (!file.eof())
 	{
 		file >> word;
-		//Word w(-1, word, difficuly, language);
 		words.emplace_back(-1, word, difficuly, language);
 	}
 	return words;
