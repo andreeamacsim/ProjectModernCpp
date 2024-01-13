@@ -26,8 +26,9 @@ namespace game {
 		std::string getUsername()const;
 		std::string getPassword()const;
 		int16_t getId() const;
+		bool getGuessedWord();
 
-
+		void setGuessedWord(bool guessedWord);
 		void setId(int16_t id);
 		void setEmail(std::string email);
 		void setUsername(std::string username);
@@ -44,6 +45,7 @@ namespace game {
 		std::string m_email;
 		std::string m_username;
 		std::string m_password;
+		bool m_guessedWord;
 		
 
 	};

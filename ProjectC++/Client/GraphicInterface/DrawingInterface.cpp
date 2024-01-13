@@ -20,7 +20,7 @@ DrawingInterface::DrawingInterface(std::string username,QWidget *parent)
 	ui.setupUi(this);
 	m_drawingArea = new DrawingClass;
 	setWindowTitle("Gartic");
-	m_drawingBox= QRect(50, 50, 600, 400);
+	m_drawingBox= QRect(50, 50, 700, 500);
 	connect(ui.drawing, &QPushButton::clicked, this, &DrawingInterface::setDrawer);
 	m_drawer = false;
 	connect(m_timerForDrawing, &QTimer::timeout,this,&DrawingInterface::setDrawingLines);
@@ -64,11 +64,11 @@ void DrawingInterface::setDrawingLines()
 
 void DrawingInterface::setDrawer()
 {
-	//cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/getCurrentDrawer" });
-	//auto usernameJSSON = crow::json::load(response.text);
-	//auto username = usernameJSSON["username"].s();
-	//if (username == m_username)
-	//	m_username = username;
+	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/getCurrentDrawer" });
+	auto usernameJSSON = crow::json::load(response.text);
+	auto username = usernameJSSON["username"].s();
+	if (username == m_username)
+		m_drawer = true;
 }
 
 void DrawingInterface::mousePressEvent(QMouseEvent* event)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>498</height>
+    <width>1056</width>
+    <height>656</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>900</x>
       <y>50</y>
       <width>121</width>
       <height>201</height>
@@ -299,7 +299,7 @@ border: 2px solid black;</string>
    <widget class="QCheckBox" name="eraser">
     <property name="geometry">
      <rect>
-      <x>790</x>
+      <x>930</x>
       <y>250</y>
       <width>51</width>
       <height>31</height>
@@ -331,7 +331,7 @@ border: 2px solid black;</string>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>730</x>
+      <x>870</x>
       <y>280</y>
       <width>151</width>
       <height>46</height>
@@ -363,7 +363,7 @@ border: 2px solid black;</string>
    <widget class="QRadioButton" name="drawing">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>910</x>
       <y>350</y>
       <width>89</width>
       <height>20</height>
@@ -379,7 +379,7 @@ border: 2px solid black;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>1056</width>
      <height>22</height>
     </rect>
    </property>

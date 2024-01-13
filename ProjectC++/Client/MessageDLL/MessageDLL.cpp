@@ -4,12 +4,12 @@
 
 
 
-MessageDLL::GameResult MessageDLL::CheckAnswer(const char* answer, const std::string& currentWord)
+MessageDLL::GameResult MessageDLL::CheckAnswer(int response)
 {
     GameResult result = TryAgain;
 
 
-    if (strcmp(answer, currentWord.c_str()) == 0) {
+    if (response==200) {
         result = Congratulations;
     }
     return result;

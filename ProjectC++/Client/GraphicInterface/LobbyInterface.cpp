@@ -4,10 +4,13 @@
 #include "DrawingInterface.h"
 #include "Chat.h"
 #include <ctime>
-
+#include <qfont.h>
+#include <qtimer.h>
 LobbyInterface::LobbyInterface(std::string username,bool owner,std::string lobbyCode,QWidget *parent)
 	: QMainWindow(parent)
 {
+	m_connectedPlayersTimer = new QTimer(this);
+	m_connectedPlayersTimer->setInterval(5000);
 	m_username = username;
 	m_Owner = owner;
 	m_lobbyCode = lobbyCode;
@@ -21,11 +24,16 @@ LobbyInterface::LobbyInterface(std::string username,bool owner,std::string lobby
 	connect(ui.Hard, &QPushButton::clicked, this, &LobbyInterface::setDifficulty);
 	connect(ui.Romanian, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
 	connect(ui.English, &QPushButton::clicked, this, &LobbyInterface::setLanguage);
+	connect(m_connectedPlayersTimer, &QTimer::timeout, this, &LobbyInterface::showConnectedPlayers);
 	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/joinGameLobby" }, cpr::Parameters{
 	{"username",m_username}
 		});
 	ui.code->setText(QString::fromUtf8(m_lobbyCode));
-
+	QFont font = ui.textEdit->font();
+	font.setPointSize(12);
+	ui.textEdit->setFont(font);
+	ui.textEdit->setReadOnly(true);
+	m_connectedPlayersTimer->start();
 }
 void LobbyInterface::setLanguage()
 {
@@ -76,6 +84,21 @@ void LobbyInterface::showButtons()
 		ui.generateCode->setEnabled(m_Owner);
 }
 
+void LobbyInterface::showConnectedPlayers()
+{
+	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/players" });
+	ui.textEdit->setText(QString::fromUtf8(m_username));
+	auto players = crow::json::load(response.text);
+	for (auto player : players)
+	{
+
+		std::string username = player["username"].s();
+		QString QUsername{ QString::fromUtf8(username) };
+		if(username!=m_username)
+			ui.textEdit->append(QUsername);
+	}
+}
+
 void LobbyInterface::goToDrawing()
 {
 	DrawingInterface* drawingInterface = new DrawingInterface(m_username);
@@ -83,6 +106,7 @@ void LobbyInterface::goToDrawing()
 	this->close();
 	drawingInterface->show();
 	chatInterface->show();
+
 }
 void LobbyInterface::generateCode()
 {

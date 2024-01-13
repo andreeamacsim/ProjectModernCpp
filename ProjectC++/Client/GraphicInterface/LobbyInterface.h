@@ -12,6 +12,7 @@ public:
 	~LobbyInterface();
 	void setOwner(bool owner);
 	void showButtons();
+	void showConnectedPlayers();
 public slots:
 	void generateCode();
 	void setLanguage();
@@ -19,6 +20,7 @@ public slots:
 	void goToProfile();
 	void goToDrawing();
 private:
+	QTimer* m_connectedPlayersTimer;
 	std::string m_lobbyCode;
 	std::string m_username;
 	bool m_Owner;

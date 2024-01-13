@@ -30,11 +30,21 @@ int16_t Player::getId() const
 	return m_id;
 }
 
+bool game::Player::getGuessedWord()
+{
+	return m_guessedWord;
+}
+
 std::string Player::getPassword() const
 {
 	return this->m_password;
 }
 
+
+void game::Player::setGuessedWord(bool guessedWord)
+{
+	m_guessedWord = guessedWord;
+}
 
 void Player::setId(int16_t id)
 {

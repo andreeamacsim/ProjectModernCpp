@@ -26,9 +26,12 @@ void Chat::checkAnswerAndShowMessage()
     QByteArray byteArray = userAnswer.toUtf8();
     const char* answer = byteArray.constData();
 
-    cpr::Response wordResponse = cpr::Get(cpr::Url{ "http://localhost:18080/getword" });
+    cpr::Response wordResponse = cpr::Get(cpr::Url{ "http://localhost:18080/checkIfWordIsCorrect" }, cpr::Parameters{
+        {"username",m_username},
+        {"word",answer}
+        });
 
-    int result = MessageDLL::CheckAnswer(answer, wordResponse.text);
+    int result = MessageDLL::CheckAnswer(wordResponse.status_code);
 
     if (result == MessageDLL::Congratulations) {
         QMessageBox::information(this, "Felicitari!", "Cuvantul este corect!");

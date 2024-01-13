@@ -29,7 +29,9 @@ namespace game
         void addPlayerToGame(Player p);
         void disconnetPlayer(Player p);
         std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>>& getDrawingTable();
+        void setCurrentWord(Word word);
 
+        Word getCurrentWord() const;
         uint32_t getGameCode();
         std::unordered_map<int, Player>& getPlayers() ;
         std::vector<Round>& getRounds() ;
@@ -41,14 +43,15 @@ namespace game
         bool isReadyForNewSubround() const;
         void startSubround();
         void RunGame();
-        bool checkIfWordGuessed() const;
+        bool checkIfWordGuessed(bool isCorrect) const;
         void playerSentCorrectAnswer(const Player& player);
         std::time_t getResponseTime() const;
         void finishRound();
-     
+        void setIfPlayerGuessed(std::string username, bool isCorrect);
 
 
     private:
+        Word m_currentWord;
         std::unordered_map<int,Player> m_players;
         std::vector<Round> m_rounds;
         std::vector<Word> m_wordList;
@@ -60,6 +63,7 @@ namespace game
         uint32_t m_gameCode;
         std::unordered_map<int, std::time_t> m_correctAnswerTimes;// timpul pentru fiecare player
         std::time_t m_currentRoundStartTime;
+        std::unordered_map<std::string, bool>m_guessedWordForPlayer;
     
     };
 }

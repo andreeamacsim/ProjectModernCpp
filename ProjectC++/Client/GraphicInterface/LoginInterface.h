@@ -16,7 +16,6 @@ public:
 	LoginInterface(QWidget *parent = nullptr);
 
 	~LoginInterface();
-
 private slots:
 	void on_pushButton_4_clicked();
 	void logIn();

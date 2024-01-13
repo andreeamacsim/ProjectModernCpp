@@ -83,6 +83,16 @@ std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float
 	return m_drawingTable;
 }
 
+void game::Game::setCurrentWord(Word word)
+{
+	this->m_currentWord = word;
+}
+
+
+Word game::Game::getCurrentWord() const
+{
+	return this->m_currentWord;
+}
 
 uint32_t game::Game::getGameCode()
 {
@@ -165,7 +175,7 @@ void game::Game::startSubround()
 		m_currentDrawer = subroundDrawer;
 		++m_currentRound;
 
-		bool wordGuessed = checkIfWordGuessed();
+		bool wordGuessed; /*= checkIfWordGuessed();*/
 		std::time_t responseTimes = getResponseTime();
 
 		std::for_each(m_players.begin(), m_players.end(), [&](auto& playerPair) {
@@ -205,10 +215,12 @@ void game::Game::RunGame()
 	}
 }
 
-bool Game::checkIfWordGuessed() const
+bool Game::checkIfWordGuessed(bool isCorrect) const
 {
-	return false;
-	// de luat respunsul playerului din baza de date !!
+	if (isCorrect)
+		return true;
+	else
+		return false;
 }
 
 
@@ -249,6 +261,11 @@ bool Game::checkIfWordGuessed() const
 			 }
 		 }
 	 }
+ }
+
+ void game::Game::setIfPlayerGuessed(std::string username, bool isCorrect)
+ {
+	 m_guessedWordForPlayer[username] = isCorrect;
  }
 
 

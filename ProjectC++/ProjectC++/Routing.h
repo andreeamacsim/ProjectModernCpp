@@ -22,12 +22,10 @@ namespace game
 		crow::response revealLetters(PlayerStorage& storage, const crow::request& req, int playerId);
 		crow::response submitAnswer(PlayerStorage& storage, const crow::request& req, int playerId);
 		static crow::response getAnswers(PlayerStorage& storage, int drawingId);
-		static std::string generateUniqueLobbyCode();
-		crow::response getWordRoute(PlayerStorage& storage);
 		crow::response addLineToTableRoute(Game& game, const crow::request& req);
 		crow::response verifyPlayer(PlayerStorage& storage, const crow::request& req);
 		crow::response connectPlayer(PlayerStorage& storage, std::unordered_map<int, Player>& connectedPlayers, const crow::request& req);
-		crow::response disconnectPlayer(PlayerStorage& storage, std::unordered_map<int, Player>& connectedPlayers, const crow::request& req);
+		crow::response disconnectPlayer(PlayerStorage& storage, std::unordered_map<int, Player>& connectedPlayers,Game& game, const crow::request& req);
 		crow::response checkAlreadyConnected(PlayerStorage& storage, std::unordered_map<int, Player>& connectedPlayers, const crow::request& req);
 		crow::response setLanguageRoute(Game& game, const crow::request& req);
 		crow::response setDifficultyRoute(Game& game, const crow::request& req);
@@ -35,6 +33,9 @@ namespace game
 		crow::json::wvalue getLobbyCode(Game& game, const crow::request& req);
 		crow::response addPlayerToLobby(PlayerStorage& storage, Game& game, const crow::request& req);
 		crow::json::wvalue getCurrentDrawer(Game& game, const crow::request& req);
+		crow::response checkIfWordIsCorrect(Game& game,PlayerStorage& storage, const crow::request& req);
+		crow::json::wvalue getConnectedPlayers(Game& game, const crow::request& req);
+		crow::json::wvalue generateWordforSubRound(Game& game, PlayerStorage& storage, const crow::request& req);
 	private:
 		crow::SimpleApp m_app;
 	};

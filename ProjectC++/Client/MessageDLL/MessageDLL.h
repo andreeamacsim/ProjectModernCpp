@@ -21,7 +21,7 @@ public:
 
     };
 
-    static GameResult CheckAnswer(const char* answer, const std::string& currentWord);
+    static GameResult CheckAnswer(int response);
     static LoginStatus GetMessageStatus(bool find, bool alreadyConnected, bool incorrectCredentials);
     static std::string GetMessageText(LoginStatus status);
     

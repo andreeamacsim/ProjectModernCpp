@@ -82,3 +82,4 @@ LoginInterface::~LoginInterface()
     cpr::Response resp = cpr::Get(cpr::Url{ "http://localhost:18080/disconnectPlayer" }, cpr::Parameters{
         {"username",username} });
 }
+
