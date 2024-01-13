@@ -17,20 +17,18 @@ Points::Points()
    m_points = 0;
 }
 
-void Points::calculateScore(bool wordGuessed, const std::vector<uint32_t>& responseTimes)
+void Points::calculateScore(bool wordGuessed, const uint32_t& responseTimes)
 {
 	if (wordGuessed)
 	{
 		uint32_t totalResponseTime = 0;
 		uint32_t numCorrectResponses = 0;
-		for (const auto& time : responseTimes)
-		{
-			if (time > 0 && time <= 60)
+		
+			if (responseTimes > 0 && responseTimes <= 60)
 			{
-				totalResponseTime += time;
+				totalResponseTime += responseTimes;
 				numCorrectResponses++;
 			}
-		}
 		if (numCorrectResponses > 0)
 		{
 			double averageResponseTime = static_cast<double>(totalResponseTime / numCorrectResponses);

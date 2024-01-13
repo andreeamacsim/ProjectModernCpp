@@ -8,6 +8,7 @@ import <unordered_map>;
 import "Enums.h";
 
 export module GameModule;
+import PointsModule;
 namespace game 
 {
     export class Game
@@ -40,6 +41,11 @@ namespace game
         bool isReadyForNewSubround() const;
         void startSubround();
         void RunGame();
+        bool checkIfWordGuessed() const;
+        void playerSentCorrectAnswer(const Player& player);
+        std::time_t getResponseTime() const;
+     
+
 
     private:
         std::unordered_map<int,Player> m_players;
@@ -51,5 +57,8 @@ namespace game
         Player m_currentDrawer;
         std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float>>, std::string, uint8_t>> m_drawingTable;
         uint32_t m_gameCode;
+        std::unordered_map<int, std::time_t> m_correctAnswerTimes;// timpul pentru fiecare player
+        std::time_t m_currentRoundStartTime;
+    
     };
 }

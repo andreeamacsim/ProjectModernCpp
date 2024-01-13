@@ -1,6 +1,7 @@
 module player;
 import <regex>;
 import profile;
+import PointsModule;
 
 using namespace game;
 
@@ -55,6 +56,7 @@ void Player::setPassword(std::string password)
 	this->m_password = password;
 }
 
+
 void Player::checkPassword(const std::string& password)
 {
 	if (password == "")
@@ -97,6 +99,11 @@ void Player::checkUsername(const std::string& username)
 		throw std::exception("Invalid username");
 	}
 	
+}
+
+Points& Player::getPointsObject()
+{
+	return m_points;
 }
 
 

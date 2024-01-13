@@ -156,6 +156,9 @@ bool game::Game::isReadyForNewSubround() const
 void game::Game::startSubround()
 {
 	if (m_currentRound < m_rounds.size()) {
+
+		m_currentRoundStartTime = std::time(nullptr);
+		m_correctAnswerTimes.clear();
 		std::string newWord = m_wordList[std::rand() % m_wordList.size()].getWord(); 
 
 		Player subroundDrawer = m_players[m_currentRound + 1]; 
@@ -166,6 +169,21 @@ void game::Game::startSubround()
 
 		m_currentDrawer = subroundDrawer;
 		++m_currentRound;
+
+		bool wordGuessed = checkIfWordGuessed(); 
+		std::time_t responseTimes = getResponseTime(); 
+
+		for (auto& playerPair : m_players) {
+			Player& player = playerPair.second;
+			Points& playerPoints = player.getPointsObject();
+
+			playerPoints.calculateScore(wordGuessed, responseTimes);
+			if (responseTimes == 0)
+				playerPoints.applyFailedGuessingPoints();
+			else
+			playerPoints.applyGuessingPoints(responseTimes);
+			
+		}
 	}
 }
 
@@ -192,6 +210,38 @@ void game::Game::RunGame()
 		}
 	}
 }
+
+bool Game::checkIfWordGuessed() const
+{
+	return false;
+	// de luat respunsul playerului din baza de date !!
+}
+
+
+
+ void Game::playerSentCorrectAnswer(const Player& player)
+ {
+	 m_correctAnswerTimes[player.getId()] = std::time(nullptr);
+ }
+
+ std::time_t Game::getResponseTime() const
+ {
+	 if (m_correctAnswerTimes.empty()) {
+		 return 0;  
+	 }
+	 else {
+	
+		 auto it = std::max_element(m_correctAnswerTimes.begin(), m_correctAnswerTimes.end(),
+			 [](const auto& lhs, const auto& rhs) {
+				 return lhs.second < rhs.second;
+			 });
+
+		 return it->second - m_currentRoundStartTime;
+	 }
+ }
+
+
+
 
 
 

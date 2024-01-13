@@ -2,6 +2,7 @@ export module player;
 
 import<string>;
 import profile;
+import PointsModule;
 using game::Profile;
 namespace game {
 
@@ -34,13 +35,16 @@ namespace game {
 		void checkPassword(const std::string& password);
 		void checkEmail(const std::string& email);
 		void checkUsername(const std::string& username);
+		Points& getPointsObject();
 		
 
 	private:
 		int16_t m_id;
+		Points m_points;
 		std::string m_email;
 		std::string m_username;
 		std::string m_password;
+		
 
 	};
 }
