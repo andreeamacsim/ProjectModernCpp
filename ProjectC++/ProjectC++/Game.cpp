@@ -234,6 +234,23 @@ bool Game::checkIfWordGuessed() const
 	 }
  }
 
+ void game::Game::finishRound()
+ {
+	 if (m_currentRound < m_rounds.size()) {
+		 const Round& currentSubround = m_rounds[m_currentRound];
+
+		 std::time_t currentTime = std::time(nullptr);
+		 std::time_t subroundStartTime = currentSubround.getStartTime();
+
+		 if (currentTime - subroundStartTime >= 60) {
+			 for (const auto& pair : m_players)
+			 {
+				 //de adaugat puncetele pentru runda terminata
+			 }
+		 }
+	 }
+ }
+
 
 
 

@@ -44,6 +44,7 @@ namespace game
         bool checkIfWordGuessed() const;
         void playerSentCorrectAnswer(const Player& player);
         std::time_t getResponseTime() const;
+        void finishRound();
      
 
 
