@@ -1,7 +1,9 @@
 #include <ctime>;
+#include <thread> 
 #include  <iostream>;
 #include<algorithm>;
 #include <map>
+#include <ranges>
 
 module  GameModule;
 import <vector>;
@@ -122,33 +124,25 @@ uint8_t game::Game::getLanguage() const
 	return static_cast<int>(m_language);
 }
 
-bool game::Game::isReadyForNewSubround() const
+bool game::Game::isReadyForNewSubround() const //utilizare ranges + lambda functions 
 {
 	if (m_currentRound < m_rounds.size()) {
 		const Round& currentSubround = m_rounds[m_currentRound];
-
 		std::time_t currentTime = std::time(nullptr);
-		std::time_t subroundStartTime = currentSubround.getStartTime(); 
+		std::time_t subroundStartTime = currentSubround.getStartTime();
 
-		if (currentTime - subroundStartTime >= 60) {
-			if (m_currentRound > 0) {
+		auto equalScores = [&currentSubround](const auto& scores) {
+			return std::ranges::equal(currentSubround.getPlayerScores(), scores);
+			};
 
-				const Round& previousSubround = m_rounds[m_currentRound - 1];
+		auto readyForNewSubround = [&]() {
+			return currentTime - subroundStartTime >= 60 &&
+				(m_currentRound == 0 || !equalScores(m_rounds[m_currentRound - 1].getPlayerScores()));
+			};
 
-				const std::map<Player, int>& currentScores = currentSubround.getPlayerScores();
-				const std::map<Player, int>& previousScores = previousSubround.getPlayerScores();
-
-				if (currentScores != previousScores) {
-					return true;
-				}
-			}
-			else {
-				return true;
-			}
-
-			}
-		
+		return readyForNewSubround();
 	}
+
 	return false;
 }
 
@@ -159,21 +153,22 @@ void game::Game::startSubround()
 
 		m_currentRoundStartTime = std::time(nullptr);
 		m_correctAnswerTimes.clear();
-		std::string newWord = m_wordList[std::rand() % m_wordList.size()].getWord(); 
+		std::string newWord = m_wordList[std::rand() % m_wordList.size()].getWord();
 
-		Player subroundDrawer = m_players[m_currentRound + 1]; 
+		Player subroundDrawer = m_players[m_currentRound + 1];
 
-		Round newSubround(newWord, subroundDrawer.getUsername(), std::time(nullptr));
+		// utilizarea smart pointers pentru  gestionare memorie
+		auto newSubround = std::make_unique<Round>(newWord, subroundDrawer.getUsername(), std::time(nullptr));
 
-			m_rounds.push_back(newSubround);
+		m_rounds.push_back(std::move(*newSubround));
 
 		m_currentDrawer = subroundDrawer;
 		++m_currentRound;
 
-		bool wordGuessed = checkIfWordGuessed(); 
-		std::time_t responseTimes = getResponseTime(); 
+		bool wordGuessed = checkIfWordGuessed();
+		std::time_t responseTimes = getResponseTime();
 
-		for (auto& playerPair : m_players) {
+		std::for_each(m_players.begin(), m_players.end(), [&](auto& playerPair) {
 			Player& player = playerPair.second;
 			Points& playerPoints = player.getPointsObject();
 
@@ -181,9 +176,8 @@ void game::Game::startSubround()
 			if (responseTimes == 0)
 				playerPoints.applyFailedGuessingPoints();
 			else
-			playerPoints.applyGuessingPoints(responseTimes);
-			
-		}
+				playerPoints.applyGuessingPoints(responseTimes);
+			});
 	}
 }
 
