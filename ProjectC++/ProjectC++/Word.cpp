@@ -3,7 +3,6 @@ module word;
 import <string>;
 import <vector>;
 import <cstdlib>;
-import<fstream>;
 
 using game::Word;
 game::Word::Word()

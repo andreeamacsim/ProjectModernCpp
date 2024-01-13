@@ -373,6 +373,36 @@ border: 2px solid black;</string>
      <string>drawing</string>
     </property>
    </widget>
+   <widget class="QLabel" name="word">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>20</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Word:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="generatedWord">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>20</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(32, 255, 248);
+background-color: rgb(29, 251, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

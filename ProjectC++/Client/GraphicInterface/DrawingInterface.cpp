@@ -12,6 +12,8 @@
 DrawingInterface::DrawingInterface(std::string username,QWidget *parent)
 	: QMainWindow(parent)
 { 
+	m_timerforWord = new QTimer(this);
+	m_timerforWord->setInterval(30000);
 	m_timerForDrawing = new QTimer(this);
 	m_timerForDrawing->setInterval(2000);
 	m_timerForDrawer = new QTimer(this);
@@ -21,14 +23,13 @@ DrawingInterface::DrawingInterface(std::string username,QWidget *parent)
 	m_drawingArea = new DrawingClass;
 	setWindowTitle("Gartic");
 	m_drawingBox= QRect(50, 50, 700, 500);
-	connect(ui.drawing, &QPushButton::clicked, this, &DrawingInterface::setDrawer);
 	m_drawer = false;
 	connect(m_timerForDrawing, &QTimer::timeout,this,&DrawingInterface::setDrawingLines);
 	m_timerForDrawing->start();
 	connect(m_timerForDrawer, &QTimer::timeout, this, &DrawingInterface::setDrawer);
 	m_timerForDrawer->start();
-
-
+	ui.generatedWord->setText("          ");
+	m_timerForDrawer->start();
 }
 
 DrawingInterface::~DrawingInterface()
@@ -38,7 +39,6 @@ DrawingInterface::~DrawingInterface()
 
 void DrawingInterface::setDrawingLines()
 {
-
 	if (m_drawer == false)
 	{
 		cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/drawingTable" });
@@ -59,6 +59,14 @@ void DrawingInterface::setDrawingLines()
 			}
 		}
 	}
+	else
+	{
+		cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/getWord" });
+		auto wordJSON = crow::json::load(response.text);
+		std::string word = wordJSON["word"].s();
+		ui.generatedWord->setText(QString::fromUtf8(word));
+
+	}
 }
 
 
@@ -69,6 +77,14 @@ void DrawingInterface::setDrawer()
 	auto username = usernameJSSON["username"].s();
 	if (username == m_username)
 		m_drawer = true;
+}
+
+void DrawingInterface::revealCharacters()
+{
+	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/revealCharacters" });
+	auto wordJSON = crow::json::load(response.text);
+	std::string word = wordJSON["word"].s();
+	ui.generatedWord->setText(QString::fromUtf8(word));
 }
 
 void DrawingInterface::mousePressEvent(QMouseEvent* event)

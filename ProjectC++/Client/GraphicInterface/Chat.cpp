@@ -30,8 +30,8 @@ void Chat::checkAnswerAndShowMessage()
         {"username",m_username},
         {"word",answer}
         });
-
-    int result = MessageDLL::CheckAnswer(wordResponse.status_code);
+    int code = wordResponse.status_code;
+    int result = MessageDLL::CheckAnswer(code);
 
     if (result == MessageDLL::Congratulations) {
         QMessageBox::information(this, "Felicitari!", "Cuvantul este corect!");

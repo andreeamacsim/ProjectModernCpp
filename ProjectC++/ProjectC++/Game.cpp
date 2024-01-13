@@ -268,6 +268,36 @@ bool Game::checkIfWordGuessed(bool isCorrect) const
 	 m_guessedWordForPlayer[username] = isCorrect;
  }
 
+ std::string game::Game::revealCharacters()
+ {
+	 srand(static_cast<unsigned>(time(nullptr)));
+
+	 size_t maximumLetters = m_currentWord.getWord().length() / 2;
+	 size_t letterCount = 0;
+
+	 std::vector<bool> revealed(m_currentWord.getWord().length(), false);
+	 std::string revealedWord;
+	 revealedWord.resize(m_currentWord.getWord().length());
+
+	 for (size_t i = 0; i < revealedWord.length(); i++) {
+		 if (!revealed[i]) {
+			 revealedWord[i] = '_';
+		 }
+	 }
+
+	 while (letterCount < maximumLetters) {
+		 size_t randomPosition = rand() % m_currentWord.getWord().length();
+		 if (!revealed[randomPosition]) {
+			 revealedWord[randomPosition] = m_currentWord.getWord()[randomPosition];
+			 revealed[randomPosition] = true;
+			 letterCount++;
+		 }
+	 }
+
+	 return revealedWord;
+ }
+
+
 
 
 

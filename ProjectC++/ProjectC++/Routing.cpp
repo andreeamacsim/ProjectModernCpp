@@ -107,6 +107,12 @@ void game::Routing::run(PlayerStorage& storage,Game& game, std::unordered_map<in
 	CROW_ROUTE(m_app, "/players")([&game, this](const crow::request& req) {
 		return getConnectedPlayers(game, req);
 		});
+	CROW_ROUTE(m_app, "/getWord")([&game, this](const crow::request& req) {
+		return getWordforSubRound(game, req);
+		});
+	CROW_ROUTE(m_app, "/revealCharacters")([&game, this](const crow::request& req) {
+		return getWordForGuessers(game, req);
+		});
 
 
 
@@ -336,9 +342,10 @@ crow::response game::Routing::checkIfWordIsCorrect(Game& game,PlayerStorage& sto
 	char* wordChr = req.url_params.get("word");
 	if (username != nullptr)
 	{
-		if(wordChr==game.getCurrentWord().getWord())
-		game.getPlayers()[player.getId()].setGuessedWord(true);
-		return crow::response(200);
+		if (wordChr == game.getCurrentWord().getWord()) {
+			game.getPlayers()[player.getId()].setGuessedWord(true);
+			return crow::response(200);
+		}
 	}
 	return crow::response(405);
 }
@@ -356,15 +363,16 @@ crow::json::wvalue game::Routing::getConnectedPlayers(Game& game, const crow::re
 	return crow::json::wvalue{playersJSON};
 }
 
-crow::json::wvalue game::Routing::generateWordforSubRound(Game& game, PlayerStorage& storage, const crow::request& req)
+crow::json::wvalue game::Routing::getWordforSubRound(Game& game, const crow::request& req)
 {
-	Language language = static_cast<Language>(game.getLanguage());
-	Difficulty difficulty = static_cast<Difficulty>(game.getDifficultyLevel());
-	auto word = storage.getRandomWord(language,difficulty);
-	auto generatedWord = word[0];
-	game.setCurrentWord(generatedWord);
-
 	return crow::json::wvalue{
-		{"word",generatedWord.getWord()}
+		{"word",game.getCurrentWord().getWord()}
+	};
+}
+
+crow::json::wvalue game::Routing::getWordForGuessers(Game& game, const crow::request& req)
+{
+	return crow::json::wvalue{
+		{"word",game.revealCharacters()}
 	};
 }

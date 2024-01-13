@@ -7,8 +7,6 @@
 MessageDLL::GameResult MessageDLL::CheckAnswer(int response)
 {
     GameResult result = TryAgain;
-
-
     if (response==200) {
         result = Congratulations;
     }

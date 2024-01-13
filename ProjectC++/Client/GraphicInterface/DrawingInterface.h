@@ -16,6 +16,7 @@ public:
 	~DrawingInterface();
 	void setDrawingLines();
 	void setDrawer();
+	void revealCharacters();
 protected:
 	void mousePressEvent(QMouseEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;
@@ -26,6 +27,7 @@ protected:
 private slots:
 	void on_widthSlider_valueChanged();
 private:
+	QTimer* m_timerforWord;
 	QTimer* m_timerForDrawing;
 	QTimer* m_timerForDrawer;
 	bool m_drawer;

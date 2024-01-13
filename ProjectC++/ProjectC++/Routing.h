@@ -35,7 +35,8 @@ namespace game
 		crow::json::wvalue getCurrentDrawer(Game& game, const crow::request& req);
 		crow::response checkIfWordIsCorrect(Game& game,PlayerStorage& storage, const crow::request& req);
 		crow::json::wvalue getConnectedPlayers(Game& game, const crow::request& req);
-		crow::json::wvalue generateWordforSubRound(Game& game, PlayerStorage& storage, const crow::request& req);
+		crow::json::wvalue getWordforSubRound(Game& game, const crow::request& req);
+		crow::json::wvalue getWordForGuessers(Game& game, const crow::request& req);
 	private:
 		crow::SimpleApp m_app;
 	};

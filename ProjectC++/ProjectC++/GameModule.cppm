@@ -49,7 +49,7 @@ namespace game
         void finishRound();
         void setIfPlayerGuessed(std::string username, bool isCorrect);
 
-
+        std::string revealCharacters();
     private:
         Word m_currentWord;
         std::unordered_map<int,Player> m_players;
