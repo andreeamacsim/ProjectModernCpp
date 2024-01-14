@@ -28,23 +28,17 @@ MessageDLL::LoginStatus MessageDLL::GetMessageStatus(bool find, bool alreadyConn
      return status;
 }
 
-std::string MessageDLL::GetMessageText(LoginStatus status)
+const char* MessageDLL::GetMessageText(LoginStatus status)
 {
-    std::string message;
-
     switch (status) {
     case MessageDLL::LoginStatus::Connected:
-        message = "Username and password are correct";
-        break;
+        return "Username and password are correct";
     case MessageDLL::LoginStatus::AlreadyConnected:
-        message = "User is already connected";
-        break;
+        return "User is already connected";
     case MessageDLL::LoginStatus::IncorrectCredentials:
-        message = "Username and password are incorrect";
-        break;
+        return "Username and password are incorrect";
     }
-
-    return message;
+    return "";
 }
 
 

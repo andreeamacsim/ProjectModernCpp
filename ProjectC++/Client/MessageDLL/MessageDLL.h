@@ -23,6 +23,6 @@ public:
 
     static GameResult CheckAnswer(int response);
     static LoginStatus GetMessageStatus(bool find, bool alreadyConnected, bool incorrectCredentials);
-    static std::string GetMessageText(LoginStatus status);
+    static const char* GetMessageText(LoginStatus status);
     
 };

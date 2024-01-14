@@ -42,9 +42,9 @@ void LoginInterface::logIn()
         if (response1.status_code == 405 && found == true)
         {
             loginResult = MessageDLL::GetMessageStatus(found, false, false);
-            //auto  mess = MessageDLL::GetMessageText(loginResult);
-            //QString message = QString::fromStdString(mess);
-            QMessageBox::information(this, "Login","da");
+            auto mess = MessageDLL::GetMessageText(loginResult);
+            QString message = QString::fromUtf8(mess);
+            QMessageBox::information(this, "Login", message);
             PickJoinLobby* pickJoinInterface = new PickJoinLobby(username, this);
             pickJoinInterface->show();
             this->hide();
@@ -55,9 +55,9 @@ void LoginInterface::logIn()
         else if (response1.status_code == 200 && found == true)
         {
             loginResult = MessageDLL::GetMessageStatus(found, true, false);
-            //auto mess = MessageDLL::GetMessageText(loginResult);
-           // QString message = QString::fromStdString(mess);
-            QMessageBox msgBox(QMessageBox::Warning, "Login", "ac", QMessageBox::Ok, this);
+            auto mess = MessageDLL::GetMessageText(loginResult);
+            QString message = QString::fromUtf8(mess);
+            QMessageBox msgBox(QMessageBox::Warning, "Login", message, QMessageBox::Ok, this);
             msgBox.setStyleSheet("QPushButton { color: white; }");
             msgBox.exec();
         }
@@ -65,10 +65,9 @@ void LoginInterface::logIn()
     else
     {
         loginResult = MessageDLL::GetMessageStatus(found, false, true);
-        //auto mess = MessageDLL::GetMessageText(loginResult);
-       // QString message = QString::fromStdString(mess);
-
-        QMessageBox msgBox(QMessageBox::Warning, "Login", "nu", QMessageBox::Ok, this);
+        auto mess = MessageDLL::GetMessageText(loginResult);
+        QString message = QString::fromUtf8(mess);
+        QMessageBox msgBox(QMessageBox::Warning, "Login", message, QMessageBox::Ok, this);
         msgBox.setStyleSheet("QPushButton { color: white; }");
         msgBox.exec();
     }
