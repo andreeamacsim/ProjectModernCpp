@@ -1,6 +1,7 @@
 module;
 #include <ctime>;
 #include <map>
+#include <unordered_map>
 import <vector>;
 import <string>;
 import player;
@@ -22,7 +23,7 @@ namespace game {
         const std::vector<std::string>& getGuesses() const;
         std::vector<std::string> getGuessesForPlayer(const std::string& player) const;
         std::time_t getStartTime() const;
-        const std::map<Player, int>& getPlayerScores() const
+        const std::unordered_map<int, Player>& getPlayerScores() const
         {
             return m_playerScores;
         }
@@ -33,7 +34,7 @@ namespace game {
         std::vector<std::string> m_guesses;
         bool m_guessed;
         std::time_t m_startTime;
-        std::map<Player, int> m_playerScores;
+        std::unordered_map<int, Player> m_playerScores;
         
     };
 }

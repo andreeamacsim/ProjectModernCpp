@@ -26,12 +26,16 @@ game::Round::Round(const std::string& word, const std::string& drawer, std::time
 void Round::addGuess(const std::string& guess, const game::Player& guesser)
 {
 	m_guesses.emplace_back(guess);
-	if (guess == m_word && !m_guessed) {
-		//  try_emplace pentru a evita cautarea duplicatelor
-		auto result = m_playerScores.try_emplace(guesser, 0);
 
-		if (result.second) {
-			result.first->second++;
+	if (guess == m_word && !m_guessed) {
+		auto result = m_playerScores.find(0);  
+
+		if (result != m_playerScores.end()) { 
+			result->second.m_score++;  
+			m_guessed = true;
+		}
+		else {  
+			m_playerScores.emplace(0, guesser);
 			m_guessed = true;
 		}
 	}

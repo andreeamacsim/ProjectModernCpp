@@ -37,6 +37,7 @@ namespace game {
 		void checkEmail(const std::string& email);
 		void checkUsername(const std::string& username);
 		Points& getPointsObject();
+		uint32_t m_score;
 		
 
 	private:
@@ -46,6 +47,7 @@ namespace game {
 		std::string m_username;
 		std::string m_password;
 		bool m_guessedWord;
+		
 		
 
 	};
