@@ -118,6 +118,8 @@ crow::response game::Routing::addPlayerToGameRoute(PlayerStorage& storage, const
 	std::string email = "";
 	if (username_chr != nullptr && password_chr != nullptr && email_chr!=nullptr) {
 		username = std::string(username_chr);
+		if (auto player = storage.checkUser(username); player.getUsername() == username)
+			return crow::response(400);
 		password = std::string(password_chr);
 		email = std::string(email_chr);
 		storage.addPlayerToStorage(username,password,email);

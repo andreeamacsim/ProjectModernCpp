@@ -42,6 +42,8 @@ void CreateAccount::on_register_2_clicked()
 	if (response.status_code == 200 || response.status_code == 201) {
 		QMessageBox::information(this, "Register", "Register completed");
 	}
+	else if(response.status_code==400)
+		QMessageBox::information(this, "Register", "Username is already used.");
 	else {
 		QMessageBox::warning(this, "Register", "Registration error");
 	}
