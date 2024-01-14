@@ -237,9 +237,16 @@ void game::Game::RunGame(PlayerStorage& storage)
 		 std::time_t subroundStartTime = currentSubround.getStartTime();
 
 		 if (currentTime - subroundStartTime >= 60) {
-			 for (const auto& pair : m_players)
+			 for (const auto& playerPair : m_players)
 			 {
-				 //de adaugat puncetele pentru runda terminata
+				 Player player = playerPair.second;
+				 if (player.getGuessedWord()) {
+					 player.getPointsObject().calculateScore(true, getResponseTime());
+					 player.getPointsObject().applyGuessingPoints(getResponseTime());
+				 }
+				 else {
+					 player.getPointsObject().applyFailedGuessingPoints();
+				 }
 			 }
 		 }
 	 }
