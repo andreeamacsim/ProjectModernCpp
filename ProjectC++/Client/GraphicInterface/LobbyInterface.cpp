@@ -86,21 +86,28 @@ void LobbyInterface::showButtons()
 
 void LobbyInterface::showConnectedPlayers()
 {
-	cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/players" });
-	ui.textEdit->setText(QString::fromUtf8(m_username));
-	auto players = crow::json::load(response.text);
-	for (auto player : players)
-	{
+	while (m_attempts < 5) {
+		cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/players" });
+		ui.textEdit->setText(QString::fromUtf8(m_username));
+		auto players = crow::json::load(response.text);
+		for (auto player : players)
+		{
 
-		std::string username = player["username"].s();
-		QString QUsername{ QString::fromUtf8(username) };
-		if(username!=m_username)
-			ui.textEdit->append(QUsername);
+			std::string username = player["username"].s();
+			QString QUsername{ QString::fromUtf8(username) };
+			if (username != m_username)
+				ui.textEdit->append(QUsername);
+		}
+		m_attempts++;
 	}
+
 }
 
 void LobbyInterface::goToDrawing()
 {
+	if (m_Owner == true) {
+		cpr::Response response = cpr::Get(cpr::Url{ "http://localhost:18080/run" });
+	}
 	DrawingInterface* drawingInterface = new DrawingInterface(m_username);
 	Chat* chatInterface = new Chat(m_username);
 	this->close();

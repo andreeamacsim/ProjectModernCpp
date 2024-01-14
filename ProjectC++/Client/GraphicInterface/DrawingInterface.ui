@@ -360,19 +360,6 @@ border: 2px solid black;</string>
      </item>
     </layout>
    </widget>
-   <widget class="QRadioButton" name="drawing">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>350</y>
-      <width>89</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>drawing</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="word">
     <property name="geometry">
      <rect>

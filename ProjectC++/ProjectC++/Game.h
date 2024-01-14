@@ -38,14 +38,15 @@ namespace game {
         Player getCurrentDrawer() const;
         uint8_t getDifficultyLevel() const;
         uint8_t getLanguage() const;
+        void startRound(PlayerStorage& storage);
         bool isReadyForNewSubround() const;
-        void startSubround(PlayerStorage& storage);
+        void startSubround(PlayerStorage& storage,int id);
         void RunGame(PlayerStorage& storage);
-        bool checkIfWordGuessed(bool isCorrect) const;
         void playerSentCorrectAnswer(const Player& player);
         std::time_t getResponseTime() const;
         void finishRound();
         void setIfPlayerGuessed(std::string username, bool isCorrect);
+        bool CheckAllAnswers();
 
         std::string revealCharacters();
     private:
@@ -62,7 +63,6 @@ namespace game {
         std::unordered_map<int, std::time_t> m_correctAnswerTimes;// timpul pentru fiecare player
         std::time_t m_currentRoundStartTime;
         std::unordered_map<std::string, bool>m_guessedWordForPlayer;
-
 
     };
 }

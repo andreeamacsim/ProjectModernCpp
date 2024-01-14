@@ -17,7 +17,7 @@ DrawingInterface::DrawingInterface(std::string username,QWidget *parent)
 	m_timerForDrawing = new QTimer(this);
 	m_timerForDrawing->setInterval(2000);
 	m_timerForDrawer = new QTimer(this);
-	m_timerForDrawer->setInterval(10000);
+	m_timerForDrawer->setInterval(5000);
 	m_username = username;
 	ui.setupUi(this);
 	m_drawingArea = new DrawingClass;
@@ -27,9 +27,10 @@ DrawingInterface::DrawingInterface(std::string username,QWidget *parent)
 	connect(m_timerForDrawing, &QTimer::timeout,this,&DrawingInterface::setDrawingLines);
 	m_timerForDrawing->start();
 	connect(m_timerForDrawer, &QTimer::timeout, this, &DrawingInterface::setDrawer);
+	connect(m_timerforWord, &QTimer::timeout, this, &DrawingInterface::revealCharacters);
 	m_timerForDrawer->start();
 	ui.generatedWord->setText("          ");
-	m_timerForDrawer->start();
+	m_timerforWord->start();
 }
 
 DrawingInterface::~DrawingInterface()

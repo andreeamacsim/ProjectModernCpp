@@ -20,6 +20,7 @@ public slots:
 	void goToProfile();
 	void goToDrawing();
 private:
+	int m_attempts = 0;
 	QTimer* m_connectedPlayersTimer;
 	std::string m_lobbyCode;
 	std::string m_username;

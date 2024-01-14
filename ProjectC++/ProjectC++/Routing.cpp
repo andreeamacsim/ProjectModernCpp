@@ -1,5 +1,5 @@
 ﻿#include "Routing.h"
-
+#include <thread>
 import random;
 using namespace game;
 import player;
@@ -97,6 +97,10 @@ void game::Routing::run(PlayerStorage& storage,Game& game, std::unordered_map<in
 		});
 	CROW_ROUTE(m_app, "/revealCharacters")([&game, this](const crow::request& req) {
 		return getWordForGuessers(game, req);
+		});
+	CROW_ROUTE(m_app, "/run")([&game, &storage, this](const crow::request& req) {
+		game.RunGame(storage);
+		return crow::response(200);
 		});
 
 

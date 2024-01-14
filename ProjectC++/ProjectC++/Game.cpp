@@ -132,9 +132,18 @@ uint8_t game::Game::getLanguage() const
 	return static_cast<int>(m_language);
 }
 
+void game::Game::startRound(PlayerStorage& storage)
+{
+	for (auto player : m_players)
+	{
+
+		startSubround(storage, player.first);
+	}
+}
+
 bool game::Game::isReadyForNewSubround() const //utilizare ranges + lambda functions 
 {
-	if (m_currentRound < m_rounds.size()) {
+	if (m_currentRound < 4) {
 		const Round& currentSubround = m_rounds[m_currentRound];
 		std::time_t currentTime = std::time(nullptr);
 		std::time_t subroundStartTime = currentSubround.getStartTime();
@@ -155,15 +164,13 @@ bool game::Game::isReadyForNewSubround() const //utilizare ranges + lambda funct
 }
 
 
-void game::Game::startSubround(PlayerStorage& storage)
+void game::Game::startSubround(PlayerStorage& storage,int id)
 {
-	if (m_currentRound < m_rounds.size()) {
-
 		m_currentRoundStartTime = std::time(nullptr);
 		m_correctAnswerTimes.clear();
 		setCurrentWord(storage);
 
-		Player subroundDrawer = m_players[m_currentRound + 1];
+		Player subroundDrawer = m_players[id];
 
 		// utilizarea smart pointers pentru  gestionare memorie
 		auto newSubround = std::make_unique<Round>(m_currentWord.getWord(), subroundDrawer.getUsername(), std::time(nullptr));
@@ -186,41 +193,18 @@ void game::Game::startSubround(PlayerStorage& storage)
 			else
 				playerPoints.applyGuessingPoints(responseTimes);
 			});
-	}
 }
 
 void game::Game::RunGame(PlayerStorage& storage)
 {
 
 	const uint8_t numRounds = 4;// din fisierul cu proiectul 
-
-	for (uint8_t roundNumber = 0; roundNumber < numRounds; ++roundNumber)
+	m_currentRound = 0;
+	for (uint8_t roundNumber = 1; roundNumber < numRounds; ++roundNumber)
 	{
-		while (m_currentRound < m_rounds.size()) {
-			if (isReadyForNewSubround()) {
-				startSubround(storage);
-				m_drawingTable.clear();
-			}
-			else {
-				std::time_t start = std::time(nullptr);
-				while (std::time(nullptr) - start < 1)
-				{
-
-				}
-
-			}
-		}
+			startRound(storage);
 	}
 }
-
-bool Game::checkIfWordGuessed(bool isCorrect) const
-{
-	if (isCorrect)
-		return true;
-	else
-		return false;
-}
-
 
 
  void Game::playerSentCorrectAnswer(const Player& player)
@@ -264,6 +248,12 @@ bool Game::checkIfWordGuessed(bool isCorrect) const
  void game::Game::setIfPlayerGuessed(std::string username, bool isCorrect)
  {
 	 m_guessedWordForPlayer[username] = isCorrect;
+ }
+
+ bool game::Game::CheckAllAnswers()
+ {
+	 return std::all_of(m_guessedWordForPlayer.begin(), m_guessedWordForPlayer.end(),
+		 [](const auto& pair) { return pair.second; });
  }
 
  std::string game::Game::revealCharacters()
