@@ -33,7 +33,7 @@ void Points::calculateScore(bool wordGuessed, const uint32_t& responseTimes)
 			auto totalResponseTime = std::accumulate(correctResponseTimes.begin(), correctResponseTimes.end(), 0);
 			auto numCorrectResponses = correctResponseTimes.size();
 
-			//  move semantics pentru eficienta
+			
 			double averageResponseTime = static_cast<double>(std::move(totalResponseTime)) / numCorrectResponses;
 
 			m_points += static_cast<uint32_t>(((60 - averageResponseTime) * 100) / 60);

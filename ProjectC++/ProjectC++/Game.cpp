@@ -141,7 +141,7 @@ void game::Game::startRound(PlayerStorage& storage)
 	}
 }
 
-bool game::Game::isReadyForNewSubround() const //utilizare ranges + lambda functions 
+bool game::Game::isReadyForNewSubround() const 
 {
 	if (m_currentRound < 4) {
 		const Round& currentSubround = m_rounds[m_currentRound];
@@ -172,7 +172,6 @@ void game::Game::startSubround(PlayerStorage& storage,int id)
 
 		Player subroundDrawer = m_players[id];
 
-		// utilizarea smart pointers pentru  gestionare memorie
 		auto newSubround = std::make_unique<Round>(m_currentWord.getWord(), subroundDrawer.getUsername(), std::time(nullptr));
 
 		m_rounds.push_back(std::move(*newSubround));
@@ -180,7 +179,7 @@ void game::Game::startSubround(PlayerStorage& storage,int id)
 		m_currentDrawer = subroundDrawer;
 		++m_currentRound;
 
-		bool wordGuessed; /*= checkIfWordGuessed();*/
+		bool wordGuessed; 
 		std::time_t responseTimes = getResponseTime();
 
 		std::for_each(m_players.begin(), m_players.end(), [&](auto& playerPair) {
@@ -193,16 +192,22 @@ void game::Game::startSubround(PlayerStorage& storage,int id)
 			else
 				playerPoints.applyGuessingPoints(responseTimes);
 			});
+
+		/*std::time_t roundStartTime = std::time(nullptr);
+			while (std::time(nullptr) - roundStartTime < 60) {
+			}
+			finishRound();*/
 }
 
 void game::Game::RunGame(PlayerStorage& storage)
 {
 
-	const uint8_t numRounds = 4;// din fisierul cu proiectul 
+	const uint8_t numRounds = 4; 
 	m_currentRound = 0;
 	for (uint8_t roundNumber = 1; roundNumber < numRounds; ++roundNumber)
 	{
 			startRound(storage);
+			
 	}
 }
 
@@ -233,10 +238,7 @@ void game::Game::RunGame(PlayerStorage& storage)
 	 if (m_currentRound < m_rounds.size()) {
 		 const Round& currentSubround = m_rounds[m_currentRound];
 
-		 std::time_t currentTime = std::time(nullptr);
-		 std::time_t subroundStartTime = currentSubround.getStartTime();
 
-		 if (currentTime - subroundStartTime >= 60) {
 			 for (const auto& playerPair : m_players)
 			 {
 				 Player player = playerPair.second;
@@ -248,7 +250,6 @@ void game::Game::RunGame(PlayerStorage& storage)
 					 player.getPointsObject().applyFailedGuessingPoints();
 				 }
 			 }
-		 }
 	 }
  }
 
