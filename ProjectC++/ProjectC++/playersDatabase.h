@@ -12,7 +12,6 @@ import profile;
 import player;
 import PointsModule;
 import word;
-import GameModule;
 
 namespace game
 {
@@ -55,7 +54,7 @@ namespace game
         Word getCurrentWord() const;
         std::vector<Word> readWordsFromFile(Language language, Difficulty difficuly, std::string fileName);
         Player checkUser(const std::string& username);
-        std::vector<Word> getRandomWord(Language language, Difficulty difficulty);
+        Word getRandomWord(Language language, Difficulty difficulty);
     private:
         void populateStorage();
         const std::string kDbFile{ "database.sqlite" };

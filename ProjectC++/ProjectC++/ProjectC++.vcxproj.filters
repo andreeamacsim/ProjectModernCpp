@@ -30,9 +30,6 @@
     <ClCompile Include="Points.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameModule.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="PointsModule.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -81,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExtraClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

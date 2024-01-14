@@ -29,21 +29,6 @@ void game::Routing::run(PlayerStorage& storage,Game& game, std::unordered_map<in
 
 		});
 
-
-	CROW_ROUTE(m_app, "/startsubround")([&game, this]() {
-		if (game.isReadyForNewSubround()) {
-			game.startSubround();
-			return crow::response("Subround started.");
-		}
-		else {
-			return crow::response(400, "Bad Request - Game not ready for a new subround");
-		}
-		});
-
-	CROW_ROUTE(m_app, "/revealletters/<int>")([&storage, this](const crow::request& req, int playerId) {
-		return revealLetters(storage, req, playerId);
-		});
-
 	CROW_ROUTE(m_app, "/submitanswer/<int>")([&storage, this](const crow::request& req, int playerId) {
 		return submitAnswer(storage, req, playerId); 
 		});
@@ -138,14 +123,6 @@ crow::response game::Routing::addPlayerToGameRoute(PlayerStorage& storage, const
 
 		return crow::response(400);
 	}
-}
-
-
-crow::response game::Routing::revealLetters(PlayerStorage& storage, const crow::request& req, int playerId)
-{
-	Word currentWord = storage.getCurrentWord();
-	std::string revealedLetters = currentWord.revealCharacter();
-	return crow::response(revealedLetters);
 }
 
 crow::response game::Routing::submitAnswer(PlayerStorage& storage, const crow::request& req, int playerId)

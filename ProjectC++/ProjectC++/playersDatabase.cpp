@@ -70,7 +70,7 @@ Player game::PlayerStorage::checkUser(const std::string& username)
 	}
 }
 
-std::vector<Word> game::PlayerStorage::getRandomWord(Language language, Difficulty difficulty)
+Word game::PlayerStorage::getRandomWord(Language language, Difficulty difficulty)
 {
 	auto allWords = m_db.get_all<Word>(sql::where(sql::and_(sql::c(&Word::getLanguage) == static_cast<int>(language),
 		sql::c(&Word::getDifficulty) == static_cast<int>(difficulty))));
@@ -78,7 +78,7 @@ std::vector<Word> game::PlayerStorage::getRandomWord(Language language, Difficul
 	std::srand(std::time(nullptr));
 	auto randomIndex = std::rand() % allWords.size();
 
-	return { allWords[randomIndex] };
+	return allWords[randomIndex];
 }
 
 

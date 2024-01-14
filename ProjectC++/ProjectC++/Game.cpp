@@ -1,12 +1,11 @@
-#include <ctime>;
-#include <thread> 
-#include  <iostream>;
-#include<algorithm>;
-#include <map>
-#include <ranges>
-
-module  GameModule;
-import <vector>;
+#include<ctime>
+#include<thread> 
+#include<iostream>
+#include<algorithm>
+#include<map>
+#include<ranges>
+#include"Game.h"
+#include<vector>
 import player;
 using namespace game;
 Game::Game()
@@ -83,11 +82,10 @@ std::vector<std::tuple<std::pair<std::pair<float, float>, std::pair<float, float
 	return m_drawingTable;
 }
 
-void game::Game::setCurrentWord(Word word)
+void game::Game::setCurrentWord(PlayerStorage& storage)
 {
-	this->m_currentWord = word;
+	this->m_currentWord = storage.getRandomWord(m_language, m_difficultyLevel);
 }
-
 
 Word game::Game::getCurrentWord() const
 {
@@ -157,18 +155,18 @@ bool game::Game::isReadyForNewSubround() const //utilizare ranges + lambda funct
 }
 
 
-void game::Game::startSubround()
+void game::Game::startSubround(PlayerStorage& storage)
 {
 	if (m_currentRound < m_rounds.size()) {
 
 		m_currentRoundStartTime = std::time(nullptr);
 		m_correctAnswerTimes.clear();
-		std::string newWord = m_wordList[std::rand() % m_wordList.size()].getWord();
+		setCurrentWord(storage);
 
 		Player subroundDrawer = m_players[m_currentRound + 1];
 
 		// utilizarea smart pointers pentru  gestionare memorie
-		auto newSubround = std::make_unique<Round>(newWord, subroundDrawer.getUsername(), std::time(nullptr));
+		auto newSubround = std::make_unique<Round>(m_currentWord.getWord(), subroundDrawer.getUsername(), std::time(nullptr));
 
 		m_rounds.push_back(std::move(*newSubround));
 
@@ -191,7 +189,7 @@ void game::Game::startSubround()
 	}
 }
 
-void game::Game::RunGame()
+void game::Game::RunGame(PlayerStorage& storage)
 {
 
 	const uint8_t numRounds = 4;// din fisierul cu proiectul 
@@ -200,7 +198,7 @@ void game::Game::RunGame()
 	{
 		while (m_currentRound < m_rounds.size()) {
 			if (isReadyForNewSubround()) {
-				startSubround();
+				startSubround(storage);
 				m_drawingTable.clear();
 			}
 			else {

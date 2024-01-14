@@ -6,7 +6,7 @@
 #include <ctime>
 #include <sstream>
 #include <unordered_map>
-import GameModule;
+#include "Game.h"
 
 
 namespace game
@@ -19,7 +19,6 @@ namespace game
 
 	private:
 		crow::response addPlayerToGameRoute(PlayerStorage& storage, const crow::request& req, int playerId) const;
-		crow::response revealLetters(PlayerStorage& storage, const crow::request& req, int playerId);
 		crow::response submitAnswer(PlayerStorage& storage, const crow::request& req, int playerId);
 		static crow::response getAnswers(PlayerStorage& storage, int drawingId);
 		crow::response addLineToTableRoute(Game& game, const crow::request& req);

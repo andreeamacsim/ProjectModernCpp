@@ -1,5 +1,5 @@
 #pragma once
-import GameModule;
+#include "Game.h"
 #include "playersDatabase.h"
 #include "Routing.h"
 using namespace game;
